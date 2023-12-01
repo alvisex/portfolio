@@ -9,7 +9,7 @@ export default {
 				DEFAULT: '1rem',
 				sm: '2rem',
 				lg: '5rem',
-				xl: '7rem',
+				xl: '5rem',
 				'2xl': '8rem',
 			},
 			screens: {

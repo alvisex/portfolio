@@ -1,6 +1,6 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
+import Layout from '../layouts/Layout.astro'
+import Card from '../components/Card.astro'
 ---
 
 <Layout title="Web Engineer">
@@ -8,69 +8,85 @@ import Card from "../components/Card.astro";
     <section class="flex items-center" id="s-1">
       <img class="bg" src="bg-1.jpg" id="bg-1" alt="" />
       <div class="container">
-        <div class="relative text-white txt-hero">
+        <div class="relative txt-hero">
           <h2 class="text-5xl">
-            Alvise <span class="text-gradient">Leal</span>
+            Alvise <span class="text-gradient short">Leal</span>
           </h2>
-          <h1 class="text-[4em] text-gradient">Web Engineer</h1>
-          <span>Frontend specialiced, but not limited</span>
+          <h1 class="text-[4.5rem] my-0 font-bold text-gradient">Web Engineer</h1>
+          <span class="text-lg">Frontend specialized, <span class="text-gradient short">Full-Stack</span> capabilities</span>
         </div>
       </div>
     </section>
-    <section class="flex items-center bgmaterial"></section>
-    <section></section>
+
+    <Card title="Introduction" header="What I do?">
+      <p>
+        Well, it could be considered that I am just a Front-End developer who creates websites, but that wouldn't fully cover everything I
+        can do.
+      </p>
+      <p>
+        Web technologies allow for a wide range of solutions for different needs of companies or institutions, from dynamically and
+        aesthetically presenting their image to providing solutions and facilities for users of web applications.
+      </p>
+    </Card>
+
+    <Card title="Expertice" header="Does anyone can do the same as me?">
+      <p>Yes, anyone can create a website, even for free.</p>
+      <p>
+        However, quality and professionalism are significant distinguishing factors that are not easily obtained, and that's where the main
+        differentiator lies. Technologies are meant to be leveraged and used to their fullest potential, and that's where I excel,
+        implementing the most suitable stack for the client's objectives and optimizing its implementation from aesthetic design to flawless
+        performance.
+      </p>
+    </Card>
+
+    <Card title="Skill" header="Tools I use">
+      <p>Yes, anyone can create a website, even for free.</p>
+      <p>
+        However, quality and professionalism are significant distinguishing factors that are not easily obtained, and that's where the main
+        differentiator lies. Technologies are meant to be leveraged and used to their fullest potential, and that's where I excel,
+        implementing the most suitable stack for the client's objectives and optimizing its implementation from aesthetic design to flawless
+        performance.
+      </p>
+    </Card>
   </main>
 </Layout>
 
 <script>
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-  gsap.registerPlugin(ScrollTrigger);
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+  gsap.registerPlugin(ScrollTrigger)
+  import Lenis from '@studio-freight/lenis'
+  /* Lenis compatibility */
+  const lenis = new Lenis()
+  lenis.on('scroll', ScrollTrigger.update)
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000)
+  })
+  gsap.ticker.lagSmoothing(0)
 
-  gsap.from("#bg-1", { duration: 1, opacity: 0 });
+  gsap.from('#bg-1', { duration: 2, opacity: 0 })
+  gsap
+    .timeline({ defaults: { duration: 1, ease: 'power2' } })
+    .from('h2', { y: '50%', clipPath: 'inset(100% 0 0 0)' })
+    .from('h1', { y: '-50%', clipPath: 'inset(0 0 100% 0)', ease: 'power1' }, 0)
 
   gsap
     .timeline({
       scrollTrigger: {
-        trigger: "#s-1",
+        trigger: '#s-1',
         markers: true,
-        start: "center center",
-        end: "bottom 30%",
-        scrub: true,
+        start: 'center center',
+        end: 'bottom 30%',
+        scrub: true
       },
+      defaults: { ease: 'none' }
     })
-    .to("#bg-1", {
-      objectPosition: "0% 0%",
-    })
-    .to(
-      ".txt-hero",
-      {
-        yPercent: 30,
-      },
-      0
-    );
+    .to('#bg-1', { objectPosition: '0% 0%' })
+    .to('.txt-hero', { yPercent: 30 }, 0)
 </script>
 
 <style lang="scss">
-  section {
-    @apply h-screen;
-    color: white;
-    font-size: 20px;
-    line-height: 1.6;
-    position: relative;
-
-    &.bgmaterial {
-      // background-image: url("./bg-material.png");
-    }
-    img.bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      object-fit: cover;
-      object-position: 0% 100%;
-      transform: scaleX(-1);
-      height: 100%;
-      width: 100%;
-    }
+  p {
+    @apply mb-4;
   }
 </style>
