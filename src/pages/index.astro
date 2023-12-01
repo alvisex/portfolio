@@ -1,0 +1,76 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+---
+
+<Layout title="Web Engineer">
+  <main>
+    <section class="flex items-center" id="s-1">
+      <img class="bg" src="bg-1.jpg" id="bg-1" alt="" />
+      <div class="container">
+        <div class="relative text-white txt-hero">
+          <h2 class="text-5xl">
+            Alvise <span class="text-gradient">Leal</span>
+          </h2>
+          <h1 class="text-[4em] text-gradient">Web Engineer</h1>
+          <span>Frontend specialiced, but not limited</span>
+        </div>
+      </div>
+    </section>
+    <section class="flex items-center bgmaterial"></section>
+    <section></section>
+  </main>
+</Layout>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from("#bg-1", { duration: 1, opacity: 0 });
+
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: "#s-1",
+        markers: true,
+        start: "center center",
+        end: "bottom 30%",
+        scrub: true,
+      },
+    })
+    .to("#bg-1", {
+      objectPosition: "0% 0%",
+    })
+    .to(
+      ".txt-hero",
+      {
+        yPercent: 30,
+      },
+      0
+    );
+</script>
+
+<style lang="scss">
+  section {
+    @apply h-screen;
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+    position: relative;
+
+    &.bgmaterial {
+      // background-image: url("./bg-material.png");
+    }
+    img.bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      object-fit: cover;
+      object-position: 0% 100%;
+      transform: scaleX(-1);
+      height: 100%;
+      width: 100%;
+    }
+  }
+</style>
