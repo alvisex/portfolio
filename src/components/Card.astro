@@ -3,17 +3,18 @@ interface Props {
   title: string
   header: string
 }
-
 const { title, header } = Astro.props
 ---
 
-<section class="container">
-  <div class="max-w-[70vw] ml-0">
+<section id={`c-${title}`} class="container flex items-center card">
+  <div class="md:max-w-[65%] ml-0">
     <h3 class="text-gradient text-xl short mb-1">{title}</h3>
     <h4 class="text-bold text-4xl mb-3">{header}</h4>
     <slot />
   </div>
 </section>
+
+<script define:vars={{ title }}></script>
 
 <style lang="scss">
   p {

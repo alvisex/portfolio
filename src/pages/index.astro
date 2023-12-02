@@ -66,23 +66,27 @@ import Card from '../components/Card.astro'
 
   gsap.from('#bg-1', { duration: 2, opacity: 0 })
   gsap
-    .timeline({ defaults: { duration: 1, ease: 'power2' } })
-    .from('h2', { y: '50%', clipPath: 'inset(100% 0 0 0)' })
-    .from('h1', { y: '-50%', clipPath: 'inset(0 0 100% 0)', ease: 'power1' }, 0)
+    .timeline({ defaults: { duration: 1.8, ease: 'power2' } })
+    .from('h2', { y: '40%', clipPath: 'inset(0 0 100% 0)', opacity: 0 })
+    .from('h1', { y: '40%', clipPath: 'inset(0 0 100% 0)', opacity: 0 }, 0)
 
-  gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: '#s-1',
-        markers: true,
-        start: 'center center',
-        end: 'bottom 30%',
-        scrub: true
-      },
-      defaults: { ease: 'none' }
-    })
-    .to('#bg-1', { objectPosition: '0% 0%' })
-    .to('.txt-hero', { yPercent: 30 }, 0)
+  let cards = gsap.utils.toArray('.card')
+  cards.forEach((element) => {
+    let q = gsap.utils.selector(element)
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: element,
+          markers: true,
+          start: 'start center'
+        },
+        defaults: { ease: 'power1', duration: 1 }
+      })
+      .from(q('h3'), { opacity: 0, x: 20 })
+      .from(q('h4'), { opacity: 0, x: 20 }, '<10%')
+      .from(q('p'), { opacity: 0, x: 20, stagger: 0.2 }, '<10%')
+  })
+  console.log('cards', cards)
 </script>
 
 <style lang="scss">
