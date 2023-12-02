@@ -70,7 +70,7 @@ import Card from '../components/Card.astro'
     .from('h2', { y: '40%', clipPath: 'inset(0 0 100% 0)', opacity: 0 })
     .from('h1', { y: '40%', clipPath: 'inset(0 0 100% 0)', opacity: 0 }, 0)
 
-  let cards = gsap.utils.toArray('.card')
+  let cards: Element[] = gsap.utils.toArray('.card')
   cards.forEach((element) => {
     let q = gsap.utils.selector(element)
     gsap

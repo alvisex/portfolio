@@ -1,5 +1,5 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout title="Welcome to Astro.">
@@ -11,17 +11,16 @@ import Layout from "../layouts/Layout.astro";
       </div>
       <div class="container-hero">
         <div class="h1">Active Noise Cancellation for immersive sound.</div>
-        <div class="h1">
-          Transparency mode for hearing what’s happening around you.
-        </div>
+        <div class="h1">Transparency mode for hearing what’s happening around you.</div>
         <div class="h1">A customizable fit for all-day comfort.</div>
         <div class="h1">Magic like you’ve never heard.</div>
       </div>
     </div>
   </main>
 </Layout>
-
+<!-- 
 <script>
+  
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
   gsap.registerPlugin(ScrollTrigger);
@@ -150,7 +149,7 @@ import Layout from "../layouts/Layout.astro";
       });
     },
   });
-</script>
+</script> -->
 
 <style>
   @mixin sm-max {
@@ -167,11 +166,11 @@ import Layout from "../layouts/Layout.astro";
     justify-content: center;
   }
 
-  @import url("https://fonts.google.com/specimen/Exo?selection.family=Exo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900");
+  @import url('https://fonts.google.com/specimen/Exo?selection.family=Exo:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900');
 
   html,
   body {
-    font-family: "Exo", sans-serif;
+    font-family: 'Exo', sans-serif;
     font-size: 10px;
     @include sm-max {
       font-size: 5px;
