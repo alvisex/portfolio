@@ -11,7 +11,7 @@ import Preloader from '../components/Preloader.astro'
   import { Application } from '@splinetool/runtime'
   import { gsap } from 'gsap'
 
-  const canvas = document.getElementById('canvas3d')
+  const canvas = document.getElementById('canvas3d') as HTMLCanvasElement
   const container = document.getElementById('canvas-container')
   const preloader = document.getElementById('preloader')
   const scale = 0.4
@@ -25,6 +25,7 @@ import Preloader from '../components/Preloader.astro'
     console.log('body', body)
     const avatar = spline.findObjectByName('Avatar')
     console.log('avatar', avatar)
+    if (!avatar || !head) return {}
 
     gsap.set(avatar.scale, { x: scale, y: scale, z: scale })
     gsap.set(avatar.position, { x: 600, y: 300 })
