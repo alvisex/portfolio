@@ -1,0 +1,50 @@
+---
+import Preloader from '../components/Preloader.astro'
+---
+
+<div class="hidden" id="canvas-container">
+  <canvas id="canvas3d"> </canvas>
+</div>
+<Preloader />
+
+<script>
+  import { Application } from '@splinetool/runtime'
+  import { gsap } from 'gsap'
+
+  const canvas = document.getElementById('canvas3d')
+  const container = document.getElementById('canvas-container')
+  const preloader = document.getElementById('preloader')
+  const scale = 0.4
+
+  const spline = new Application(canvas)
+  spline.load('https://prod.spline.design/d4fCm8hYmfCpWPoo/scene.splinecode').then(() => {
+    console.log('spline loaded')
+    const head = spline.findObjectByName('Head')
+    console.log('head', head)
+    const body = spline.findObjectByName('Body')
+    console.log('body', body)
+    const avatar = spline.findObjectByName('Avatar')
+    console.log('avatar', avatar)
+
+    gsap.set(avatar.scale, { x: scale, y: scale, z: scale })
+    gsap.set(avatar.position, { x: 600, y: 300 })
+
+    head.emitEvent('mouseHover')
+    setTimeout(() => {
+      head.emitEventReverse('mouseHover')
+    }, 1000)
+    //preloader?.classList.add('hidden')
+    gsap.to('#preloader', { clipPath: 'circle(0%)', duration: 3, ease: 'power3.in' })
+    container?.classList.remove('hidden')
+  })
+  setTimeout(() => {}, 0)
+</script>
+<style lang="scss">
+  canvas {
+    z-index: 2;
+    position: fixed;
+    top: 0%;
+    right: 0;
+    //pointer-events: none;
+  }
+</style>

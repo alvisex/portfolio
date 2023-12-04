@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import Card from '../components/Card.astro'
+import Avatar from '../components/Avatar.astro'
 ---
 
 <Layout title="Web Engineer">
@@ -13,41 +14,45 @@ import Card from '../components/Card.astro'
             Alvise <span class="text-gradient short">Leal</span>
           </h2>
           <h1 class="text-[4.5rem] my-0 font-bold text-gradient">Web Engineer</h1>
-          <span class="text-lg">Frontend specialized, <span class="text-gradient short">Full-Stack</span> capabilities</span>
+          <span class="text-lg">Frontend expertice, <span class="text-gradient short">Full-Stack</span> capabilities</span>
         </div>
       </div>
     </section>
 
-    <Card title="Introduction" header="What I do?">
-      <p>
-        Well, it could be considered that I am just a Front-End developer who creates websites, but that wouldn't fully cover everything I
-        can do.
-      </p>
-      <p>
-        Web technologies allow for a wide range of solutions for different needs of companies or institutions, from dynamically and
-        aesthetically presenting their image to providing solutions and facilities for users of web applications.
-      </p>
-    </Card>
+    <Avatar />
 
-    <Card title="Expertice" header="Does anyone can do the same as me?">
-      <p>Yes, anyone can create a website, even for free.</p>
-      <p>
-        However, quality and professionalism are significant distinguishing factors that are not easily obtained, and that's where the main
-        differentiator lies. Technologies are meant to be leveraged and used to their fullest potential, and that's where I excel,
-        implementing the most suitable stack for the client's objectives and optimizing its implementation from aesthetic design to flawless
-        performance.
-      </p>
-    </Card>
+    <div class="cards-wrapper">
+      <Card title="Introduction" header="What I do?">
+        <p>
+          Well, it could be considered that I am just a Front-End developer who creates websites, but that wouldn't fully cover everything I
+          can do.
+        </p>
+        <p>
+          Web technologies allow for a wide range of solutions for different needs of companies or institutions, from dynamically and
+          aesthetically presenting their image to providing solutions and facilities for users of web applications.
+        </p>
+      </Card>
 
-    <Card title="Skill" header="Tools I use">
-      <p>Yes, anyone can create a website, even for free.</p>
-      <p>
-        However, quality and professionalism are significant distinguishing factors that are not easily obtained, and that's where the main
-        differentiator lies. Technologies are meant to be leveraged and used to their fullest potential, and that's where I excel,
-        implementing the most suitable stack for the client's objectives and optimizing its implementation from aesthetic design to flawless
-        performance.
-      </p>
-    </Card>
+      <Card title="Expertice" header="Does anyone can do the same as me?" reversed>
+        <p>Yes, anyone can create a website, even for free.</p>
+        <p>
+          However, quality and professionalism are significant distinguishing factors that are not easily obtained, and that's where the
+          main differentiator lies. Technologies are meant to be leveraged and used to their fullest potential, and that's where I excel,
+          implementing the most suitable stack for the client's objectives and optimizing its implementation from aesthetic design to
+          flawless performance.
+        </p>
+      </Card>
+
+      <Card title="Skills" header="Tools I use">
+        <p>Yes, anyone can create a website, even for free.</p>
+        <p>
+          However, quality and professionalism are significant distinguishing factors that are not easily obtained, and that's where the
+          main differentiator lies. Technologies are meant to be leveraged and used to their fullest potential, and that's where I excel,
+          implementing the most suitable stack for the client's objectives and optimizing its implementation from aesthetic design to
+          flawless performance.
+        </p>
+      </Card>
+    </div>
   </main>
 </Layout>
 
@@ -70,26 +75,61 @@ import Card from '../components/Card.astro'
     .from('h2', { y: '40%', clipPath: 'inset(0 0 100% 0)', opacity: 0 })
     .from('h1', { y: '40%', clipPath: 'inset(0 0 100% 0)', opacity: 0 }, 0)
 
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: '#s-1',
+        start: 'center center',
+        end: 'bottom 30%',
+        scrub: true
+      },
+      defaults: { ease: 'none' }
+    })
+    .to('#bg-1', { objectPosition: '0% 0%' })
+    .to('.txt-hero', { yPercent: 50 }, 0)
+
+  /* Cards */
   let cards: Element[] = gsap.utils.toArray('.card')
   cards.forEach((element) => {
+    gsap.to(element, {
+      scrollTrigger: {
+        trigger: element,
+        //markers: true,
+        start: 'start 5%',
+        end: 'bottom 30%',
+        pin: true
+      }
+    })
+
     let q = gsap.utils.selector(element)
-    gsap
-      .timeline({
+    let subelements: Element[] = gsap.utils.toArray(q('*'))
+    let start = 10
+    subelements.forEach((subEl) => {
+      gsap.from(subEl, {
         scrollTrigger: {
-          trigger: element,
+          trigger: subEl,
           markers: true,
-          start: 'start center'
+          start: `${start}px 25%'`,
+          end: 'bottom 40%'
         },
-        defaults: { ease: 'power1', duration: 1 }
+        opacity: 0,
+        x: 20,
+        stagger: 0.2
       })
-      .from(q('h3'), { opacity: 0, x: 20 })
-      .from(q('h4'), { opacity: 0, x: 20 }, '<10%')
-      .from(q('p'), { opacity: 0, x: 20, stagger: 0.2 }, '<10%')
+      start += 50
+    })
+
+    /* .from(q('h4'), { opacity: 0, x: 20 }, '<10%')
+      .from(q('p'), { opacity: 0, x: 20, stagger: 0.5 }, '<10%') */
   })
   console.log('cards', cards)
 </script>
 
 <style lang="scss">
+  .cards-wrapper {
+    background: rgb(17, 17, 17);
+    background: linear-gradient(185deg, rgba(17, 17, 17, 1) 35%, rgba(227, 104, 38, 0.6026785717285717) 100%);
+  }
   p {
     @apply mb-4;
   }

@@ -5,18 +5,39 @@ interface Props {
 }
 
 const { title } = Astro.props
+
+const titePro = `Alvise | ${title}`
+const description = `Alvise Portfolio`
+const img = '/bg-1.jpg'
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Work+Sans" />
-    <meta name="generator" content={Astro.generator} />
     <title>Alvise | {title}</title>
+    <!-- Primary Meta Tags -->
+    <meta name="title" content={titePro} />
+    <meta name="description" content={description} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://portfolio-f7ag.onrender.com/" />
+    <meta property="og:title" content={titePro} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={img} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://portfolio-f7ag.onrender.com/" />
+    <meta property="twitter:title" content={titePro} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={img} />
+    <!--  <link rel="preload" href="https://prod.spline.design/d4fCm8hYmfCpWPoo/scene.splinecode" as="fetch" /> -->
+    <!-- Meta Tags Generated with https://metatags.io -->
   </head>
   <body>
     <Navbar />
@@ -34,7 +55,7 @@ const { title } = Astro.props
     --azul: #1f282d;
     --color-font: #ebe8e4;
     --accent-gradient: linear-gradient(187deg, rgba(31, 40, 45, 1) 0%, rgba(227, 104, 38, 1) 80%);
-    --short-gradient: linear-gradient(187deg, rgba(31, 40, 45, 1) 0%, rgba(227, 104, 38, 1) 40%);
+    --short-gradient: linear-gradient(20deg, rgb(219, 219, 219) 0%, rgba(227, 104, 38, 1) 60%);
   }
   html {
     font-family: 'Work Sans', system-ui, sans-serif;
@@ -44,6 +65,7 @@ const { title } = Astro.props
     font-size: 20px;
   }
   .text-gradient {
+    width: fit-content;
     background: var(--accent-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -69,6 +91,16 @@ const { title } = Astro.props
     transform: scaleX(-1);
     height: 100%;
     width: 100%;
+    z-index: -5;
+  }
+
+  h2,
+  h3,
+  h4,
+  p,
+  span {
+    position: relative;
+    z-index: 10;
   }
   code {
     font-family:
