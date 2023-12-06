@@ -60,8 +60,8 @@ import Avatar from '../components/Avatar.astro'
   import { gsap } from 'gsap'
   import { ScrollTrigger } from 'gsap/ScrollTrigger'
   gsap.registerPlugin(ScrollTrigger)
-  import Lenis from '@studio-freight/lenis'
   /* Lenis compatibility */
+  import Lenis from '@studio-freight/lenis'
   const lenis = new Lenis()
   lenis.on('scroll', ScrollTrigger.update)
   gsap.ticker.add((time) => {

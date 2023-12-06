@@ -1,4 +1,5 @@
 ---
+import Preloader from '../components/Preloader.astro'
 import Layout from '../layouts/Layout.astro'
 ---
 
@@ -8,19 +9,102 @@ import Layout from '../layouts/Layout.astro'
     <canvas id="canvas3dd"></canvas>
     <!--  <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.517/build/spline-viewer.js"></script>
   <spline-viewer url="https://prod.spline.design/027RUTK2ANG-42Jp/scene.splinecode"></spline-viewer> -->
-    <section>demo</section>
-    <section>demo</section>
-    <section>demo</section>
+    <section id="ss-1">demo</section>
+    <section id="ss-2">demo</section>
+    <section id="ss-3">demo</section>
+    <section id="ss-4">demo</section>
+    <section id="ss-5">demo</section>
     <div>que onda</div>
   </div>
+  <Preloader />
 </Layout>
 
 <script>
   import { Application } from '@splinetool/runtime'
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+  gsap.registerPlugin(ScrollTrigger)
+  /* Lenis compatibility */
+  import Lenis from '@studio-freight/lenis'
+  const lenis = new Lenis()
+  lenis.on('scroll', ScrollTrigger.update)
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000)
+  })
+  gsap.ticker.lagSmoothing(0)
 
   const canvas = document.getElementById('canvas3dd') as HTMLCanvasElement
   const app = new Application(canvas)
-  app.load('https://prod.spline.design/027RUTK2ANG-42Jp/scene.splinecode')
+  app.load('https://prod.spline.design/027RUTK2ANG-42Jp/scene.splinecode').then(() => {
+    console.log('escena cargadas')
+    const camera = app.findObjectByName('Dacamera')
+    console.log('camera', camera)
+    setTimeout(() => {
+      gsap.to('#preloader', { clipPath: 'circle(0%)', duration: 2, ease: 'power1.in' })
+    }, 100)
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: '#ss-1',
+          start: 'center center',
+          end: 'bottom 2%',
+          scrub: true
+        }
+      })
+      .to(camera?.position, {
+        x: -143.56,
+        y: -257.07,
+        z: 340.13
+      })
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: '#ss-2',
+          start: 'center center',
+          end: 'bottom 2%',
+          scrub: true
+        }
+      })
+      .to(camera?.position, {
+        x: 113.27,
+        y: -233.98,
+        z: 343.25
+      })
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: '#ss-3',
+          start: 'center center',
+          end: 'bottom 2%',
+          scrub: true
+        }
+      })
+      .to(camera?.position, {
+        x: -138.76,
+        y: -268.52,
+        z: 62.87
+      })
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: '#ss-4',
+          start: 'center center',
+          end: 'bottom 2%',
+          scrub: true
+        }
+      })
+      .to(camera?.position, {
+        x: -150.18,
+        y: -274.61,
+        z: -498.74
+      })
+  })
+
+  /*  */
 </script>
 
 <style>

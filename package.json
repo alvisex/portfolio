@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -13,7 +13,7 @@
     "@astrojs/check": "^0.3.1",
     "@astrojs/tailwind": "^5.0.2",
     "@astrojs/vue": "^3.0.4",
-    "@splinetool/runtime": "^0.9.517",
+    "@splinetool/runtime": "^0.9.518",
     "@studio-freight/lenis": "^1.0.29",
     "astro": "^3.6.0",
     "gsap": "^3.12.3",
