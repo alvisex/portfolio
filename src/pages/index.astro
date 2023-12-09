@@ -19,7 +19,7 @@ import Avatar from '../components/Avatar.astro'
       </div>
     </section>
 
-    <Avatar />
+    <!--  <Avatar /> -->
 
     <div class="cards-wrapper">
       <Card title="Introduction" header="What I do?">
@@ -94,9 +94,9 @@ import Avatar from '../components/Avatar.astro'
     gsap.to(element, {
       scrollTrigger: {
         trigger: element,
-        //markers: true,
+        markers: true,
         start: 'start 5%',
-        end: 'bottom 30%',
+        end: 'bottom 0%',
         pin: true
       }
     })
@@ -108,7 +108,7 @@ import Avatar from '../components/Avatar.astro'
       gsap.from(subEl, {
         scrollTrigger: {
           trigger: subEl,
-          markers: true,
+          //markers: true,
           start: `${start}px 25%'`,
           end: 'bottom 40%'
         },
