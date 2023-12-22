@@ -22,36 +22,54 @@ import Avatar from '../components/Avatar.astro'
     <!--  <Avatar /> -->
 
     <div class="cards-wrapper">
-      <Card title="Introduction" header="What I do?">
+      <Card title="Making real the magic ideas." header="Who I am?">
         <p>
-          Well, it could be considered that I am just a Front-End developer who creates websites, but that wouldn't fully cover everything I
-          can do.
+          I am a Front-End developer who creates useful stuff. However, web technologies allow me a wide range to imagine and create
+          solutions, efficiently meeting the needs of companies or institutions.
         </p>
-        <p>
-          Web technologies allow for a wide range of solutions for different needs of companies or institutions, from dynamically and
-          aesthetically presenting their image to providing solutions and facilities for users of web applications.
-        </p>
+        <p>I seek the feasibility of the idea to present it in a dynamic and aesthetic way.</p>
       </Card>
 
-      <Card title="Expertice" header="Does anyone can do the same as me?" reversed>
-        <p>Yes, anyone can create a website, even for free.</p>
+      <Card title="My hallmark" header="Quality and professionalism" reversed>
         <p>
-          However, quality and professionalism are significant distinguishing factors that are not easily obtained, and that's where the
-          main differentiator lies. Technologies are meant to be leveraged and used to their fullest potential, and that's where I excel,
-          implementing the most suitable stack for the client's objectives and optimizing its implementation from aesthetic design to
-          flawless performance.
+          I aim to meet the needs and objectives of the challenge by implementing the most suitable stack and optimizing its implementation,
+          achieving an aesthetic design but impeccable performance.
+        </p>
+        <p>
+          Technologies are meant to be harnessed and utilized to their fullest potential, and that&#39;s where my skills and knowledge
+          converge.
         </p>
       </Card>
 
       <Card title="Skills" header="Tools I use">
-        <p>Yes, anyone can create a website, even for free.</p>
         <p>
-          However, quality and professionalism are significant distinguishing factors that are not easily obtained, and that's where the
-          main differentiator lies. Technologies are meant to be leveraged and used to their fullest potential, and that's where I excel,
-          implementing the most suitable stack for the client's objectives and optimizing its implementation from aesthetic design to
-          flawless performance.
+          I have knowledge in various tools, including: <br />
+          <ul class="grid grid-cols-4">
+            <li>Vue (v2, v3)</li>
+            <li>Nuxt (v2, v3)</li>
+            <li>Astro js</li>
+            <li>Strapi</li>
+            <li>Firebase</li>
+            <li>Vite</li>
+            <li>Vuetify</li>
+            <li>Tailwind</li>
+            <li>GSAP 3</li>
+            <li>Three.js</li>
+            <li>Lenis.js</li>
+            <li>Spline 3D</li>
+            <li>Python</li>
+            <li>Webpack</li>
+            <li>Docker</li>
+            <li>React</li>
+          </ul>
+          <br />
+        </p>
+        <p>
+          However, I am not limited solely to these tools; <br />As a profesional developer I am immersed in constant learning, searching
+          for the new things to do, and new ways to achive them
         </p>
       </Card>
+      <section></section>
     </div>
   </main>
 </Layout>
@@ -94,7 +112,7 @@ import Avatar from '../components/Avatar.astro'
     gsap.to(element, {
       scrollTrigger: {
         trigger: element,
-        markers: true,
+        /*  markers: true, */
         start: 'start 5%',
         end: 'bottom 0%',
         pin: true
@@ -102,13 +120,13 @@ import Avatar from '../components/Avatar.astro'
     })
 
     let q = gsap.utils.selector(element)
-    let subelements: Element[] = gsap.utils.toArray(q('*'))
+    let subelements: Element[] = gsap.utils.toArray(q('p'))
     let start = 10
     subelements.forEach((subEl) => {
       gsap.from(subEl, {
         scrollTrigger: {
           trigger: subEl,
-          //markers: true,
+          markers: true,
           start: `${start}px 25%'`,
           end: 'bottom 40%'
         },
