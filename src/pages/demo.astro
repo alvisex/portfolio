@@ -24,6 +24,7 @@ import Layout from '../layouts/Layout.astro'
   import { gsap } from 'gsap'
   import { ScrollTrigger } from 'gsap/ScrollTrigger'
   gsap.registerPlugin(ScrollTrigger)
+
   /* Lenis compatibility */
   import Lenis from '@studio-freight/lenis'
   const lenis = new Lenis()
@@ -33,35 +34,68 @@ import Layout from '../layouts/Layout.astro'
   })
   gsap.ticker.lagSmoothing(0)
 
-  const cameraPositions = [
+  const cameraScenes = [
     {
-      x: -316.14,
-      y: 156.99,
-      z: 156.99
+      rotation: {
+        x: -0,
+        y: -0,
+        z: -0
+      },
+      position: {
+        x: 0,
+        y: 0,
+        z: 0
+      }
     },
     {
-      x: 839.98,
-      y: 25.71,
-      z: 1194.66
+      rotation: {
+        x: 0.124,
+        y: 0.282,
+        z: 0
+      },
+      position: {
+        x: 160.45,
+        y: 162.22,
+        z: 616.44
+      }
     },
     {
-      x: -138.76,
-      y: -268.52,
-      z: 62.87
+      rotation: {
+        x: -0.224,
+        y: -0.282,
+        z: -0
+      },
+      position: {
+        x: -316.14,
+        y: 156.99,
+        z: 40.03
+      }
     },
     {
-      x: -150.18,
-      y: -274.61,
-      z: -498.74
+      rotation: {
+        x: 0.124,
+        y: 0.282,
+        z: 0
+      },
+      position: {
+        x: 160.45,
+        y: 162.22,
+        z: 100.44
+      }
     }
   ]
 
   const canvas = document.getElementById('canvas3dd') as HTMLCanvasElement
   const app = new Application(canvas)
+
   app.load('https://prod.spline.design/ayNisUEENs-eGECw/scene.splinecode').then(() => {
     console.log('escena cargadas')
     const camera = app.findObjectByName('Dacamera')
     console.log('camera', camera)
+    console.log('rotation', camera?.rotation)
+    console.log('position', camera?.position)
+    console.log('rotation', camera?.rotation)
+    console.log('break')
     setTimeout(() => {
       gsap.to('#preloader', { clipPath: 'circle(0%)', duration: 2, ease: 'power1.in' })
     }, 100)
@@ -71,12 +105,18 @@ import Layout from '../layouts/Layout.astro'
         .timeline({
           scrollTrigger: {
             trigger: `#ss-${i}`,
-            start: 'center center',
+            start: '55% 50%',
             end: 'bottom 2%',
-            scrub: true
+            scrub: true,
+            markers: true
+          },
+          onUpdate: (params) => {
+            /* console.log('position', camera?.position)
+            console.log('rotation', camera?.rotation) */
           }
         })
-        .to(camera?.position, cameraPositions[i - 1])
+        .to(camera?.position, cameraScenes[i - 1].position)
+        .to(camera?.rotation, cameraScenes[i - 1].rotation, '<')
     }
 
     /* gsap
