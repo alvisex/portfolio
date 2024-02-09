@@ -91,32 +91,42 @@ import Layout from '../layouts/Layout.astro'
   app.load('https://prod.spline.design/ayNisUEENs-eGECw/scene.splinecode').then(() => {
     console.log('escena cargadas')
     const camera = app.findObjectByName('Dacamera')
+    const eltexto = app.findObjectByName('eltexto')
     console.log('camera', camera)
-    console.log('rotation', camera?.rotation)
-    console.log('position', camera?.position)
-    console.log('rotation', camera?.rotation)
+    console.log('eltexto', eltexto)
+    console.log('app', app)
+
     console.log('break')
     setTimeout(() => {
       gsap.to('#preloader', { clipPath: 'circle(0%)', duration: 2, ease: 'power1.in' })
     }, 100)
 
+    /*  setTimeout(() => {
+      console.log('mosusedown')
+      //eltexto?.emitEvent('mouseDown')
+      app.setVariable('activo', true)
+    }, 3000) */
     for (let i = 1; i <= 4; i++) {
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: `#ss-${i}`,
-            start: '55% 50%',
-            end: 'bottom 2%',
-            scrub: true,
-            markers: true
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: `#ss-${i}`,
+          start: '55% 50%',
+          end: 'bottom 2%',
+          onEnter: () => {
+            console.log('i', i)
+            app.setVariable('escena', i)
+            console.log('escena spline', app.getVariable('escena'))
           },
-          onUpdate: (params) => {
-            /* console.log('position', camera?.position)
-            console.log('rotation', camera?.rotation) */
+          onEnterBack: () => {
+            console.log('back i', i)
+            app.setVariable('escena', i)
+            console.log('escena spline', app.getVariable('escena'))
           }
-        })
-        .to(camera?.position, cameraScenes[i - 1].position)
-        .to(camera?.rotation, cameraScenes[i - 1].rotation, '<')
+        },
+        onUpdate: (params) => {}
+      })
+      // .to(camera?.position, cameraScenes[i - 1].position)
+      // .to(camera?.rotation, cameraScenes[i - 1].rotation, '<')
     }
 
     /* gsap
