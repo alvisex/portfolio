@@ -6,14 +6,14 @@ import Avatar from '../components/Avatar.astro'
 
 <Layout title="Web Engineer">
   <main>
-    <section class="flex items-center" id="s-1">
-      <img class="bg" src="bg-1.jpg" id="bg-1" alt="" />
-      <div class="container">
+    <section class="flex md:items-center" id="s-1">
+      <img class="bg object-[45%]" src="bg-1.jpg" id="bg-1" alt="" />
+      <div class="container mt-32 md:mt-0">
         <div class="relative txt-hero">
           <h2 class="text-5xl">
             Alvise <span class="text-gradient short">Leal</span>
           </h2>
-          <h1 class="text-[4.5rem] my-0 font-bold text-gradient">Web Engineer</h1>
+          <h1 class="text-[3rem] md:text-[4.5rem] my-0 font-bold text-gradient mt-32 md:mt-0">Web Engineer</h1>
           <span class="text-lg">Frontend expertice, <span class="text-gradient short">Full-Stack</span> capabilities</span>
         </div>
       </div>
@@ -22,6 +22,7 @@ import Avatar from '../components/Avatar.astro'
     <!--  <Avatar /> -->
 
     <div class="cards-wrapper">
+      <div class="bg-cards"></div>
       <Card title="Making real the magic ideas." header="Who I am?">
         <p>
           I am a Front-End developer who creates useful stuff. However, web technologies allow me a wide range to imagine and create
@@ -69,6 +70,7 @@ import Avatar from '../components/Avatar.astro'
           for the new things to do, and new ways to achive them
         </p>
       </Card>
+      <Card title="space" header="" />
       <section></section>
     </div>
   </main>
@@ -88,6 +90,15 @@ import Avatar from '../components/Avatar.astro'
   gsap.ticker.lagSmoothing(0)
 
   gsap.from('#bg-1', { duration: 2, opacity: 0 })
+
+  const backgrounds = [
+    'linear-gradient( 89.7deg,  rgba(0,0,0,1) -10.7%, rgba(53,92,125,1) 88.8% )',
+    'linear-gradient(to left, #0f2027, #203a43, #2c5364)',
+    'linear-gradient( 109.6deg,  rgba(15,2,2,1) 11.2%, rgba(36,163,190,1) 91.1% )',
+    'radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 94.2% )',
+    'radial-gradient( circle 939px at 94.7% 50%,  rgba(0,178,169,1) 0%, rgba(0,106,101,1) 76.9% )'
+  ]
+
   gsap
     .timeline({ defaults: { duration: 1.8, ease: 'power2' } })
     .from('h2', { y: '40%', clipPath: 'inset(0 0 100% 0)', opacity: 0 })
@@ -103,15 +114,15 @@ import Avatar from '../components/Avatar.astro'
       },
       defaults: { ease: 'none' }
     })
-    .to('#bg-1', { objectPosition: '0% 0%' })
+    .to('#bg-1', { objectPosition: '40% 0%' })
     .to('.txt-hero', { yPercent: 50 }, 0)
 
   /* Cards */
   let cards: Element[] = gsap.utils.toArray('.card')
-  cards.forEach((element) => {
-    gsap.to(element, {
+  cards.forEach((card, index) => {
+    gsap.to(card, {
       scrollTrigger: {
-        trigger: element,
+        trigger: card,
         /*  markers: true, */
         start: 'start 5%',
         end: 'bottom 0%',
@@ -119,14 +130,14 @@ import Avatar from '../components/Avatar.astro'
       }
     })
 
-    let q = gsap.utils.selector(element)
+    let q = gsap.utils.selector(card)
     let subelements: Element[] = gsap.utils.toArray(q('p'))
     let start = 10
     subelements.forEach((subEl) => {
       gsap.from(subEl, {
         scrollTrigger: {
           trigger: subEl,
-          markers: true,
+          markers: false,
           start: `${start}px 25%'`,
           end: 'bottom 40%'
         },
@@ -137,6 +148,19 @@ import Avatar from '../components/Avatar.astro'
       start += 50
     })
 
+    /* bg animations */
+    let trigger = ScrollTrigger.create({
+      trigger: card,
+      start: 'top 5%',
+      end: 'bottom 5%',
+      onToggle() {
+        gsap.to('.bg-cards', {
+          background: backgrounds[index],
+          duration: 1.2,
+          ease: 'power3'
+        })
+      }
+    })
     /* .from(q('h4'), { opacity: 0, x: 20 }, '<10%')
       .from(q('p'), { opacity: 0, x: 20, stagger: 0.5 }, '<10%') */
   })
@@ -145,8 +169,14 @@ import Avatar from '../components/Avatar.astro'
 
 <style lang="scss">
   .cards-wrapper {
-    background: rgb(17, 17, 17);
-    background: linear-gradient(185deg, rgba(17, 17, 17, 1) 35%, rgba(227, 104, 38, 0.6026785717285717) 100%);
+    position: relative;
+  }
+  .bg-cards {
+    height: 100vh;
+    width: 100%;
+    background-color: #131415;
+    position: sticky;
+    top: 0;
   }
   p {
     @apply mb-4;
