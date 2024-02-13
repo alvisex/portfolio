@@ -7,8 +7,8 @@ interface Props {
 const { title, header, reversed } = Astro.props
 ---
 
-<section id={`c-${title}`} class={`flex items-center card ${reversed ? 'reversed' : ''}`}>
-  <div class="container">
+<section id={`c-${title}`} class={`flex items-center card`}>
+  <div class={`container  ${reversed ? 'reversed' : ''}`}>
     <div class="md:max-w-[65%] ml-0">
       <h3 class="text-gradient text-xl short mb-1">{title}</h3>
       <h4 class="text-bold text-4xl mb-3">{header}</h4>
@@ -23,12 +23,14 @@ const { title, header, reversed } = Astro.props
   p {
     margin-bottom: 2rem;
   }
-  /* section {
-    background: rgb(17, 17, 17);
-    background: linear-gradient(185deg, rgba(17, 17, 17, 1) 35%, rgba(227, 104, 38, 0.6026785717285717) 100%);
-    &.reversed {
-      background: rgba(227, 104, 38, 0.6026785717285717);
-      background: linear-gradient(170deg, rgba(227, 104, 38, 0.6026785717285717) 15%, rgba(17, 17, 17, 1) 90%);
+  .reversed {
+    display: flex;
+    justify-content: end;
+    text-align: end;
+    & > * {
+      display: flex;
+      flex-flow: column;
+      align-items: end;
     }
-  } */
+  }
 </style>

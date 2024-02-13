@@ -14,7 +14,7 @@ import Avatar from '../components/Avatar.astro'
             Alvise <span class="text-gradient short">Leal</span>
           </h2>
           <h1 class="text-[3rem] md:text-[4.5rem] my-0 font-bold text-gradient mt-32 md:mt-0">Web Engineer</h1>
-          <span class="text-lg">Frontend expertice, <span class="text-gradient short">Full-Stack</span> capabilities</span>
+          <span class="text-lg">Full-Stack capabilities, <span class="text-gradient short"> Frontend</span> expertise</span>
         </div>
       </div>
     </section>
@@ -23,55 +23,58 @@ import Avatar from '../components/Avatar.astro'
 
     <div class="cards-wrapper">
       <div class="bg-cards"></div>
-      <Card title="Making real the magic ideas." header="Who I am?">
-        <p>
-          I am a Front-End developer who creates useful stuff. However, web technologies allow me a wide range to imagine and create
-          solutions, efficiently meeting the needs of companies or institutions.
-        </p>
-        <p>I seek the feasibility of the idea to present it in a dynamic and aesthetic way.</p>
-      </Card>
+      <div class="-mt-[100vh]">
+        <Card title="Making real the magic ideas." header="Who I am?">
+          <p>
+            I am a Front-End developer who creates useful stuff. However, web technologies allow me a wide range to imagine and create
+            solutions, efficiently meeting the needs of companies or institutions.
+          </p>
+          <p>I seek the feasibility of the idea to present it in a dynamic and aesthetic way.</p>
+        </Card>
 
-      <Card title="My hallmark" header="Quality and professionalism" reversed>
-        <p>
-          I aim to meet the needs and objectives of the challenge by implementing the most suitable stack and optimizing its implementation,
-          achieving an aesthetic design but impeccable performance.
-        </p>
-        <p>
-          Technologies are meant to be harnessed and utilized to their fullest potential, and that&#39;s where my skills and knowledge
-          converge.
-        </p>
-      </Card>
+        <Card title="My hallmark" header="Quality and professionalism" reversed>
+          <p>
+            I aim to meet the needs and objectives of the challenge by implementing the most suitable stack and optimizing its
+            implementation, achieving an aesthetic design but impeccable performance.
+          </p>
+          <p>
+            Technologies are meant to be harnessed and utilized to their fullest potential, and that&#39;s where my skills and knowledge
+            converge.
+          </p>
+        </Card>
 
-      <Card title="Skills" header="Tools I use">
-        <p>
-          I have knowledge in various tools, including: <br />
-          <ul class="grid grid-cols-4">
-            <li>Vue (v2, v3)</li>
-            <li>Nuxt (v2, v3)</li>
-            <li>Astro js</li>
-            <li>Strapi</li>
-            <li>Firebase</li>
-            <li>Vite</li>
-            <li>Vuetify</li>
-            <li>Tailwind</li>
-            <li>GSAP 3</li>
-            <li>Three.js</li>
-            <li>Lenis.js</li>
-            <li>Spline 3D</li>
-            <li>Python</li>
-            <li>Webpack</li>
-            <li>Docker</li>
-            <li>React</li>
-          </ul>
-          <br />
-        </p>
-        <p>
-          However, I am not limited solely to these tools; <br />As a profesional developer I am immersed in constant learning, searching
-          for the new things to do, and new ways to achive them
-        </p>
-      </Card>
-      <Card title="space" header="" />
-      <section></section>
+        <Card title="Skills" header="Tools I use">
+          <p>
+            I have knowledge in various tools, including: <br />
+            <ul class="grid grid-cols-4">
+              <li>Vue (v2, v3)</li>
+              <li>Nuxt (v2, v3)</li>
+              <li>Astro js</li>
+              <li>Strapi</li>
+              <li>Firebase</li>
+              <li>Vite</li>
+              <li>Vuetify</li>
+              <li>Tailwind</li>
+              <li>GSAP 3</li>
+              <li>Three.js</li>
+              <li>Lenis.js</li>
+              <li>Spline 3D</li>
+              <li>Python</li>
+              <li>Webpack</li>
+              <li>Docker</li>
+              <li>React</li>
+            </ul>
+            <br />
+          </p>
+          <p>
+            However, I am not limited solely to these tools; <br />As a profesional developer I am immersed in constant learning, searching
+            for the new things to do, and new ways to achive them
+          </p>
+        </Card>
+        <Card title="space" header="" />
+      </div>
+
+      <!-- <section></section> -->
     </div>
   </main>
 </Layout>
@@ -117,13 +120,22 @@ import Avatar from '../components/Avatar.astro'
     .to('#bg-1', { objectPosition: '40% 0%' })
     .to('.txt-hero', { yPercent: 50 }, 0)
 
+  /*  gsap.to('.bg-cards', {
+    scrollTrigger: {
+      trigger: '.cards-wrapper',
+      start: 'start start',
+      markers: true,
+      pin: true
+    }
+  }) */
+
   /* Cards */
   let cards: Element[] = gsap.utils.toArray('.card')
   cards.forEach((card, index) => {
     gsap.to(card, {
       scrollTrigger: {
         trigger: card,
-        /*  markers: true, */
+        // markers: true,
         start: 'start 5%',
         end: 'bottom 0%',
         pin: true
@@ -151,8 +163,9 @@ import Avatar from '../components/Avatar.astro'
     /* bg animations */
     let trigger = ScrollTrigger.create({
       trigger: card,
-      start: 'top 5%',
-      end: 'bottom 5%',
+      start: 'top 40%',
+      end: 'bottom 0%',
+      markers: false,
       onToggle() {
         gsap.to('.bg-cards', {
           background: backgrounds[index],
@@ -161,8 +174,6 @@ import Avatar from '../components/Avatar.astro'
         })
       }
     })
-    /* .from(q('h4'), { opacity: 0, x: 20 }, '<10%')
-      .from(q('p'), { opacity: 0, x: 20, stagger: 0.5 }, '<10%') */
   })
   console.log('cards', cards)
 </script>
