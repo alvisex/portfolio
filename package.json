@@ -13,7 +13,7 @@
     "@astrojs/check": "^0.5.1",
     "@astrojs/tailwind": "^5.1.0",
     "@astrojs/vue": "^4.0.8",
-    "@splinetool/runtime": "^1.0.51",
+    "@splinetool/runtime": "^1.0.53",
     "@studio-freight/lenis": "^1.0.29",
     "astro": "^4.3.5",
     "flowbite": "^2.2.1",
