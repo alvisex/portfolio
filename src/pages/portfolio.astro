@@ -3,5 +3,30 @@ import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout title="Portfollio">
-  <div>Hola</div>
+  <div class="cont h-screen">
+    <canvas id="canvas3d"></canvas>
+  </div>
+
+  <div>sdfsdfsdf</div>
+  <div class="h-32">asdfasdf</div>
+  <div class="h-32">asdfasdf</div>
+  <div class="h-32">asdfasdf</div>
+  <a class="logo" href="https://spline.design"></a>
 </Layout>
+
+<script>
+  import { Application } from '@splinetool/runtime'
+
+  const canvas = document.getElementById('canvas3d')
+  const app = new Application(canvas)
+  app.load('https://prod.spline.design/nESDY-OPocATTzfC/scene.splinecode')
+</script>
+
+<style>
+  html,
+  body {
+  }
+  canvas {
+    display: block;
+  }
+</style>
