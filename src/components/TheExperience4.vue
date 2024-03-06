@@ -55,17 +55,27 @@ const gl = {
 const cameras = [
   { x: 5, y: 6, z: 6 },
   { x: -5, y: 3, z: 3 },
-  { x: 4, y: 7, z: 4 },
-  { x: 3, y: 5, z: -5 },
+  { x: 3, y: 4, z: 6 },
+  { x: 5, y: 3, z: -4 },
   { x: 6, y: 3, z: -1 }
 ]
 
 const looktAts = [
-  [0, 4, 0],
-  [-1, 4.5, 0],
-  [2, 4.2, 0],
-  [3, 4.3, 0],
-  [0, 4.7, 0]
+  { x: 0, y: 4, z: 0 },
+  { x: -1, y: 4.5, z: -2 },
+  { x: 2, y: 3.5, z: 0 },
+  { x: 0, y: 3, z: 3 },
+  { x: 0, y: 4.7, z: 0 }
+]
+const lookAtAux = { x: 0, y: 4, z: 0 }
+
+const backgrounds = [
+  'linear-gradient( 89.7deg,  rgba(0,0,0,1) -10.7%, rgba(53,92,125,1) 88.8% )',
+  'linear-gradient( 189.7deg,  rgba(0,0,0,1) -10.7%, rgba(53,92,125,1) 88.8% )',
+  'linear-gradient( 270deg, #0f2027, #203a43, #2c5364)',
+  'linear-gradient( 109.6deg,  rgba(30,10,10,1) -11.2%, rgba(36,163,190,1) 102% )',
+  'radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 104% )',
+  'radial-gradient( circle 939px at 94.7% 50%,  rgba(0,178,169,1) 0%, rgba(0,106,101,1) 76.9% )'
 ]
 
 const cameraRef = ref()
@@ -104,18 +114,35 @@ const loadAnimation = () => {
           toggleActions: 'play complete  reverse complete '
         },
         defaults: {
-          duration: 2,
+          duration: 1.5,
           ease: 'power3'
         }
       })
       .to(cameraRef.value.position, {
-        ...cameras[index],
-        onUpdate: () => {
-          //console.log()
-
-          cameraRef.value.lookAt(...looktAts[index])
-        }
+        ...cameras[index]
+        /* onUpdate: () => {
+          //cameraRef.value.lookAt(...looktAts[index])
+        } */
       })
+      .to(
+        lookAtAux,
+        {
+          x: looktAts[index].x,
+          y: looktAts[index].y,
+          z: looktAts[index].z,
+          onUpdate: () => {
+            cameraRef.value.lookAt(...Object.values(lookAtAux))
+          }
+        },
+        '<'
+      )
+      .to(
+        '.daback',
+        {
+          background: backgrounds[index]
+        },
+        '<'
+      )
   })
 }
 

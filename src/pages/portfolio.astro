@@ -10,6 +10,7 @@ import Preloader from '../components/Preloader.astro'
   </div> -->
   <TheExperience client:load />
   <Preloader />
+  <div class="daback"></div>
   <section class="as"></section>
   <section class="as3"></section>
   <section class="as"></section>
@@ -40,5 +41,15 @@ import Preloader from '../components/Preloader.astro'
   }
   canvas {
     display: block;
+  }
+  .daback {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    /* background: linear-gradient(89.7deg, rgba(0, 0, 0, 1) -10.7%, rgba(53, 92, 125, 1) 88.8%); */
   }
 </style>
