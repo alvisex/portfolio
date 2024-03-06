@@ -18,8 +18,8 @@ const { intensity, color, positionn } = useControls({
     max: 10,
     step: 0.01
   },
-  color: '#df6bff',
-  positionn: new Vector3(-2, 1, -4)
+  color: '#fff36b',
+  positionn: new Vector3(3, 1, -4)
 })
 const { intensity2, color2, positionn2 } = useControls({
   intensity2: {
@@ -28,9 +28,13 @@ const { intensity2, color2, positionn2 } = useControls({
     max: 10,
     step: 0.01
   },
-  color2: '#52b7a3',
-  positionn2: new Vector3(4, -6, 3)
+  color2: '#ff42a7',
+  positionn2: new Vector3(-3, 2, 3)
 })
+
+/* const { cameraPos } = useControls({
+  cameraPos: new Vector3(-3, 2, 3)
+}) */
 
 watchEffect(() => {
   console.log(intensity.value.value)
@@ -51,9 +55,17 @@ const gl = {
 const cameras = [
   { x: 5, y: 6, z: 6 },
   { x: -5, y: 3, z: 3 },
-  { x: 4, y: 7, z: 0 },
+  { x: 4, y: 7, z: 4 },
   { x: 3, y: 5, z: -5 },
   { x: 6, y: 3, z: -1 }
+]
+
+const looktAts = [
+  [0, 4, 0],
+  [-1, 4.5, 0],
+  [2, 4.2, 0],
+  [3, 4.3, 0],
+  [0, 4.7, 0]
 ]
 
 const cameraRef = ref()
@@ -99,7 +111,9 @@ const loadAnimation = () => {
       .to(cameraRef.value.position, {
         ...cameras[index],
         onUpdate: () => {
-          cameraRef.value.lookAt(0, 4, 0)
+          //console.log()
+
+          cameraRef.value.lookAt(...looktAts[index])
         }
       })
   })
@@ -117,9 +131,10 @@ onMounted(() => {
     <TresCanvas v-bind="gl" id="mycanvas">
       <TresPerspectiveCamera ref="cameraRef" :position="[1, 5, 6]" :look-at="[0, 4, 0]" />
       <!--  <OrbitControls /> -->
+      <!--  <CameraControls /> -->
       <Stars />
       <Suspense>
-        <GLTFModel path="/models/rhetorician/scene.gltf" draco ref="modelRef" />
+        <GLTFModel path="/models/alterado.glb" draco ref="modelRef" />
       </Suspense>
 
       <!-- <TresGridHelper :position="[0, 0, 0]" /> -->
@@ -137,7 +152,7 @@ onMounted(() => {
 <style>
 canvas#mycanvas {
   position: fixed !important;
-  z-index: -1;
+  z-index: 1;
 }
 .tl-absolute {
   top: 100px !important;
