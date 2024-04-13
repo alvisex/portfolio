@@ -4,6 +4,7 @@ import Card from '../components/Card.astro'
 import Avatar from '../components/Avatar.astro'
 import Hero from '../components/Hero.astro'
 import Skills from '../components/Skills.vue'
+import TheExperience from '../components/TheExperience.vue'
 ---
 
 <Layout title="Web Engineer">
@@ -13,7 +14,9 @@ import Skills from '../components/Skills.vue'
 
     <div class="cards-wrapper">
       <div class="bg-cards"></div>
+
       <div class="-mt-[100vh]">
+        <TheExperience client:load />
         <Card title="Making real the magic ideas." header="Who I am?">
           <p>
             I am a Web Engineer with <strong>5+ years</strong> of experience developing solutions through web technologies.
@@ -34,7 +37,7 @@ import Skills from '../components/Skills.vue'
         </Card>
       </div>
 
-      <Card title="Skills" header="Tools I use">
+      <!--  <Card title="Skills" header="Tools I use">
         <p>
           I have knowledge in various tools, including: <br />
           <ul class="grid grid-cols-4">
@@ -61,11 +64,12 @@ import Skills from '../components/Skills.vue'
           However, I am not limited solely to these tools; <br />As a profesional developer I am immersed in constant learning, searching
           for the new things to do, and new ways to achive them
         </p>
-      </Card>
-      <Card title="space" header="" />
+      </Card> -->
+      <section class="card">
+        <Skills client:load />
+      </section>
     </div>
 
-    <Skills client:load />
     <!-- <section></section> -->
   </main>
 </Layout>

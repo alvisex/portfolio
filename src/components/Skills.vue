@@ -1,26 +1,26 @@
 <template>
-  <section class="h-screen section-carousel">
-    <div class="container h-full flex items-center justify-center relative">
-      <div class="absolute top-20 flex gap-8">
-        <button class="" @click="rotation -= rotateConst" id="girar">Izquierda</button>
-        <button class="" @click="rotation += rotateConst" id="girar">Derecha</button>
-      </div>
+  <!--   <section class="h-screen section-carousel"> -->
+  <div class="container h-full flex items-center justify-center relative">
+    <div class="absolute top-60 flex gap-8">
+      <button class="" @click="rotation -= rotateConst" id="girar">Izquierda</button>
+      <button class="" @click="rotation += rotateConst" id="girar">Derecha</button>
+    </div>
 
-      <div class="scene">
-        <div class="carousel vue" ref="carousel" :style="{ transform: `translateZ(-120px) rotateX(-10deg) rotateY(${rotation}deg)` }">
-          <div
-            class="carousel_cell"
-            :class="`_${index + 1}`"
-            v-for="(card, index) in cards"
-            :key="index"
-            :style="{ transform: `rotateX(0deg) rotateY(${rotateConst * index}deg) rotateZ(0deg) translate3d(0px, 0px, ${space}px)` }"
-          >
-            <img :src="card.img" loading="lazy" width="93" :alt="card.text" class="image" />
-          </div>
+    <div class="scene">
+      <div class="carousel vue" ref="carousel" :style="{ transform: `translateZ(-120px) rotateX(-10deg) rotateY(${rotation}deg)` }">
+        <div
+          class="carousel_cell"
+          :class="`_${index + 1}`"
+          v-for="(card, index) in cards"
+          :key="index"
+          :style="{ transform: `rotateX(0deg) rotateY(${rotateConst * index}deg) rotateZ(0deg) translate3d(0px, 0px, ${space}px)` }"
+        >
+          <img :src="card.img" loading="lazy" width="93" :alt="card.text" class="image" />
         </div>
       </div>
     </div>
-  </section>
+  </div>
+  <!--   </section> -->
 </template>
 
 <script setup>
