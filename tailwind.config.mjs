@@ -2,7 +2,15 @@
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
-		extend: {},
+		extend: {
+			colors:{
+				primary: '#ACCEB6',
+				secondary: '#B1C7C8',
+				accent: '#52CCDA',
+				background: '#151616',
+				text:'#EAEFED'
+			}
+		},
 		container: {
 			center: true,
 			padding: {
