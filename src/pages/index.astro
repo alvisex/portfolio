@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro'
 import Card from '../components/Card.astro'
 import Avatar from '../components/Avatar.astro'
 import Hero from '../components/Hero.astro'
+import Skills from '../components/Skills.vue'
 ---
 
 <Layout title="Web Engineer">
@@ -64,6 +65,7 @@ import Hero from '../components/Hero.astro'
       <Card title="space" header="" />
     </div>
 
+    <Skills client:load />
     <!-- <section></section> -->
   </main>
 </Layout>
@@ -94,7 +96,7 @@ import Hero from '../components/Hero.astro'
     'linear-gradient( 180.7deg,  var(--background) 10.7%, rgba(53,92,125,1) 88.8% )',
     'linear-gradient( 89.7deg, var(--background) -10.7%, rgba(53,92,125,1) 80.8% )',
     'linear-gradient( 9.7deg, var(--background) -20.7%,   rgba(43,123,79,1) 80.8% )',
-    'linear-gradient( 189.7deg, var(--background) -10.7%, rgba(53,92,125,1) 80.8% )'
+    'linear-gradient( 0deg, var(--background) 0%, rgba(53,92,125,1) 80.8% )'
   ]
 
   gsap
