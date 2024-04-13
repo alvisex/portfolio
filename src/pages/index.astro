@@ -2,23 +2,12 @@
 import Layout from '../layouts/Layout.astro'
 import Card from '../components/Card.astro'
 import Avatar from '../components/Avatar.astro'
+import Hero from '../components/Hero.astro'
 ---
 
 <Layout title="Web Engineer">
   <main>
-    <section class="flex md:items-center" id="s-1">
-      <img class="bg object-[45%]" src="bg-1.jpg" id="bg-1" alt="" />
-      <div class="container mt-32 md:mt-0">
-        <div class="relative txt-hero">
-          <h2 class="text-5xl">
-            Alvise <span class="text-gradient short">Leal</span>
-          </h2>
-          <h1 class="text-[3rem] md:text-[4.5rem] my-0 font-bold text-gradient mt-32 md:mt-0">Web Engineer</h1>
-          <span class="text-lg">Full-Stack capabilities, <span class="text-gradient short"> Frontend</span> expertise</span>
-        </div>
-      </div>
-    </section>
-
+    <Hero />
     <!--  <Avatar /> -->
 
     <div class="cards-wrapper">
@@ -26,56 +15,56 @@ import Avatar from '../components/Avatar.astro'
       <div class="-mt-[100vh]">
         <Card title="Making real the magic ideas." header="Who I am?">
           <p>
-            I am a Front-End developer who creates useful stuff. However, web technologies allow me a wide range to imagine and create
-            solutions, efficiently meeting the needs of companies or institutions.
+            I am a Web Engineer with <strong>5+ years</strong> of experience developing solutions through web technologies.
           </p>
-          <p>I seek the feasibility of the idea to present it in a dynamic and aesthetic way.</p>
+          <p>
+            I've worked in varity of environments, since the one-man department to be part of a team from a world-wide company. Always
+            learning what the situation required, be adaptative and proactive to achieve the goal is my hallmark.
+          </p>
         </Card>
 
         <Card title="My hallmark" header="Quality and professionalism" reversed>
           <p>
-            I aim to meet the needs and objectives of the challenge by implementing the most suitable stack and optimizing its
-            implementation, achieving an aesthetic design but impeccable performance.
+            Since my beggining as a web developer, facing the whole process of making usefull websites by myself untill the moment of being
+            part of worlwide company I've always be moved by the curiosity of the find the best technologies, processes and ways to achieve
+            the goals.
           </p>
-          <p>
-            Technologies are meant to be harnessed and utilized to their fullest potential, and that&#39;s where my skills and knowledge
-            converge.
-          </p>
+          <p>I drive the blooming of the idea toward a beautiful yet effective solution.</p>
         </Card>
-
-        <Card title="Skills" header="Tools I use">
-          <p>
-            I have knowledge in various tools, including: <br />
-            <ul class="grid grid-cols-4">
-              <li>Vue (v2, v3)</li>
-              <li>Nuxt (v2, v3)</li>
-              <li>Astro js</li>
-              <li>Strapi</li>
-              <li>Firebase</li>
-              <li>Vite</li>
-              <li>Vuetify</li>
-              <li>Tailwind</li>
-              <li>GSAP 3</li>
-              <li>Three.js</li>
-              <li>Lenis.js</li>
-              <li>Spline 3D</li>
-              <li>Python</li>
-              <li>Webpack</li>
-              <li>Docker</li>
-              <li>React</li>
-            </ul>
-            <br />
-          </p>
-          <p>
-            However, I am not limited solely to these tools; <br />As a profesional developer I am immersed in constant learning, searching
-            for the new things to do, and new ways to achive them
-          </p>
-        </Card>
-        <Card title="space" header="" />
       </div>
 
-      <!-- <section></section> -->
+      <Card title="Skills" header="Tools I use">
+        <p>
+          I have knowledge in various tools, including: <br />
+          <ul class="grid grid-cols-4">
+            <li>Vue (v2, v3)</li>
+            <li>Nuxt (v2, v3)</li>
+            <li>Astro js</li>
+            <li>Strapi</li>
+            <li>Firebase</li>
+            <li>Vite</li>
+            <li>Vuetify</li>
+            <li>Tailwind</li>
+            <li>GSAP 3</li>
+            <li>Three.js</li>
+            <li>Lenis.js</li>
+            <li>Spline 3D</li>
+            <li>Python</li>
+            <li>Webpack</li>
+            <li>Docker</li>
+            <li>React</li>
+          </ul>
+          <br />
+        </p>
+        <p>
+          However, I am not limited solely to these tools; <br />As a profesional developer I am immersed in constant learning, searching
+          for the new things to do, and new ways to achive them
+        </p>
+      </Card>
+      <Card title="space" header="" />
     </div>
+
+    <!-- <section></section> -->
   </main>
 </Layout>
 
@@ -92,21 +81,28 @@ import Avatar from '../components/Avatar.astro'
   })
   gsap.ticker.lagSmoothing(0)
 
-  gsap.from('#bg-1', { duration: 2, opacity: 0 })
+  /*  gsap.from('#bg-1', { duration: 2, opacity: 0 }) */
 
-  const backgrounds = [
-    'linear-gradient( 89.7deg,  rgba(0,0,0,1) -10.7%, rgba(53,92,125,1) 88.8% )',
-    'linear-gradient( 189.7deg,  rgba(0,0,0,1) -10.7%, rgba(53,92,125,1) 88.8% )',
-    'linear-gradient( 270deg, #0f2027, #203a43, #2c5364)',
+  /* 
+'linear-gradient( 270deg, #0f2027, #203a43, #2c5364)',
     'linear-gradient( 109.6deg,  rgba(30,10,10,1) -11.2%, rgba(36,163,190,1) 102% )',
     'radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 104% )',
     'radial-gradient( circle 939px at 94.7% 50%,  rgba(0,178,169,1) 0%, rgba(0,106,101,1) 76.9% )'
+*/
+
+  const backgrounds = [
+    'linear-gradient( 180.7deg,  var(--background) 10.7%, rgba(53,92,125,1) 88.8% )',
+    'linear-gradient( 89.7deg, var(--background) -10.7%, rgba(53,92,125,1) 80.8% )',
+    'linear-gradient( 9.7deg, var(--background) -20.7%,   rgba(43,123,79,1) 80.8% )',
+    'linear-gradient( 189.7deg, var(--background) -10.7%, rgba(53,92,125,1) 80.8% )'
   ]
 
   gsap
     .timeline({ defaults: { duration: 1.8, ease: 'power2' } })
     .from('h2', { y: '40%', clipPath: 'inset(0 0 100% 0)', opacity: 0 })
     .from('h1', { y: '40%', clipPath: 'inset(0 0 100% 0)', opacity: 0 }, 0)
+
+  gsap.set('.bg-cards', { background: 'linear-gradient( 180.7deg,  var(--background) 10.7%, rgba(53,92,125,0) 10)' })
 
   gsap
     .timeline({
@@ -133,39 +129,11 @@ import Avatar from '../components/Avatar.astro'
   /* Cards */
   let cards: Element[] = gsap.utils.toArray('.card')
   cards.forEach((card, index) => {
-    gsap.to(card, {
-      scrollTrigger: {
-        trigger: card,
-        // markers: true,
-        start: 'start 5%',
-        end: 'bottom 0%',
-        pin: true
-      }
-    })
-
-    let q = gsap.utils.selector(card)
-    let subelements: Element[] = gsap.utils.toArray(q('p'))
-    let start = 10
-    subelements.forEach((subEl) => {
-      gsap.from(subEl, {
-        scrollTrigger: {
-          trigger: subEl,
-          markers: false,
-          start: `${start}px 25%'`,
-          end: 'bottom 40%'
-        },
-        opacity: 0,
-        x: 20,
-        stagger: 0.2
-      })
-      start += 50
-    })
-
     /* bg animations */
     let trigger = ScrollTrigger.create({
       trigger: card,
-      start: 'top 40%',
-      end: 'bottom 0%',
+      start: 'top 30%',
+      end: 'bottom 30%',
       markers: false,
       onToggle() {
         gsap.to('.bg-cards', {
@@ -175,22 +143,55 @@ import Avatar from '../components/Avatar.astro'
         })
       }
     })
+
+    let q = gsap.utils.selector(card)
+    gsap.set(q('.container'), { opacity: 0 })
+
+    gsap.to(q('.container'), {
+      scrollTrigger: {
+        trigger: q('.container'),
+        start: 'start 60%',
+        end: 'bottom 45%',
+        toggleActions: 'play reverse play reverse'
+        //markers: true
+      },
+      opacity: 1,
+      duration: 0.5,
+      ease: 'none'
+    })
   })
   console.log('cards', cards)
 </script>
 
 <style lang="scss">
+  :root {
+    --card-bg-1: rgba(53, 92, 125, 1);
+  }
   .cards-wrapper {
     position: relative;
   }
   .bg-cards {
     height: 100vh;
     width: 100%;
-    background-color: #131415;
+    background: linear-gradient(180.7deg, var(--background) 10.7%, rgba(53, 92, 125, 0) 20);
     position: sticky;
     top: 0;
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('/noise.webp');
+      pointer-events: none;
+      user-select: none;
+    }
   }
   p {
     @apply mb-4;
+  }
+
+  strong {
+    @apply text-accent;
   }
 </style>
