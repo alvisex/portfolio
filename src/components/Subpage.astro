@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string
+  role: string
+  img: string
+  id: string
+}
+
+const { title, role, img, id } = Astro.props
+---
+
+<main class={`min-h-screen bg-${id}  grid items-center pt-14`}>
+  <div class="container grid">
+    <a href="/#experience"> {'<'} Go back </a>
+    <div class="md:h-80">
+      <img class="mx-auto h-full w-full object-contain" transition:name={`hero-${id}`} src={img} alt="" />
+    </div>
+
+    <div>
+      <h3 class="text-gradient font-bold text-2xl" transition:name={`title-${id}`}>{role}</h3>
+      <ul class="list-disc list-inside">
+        <li>Develop <strong>performant</strong>, responsive, and <strong>user-friendly</strong> web applications.</li>
+        <li>Write reusable libraries and components for future use.</li>
+        <li>Optimize applications performance, size and scalability.</li>
+        <li>Review the code of new employees and help them with their onboarding process.</li>
+        <li>Migrate subpages and sections from Haml (Ruby) to Nuxt.</li>
+      </ul>
+    </div>
+  </div>
+</main>
+
+<style>
+  strong {
+    @apply text-accent;
+  }
+</style>

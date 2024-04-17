@@ -180,7 +180,7 @@ onMounted(() => {
 canvas#mycanvas {
   position: fixed !important;
   z-index: 1;
-
+  top: 0;
   pointer-events: none !important;
 }
 .tl-absolute {

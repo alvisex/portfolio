@@ -7,15 +7,13 @@ interface Props {
 const { title, header, reversed } = Astro.props
 ---
 
-<section id={`c-${title}`} class={`flex items-center card`}>
-  <div class={`container  ${reversed ? 'reversed' : ''}`}>
-    <div class="md:max-w-[65%] ml-0">
-      <h3 class="text-gradient text-xl short mb-1">{title}</h3>
-      <h4 class="text-bold text-4xl mb-3">{header}</h4>
-      <slot />
-    </div>
+<div class={`container  ${reversed ? 'reversed' : ''}`}>
+  <div class="md:max-w-[65%] ml-0">
+    <h3 class="text-gradient text-xl short mb-1">{title}</h3>
+    <h4 class="text-bold text-4xl mb-3">{header}</h4>
+    <slot />
   </div>
-</section>
+</div>
 
 <script define:vars={{ title }}></script>
 

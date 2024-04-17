@@ -1,0 +1,79 @@
+<div class="container px-8 h-full grid md:grid-cols-3 gap-8 items-center" id="experience">
+  <div class="element p-0.5 hover:p-2 rounded-lg" data-rotate="left">
+    <a href="/experience/gitlab" class="block h-full rounded-lg bg-gitlab" data-rotate="left">
+      <img transition:name="hero-gitlab" src="/gitlab-logo-200.png" alt="" />
+      <div class="p-4 flex flex-wrap h-2/5">
+        <h3 class="text-gradient font-bold text-2xl" transition:name="title-gitlab">Frontend Engineer</h3>
+        <ul>
+          <li>May 2022 - Aug 2023</li>
+        </ul>
+        <div class="text-center text-sm mt-auto w-full">View details</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="element p-0.5 hover:p-2 rounded-lg">
+    <a href="/experience/citelis" class="block h-full rounded-lg bg-citelis">
+      <img transition:name="hero-citelis" src="/citelis.png" alt="" />
+      <div class="p-4 flex flex-wrap h-2/5">
+        <h3 class="text-gradient font-bold text-2xl" transition:name="title-citelis">Frontend Engineer</h3>
+        <ul>
+          <li>Jan 2020 - May 2022</li>
+          <li>Aug 2023 - Present</li>
+        </ul>
+        <div class="text-center text-sm mt-auto w-full">View details</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="element p-0.5 hover:p-2 rounded-lg" data-rotate="right">
+    <a href="/experience/clout" class="block h-full bg-clout rounded-lg">
+      <img transition:name="hero-clout" src="/clout.png" alt="" />
+      <div class="p-4 flex flex-wrap h-2/5">
+        <h4 class="text-gradient font-bold text-2xl">Web Developer</h4>
+        <ul>
+          <li>Aug 2018 - Jan 2020</li>
+        </ul>
+        <div class="text-center text-sm mt-auto w-full">View details</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<script>
+  import { getIconElement } from 'astro/runtime/client/dev-toolbar/ui-library/icons.js'
+
+  const btn = document.getElementById('black')
+  btn.addEventListener('click', (event) => {
+    console.log('el', event.target.classList.add('active'))
+  })
+</script>
+
+<style lang="scss">
+  .element {
+    @apply h-96  cursor-pointer;
+    background: linear-gradient(45deg, #3fe669 0, #6cc3fa 63%, #56fcfe 70%, #bae0db 100%);
+    background-size: 150% 110%;
+    background-position: 100% 100%;
+    img {
+      @apply h-3/5 object-contain w-full;
+    }
+
+    transition: transform 300ms ease;
+    &:hover {
+      background-position: 0% 100%;
+      transition:
+        padding 300ms ease,
+        transform 300ms ease;
+
+      --rotate-y: 0;
+      transform: perspective(30rem) rotateY(var(--rotate-y)) scale(1.1) rotateX(5deg);
+      &[data-rotate='left'] {
+        --rotate-y: 8deg;
+      }
+      &[data-rotate='right'] {
+        --rotate-y: -8deg;
+      }
+    }
+  }
+</style>

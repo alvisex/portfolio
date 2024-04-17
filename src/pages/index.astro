@@ -5,6 +5,7 @@ import Avatar from '../components/Avatar.astro'
 import Hero from '../components/Hero.astro'
 import Skills from '../components/Skills.vue'
 import TheExperience from '../components/TheExperience.vue'
+import Experience from '../components/Experience.astro'
 ---
 
 <Layout title="Web Engineer">
@@ -17,24 +18,34 @@ import TheExperience from '../components/TheExperience.vue'
 
       <div class="-mt-[100vh]">
         <TheExperience client:load />
-        <Card title="Making real the magic ideas." header="Who I am?">
-          <p>
-            I am a Web Engineer with <strong>5+ years</strong> of experience developing solutions through web technologies.
-          </p>
-          <p>
-            I've worked in varity of environments, since the one-man department to be part of a team from a world-wide company. Always
-            learning what the situation required, be adaptative and proactive to achieve the goal is my hallmark.
-          </p>
-        </Card>
+        <section class={`flex items-center card`}>
+          <Card title="Making real the magic ideas." header="Who I am?">
+            <p>
+              I am a Web Engineer with <strong>5+ years</strong> of experience developing solutions through web technologies.
+            </p>
+            <p>
+              I've worked in varity of environments, since the one-man department to be part of a team from a world-wide company. Always
+              learning what the situation required, be adaptative and proactive to achieve the goal is my hallmark.
+            </p>
+          </Card>
+        </section>
 
-        <Card title="My hallmark" header="Quality and professionalism" reversed>
-          <p>
-            Since my beggining as a web developer, facing the whole process of making usefull websites by myself untill the moment of being
-            part of worlwide company I've always be moved by the curiosity of the find the best technologies, processes and ways to achieve
-            the goals.
-          </p>
-          <p>I drive the blooming of the idea toward a beautiful yet effective solution.</p>
-        </Card>
+        <section class={`flex items-center card`}>
+          <Card title="My hallmark" header="Quality and professionalism" reversed>
+            <p>
+              Since my beggining as a web developer, facing the whole process of making usefull websites by myself untill the moment of
+              being part of worlwide company I've always be moved by the curiosity of the find the best technologies, processes and ways to
+              achieve the goals.
+            </p>
+            <p>I drive the blooming of the idea toward a beautiful yet effective solution.</p>
+          </Card>
+        </section>
+        <section class="card">
+          <Skills client:load />
+        </section>
+        <section class="h-screen relative z-10 card">
+          <Experience />
+        </section>
       </div>
 
       <!--  <Card title="Skills" header="Tools I use">
@@ -65,139 +76,114 @@ import TheExperience from '../components/TheExperience.vue'
           for the new things to do, and new ways to achive them
         </p>
       </Card> -->
-      <section class="card">
-        <Skills client:load />
-      </section>
+
+      <!-- <section></section> -->
     </div>
-
-    <!-- <section></section> -->
   </main>
-</Layout>
 
-<script>
-  import { gsap } from 'gsap'
-  import { ScrollTrigger } from 'gsap/ScrollTrigger'
-  gsap.registerPlugin(ScrollTrigger)
-  /* Lenis compatibility */
-  import Lenis from '@studio-freight/lenis'
-  const lenis = new Lenis()
-  lenis.on('scroll', ScrollTrigger.update)
-  gsap.ticker.add((time) => {
-    lenis.raf(time * 1000)
-  })
-  gsap.ticker.lagSmoothing(0)
+  <script>
+    import { gsap } from 'gsap'
+    import { ScrollTrigger } from 'gsap/ScrollTrigger'
+    gsap.registerPlugin(ScrollTrigger)
+    /* Lenis compatibility */
+    import Lenis from '@studio-freight/lenis'
+    const lenis = new Lenis()
+    lenis.on('scroll', ScrollTrigger.update)
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000)
+    })
+    gsap.ticker.lagSmoothing(0)
 
-  /*  gsap.from('#bg-1', { duration: 2, opacity: 0 }) */
+    /*  gsap.from('#bg-1', { duration: 2, opacity: 0 }) */
 
-  /* 
+    /* 
 'linear-gradient( 270deg, #0f2027, #203a43, #2c5364)',
     'linear-gradient( 109.6deg,  rgba(30,10,10,1) -11.2%, rgba(36,163,190,1) 102% )',
     'radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 104% )',
     'radial-gradient( circle 939px at 94.7% 50%,  rgba(0,178,169,1) 0%, rgba(0,106,101,1) 76.9% )'
 */
 
-  const backgrounds = [
-    'linear-gradient( 180.7deg,  var(--background) 10.7%, rgba(53,92,125,1) 88.8% )',
-    'linear-gradient( 89.7deg, var(--background) -10.7%, rgba(53,92,125,1) 80.8% )',
-    'linear-gradient( 9.7deg, var(--background) -20.7%,   rgba(43,123,79,1) 80.8% )',
-    'linear-gradient( 0deg, var(--background) 0%, rgba(53,92,125,1) 80.8% )'
-  ]
+    const backgrounds = [
+      'linear-gradient( 180.7deg,  var(--background) 10.7%, rgba(53,92,125,1) 88.8% )',
+      'linear-gradient( 89.7deg, var(--background) -10.7%, rgba(53,92,125,1) 80.8% )',
+      'linear-gradient( 9.7deg, var(--background) -20.7%,   rgba(43,123,79,1) 80.8% )',
+      'linear-gradient( 0deg, var(--background) 0%, rgba(53,92,125,1) 80.8% )',
+      'linear-gradient( 45deg, var(--background) 0%, rgba(113,32,25,1) 80.8% )'
+    ]
 
-  gsap
-    .timeline({ defaults: { duration: 1.8, ease: 'power2' } })
-    .from('h2', { y: '40%', clipPath: 'inset(0 0 100% 0)', opacity: 0 })
-    .from('h1', { y: '40%', clipPath: 'inset(0 0 100% 0)', opacity: 0 }, 0)
-
-  gsap.set('.bg-cards', { background: 'linear-gradient( 180.7deg,  var(--background) 10.7%, rgba(53,92,125,0) 10)' })
-
-  gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: '#s-1',
-        start: 'center center',
-        end: 'bottom 30%',
-        scrub: true
-      },
-      defaults: { ease: 'none' }
-    })
-    .to('#bg-1', { objectPosition: '40% 0%' })
-    .to('.txt-hero', { yPercent: 50 }, 0)
-
-  /*  gsap.to('.bg-cards', {
-    scrollTrigger: {
-      trigger: '.cards-wrapper',
-      start: 'start start',
-      markers: true,
-      pin: true
+    const bgAnimation = (index: number) => {
+      gsap.to('.bg-cards', {
+        background: backgrounds[index],
+        duration: 1.2,
+        ease: 'power3'
+      })
     }
-  }) */
 
-  /* Cards */
-  let cards: Element[] = gsap.utils.toArray('.card')
-  cards.forEach((card, index) => {
-    /* bg animations */
-    let trigger = ScrollTrigger.create({
-      trigger: card,
-      start: 'top 30%',
-      end: 'bottom 30%',
-      markers: false,
-      onToggle() {
-        gsap.to('.bg-cards', {
-          background: backgrounds[index],
-          duration: 1.2,
-          ease: 'power3'
-        })
+    const moveModel = (index: number) => {
+      if (index == 0) {
       }
-    })
-
-    let q = gsap.utils.selector(card)
-    gsap.set(q('.container'), { opacity: 0 })
-
-    gsap.to(q('.container'), {
-      scrollTrigger: {
-        trigger: q('.container'),
-        start: 'start 60%',
-        end: 'bottom 45%',
-        toggleActions: 'play reverse play reverse'
-        //markers: true
-      },
-      opacity: 1,
-      duration: 0.5,
-      ease: 'none'
-    })
-  })
-  console.log('cards', cards)
-</script>
-
-<style lang="scss">
-  :root {
-    --card-bg-1: rgba(53, 92, 125, 1);
-  }
-  .cards-wrapper {
-    position: relative;
-  }
-  .bg-cards {
-    height: 100vh;
-    width: 100%;
-    background: linear-gradient(180.7deg, var(--background) 10.7%, rgba(53, 92, 125, 0) 20);
-    position: sticky;
-    top: 0;
-    &::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url('/noise.webp');
-      pointer-events: none;
-      user-select: none;
+      if (index == 1) {
+      }
     }
-  }
-  p {
-    @apply mb-4;
-  }
 
-  strong {
-    @apply text-accent;
-  }
-</style>
+    gsap.set('.bg-cards', { background: 'linear-gradient( 180.7deg,  var(--background) 10.7%, rgba(53,92,125,0) 10)' })
+
+    /* Cards */
+    let cards: Element[] = gsap.utils.toArray('.card')
+    cards.forEach((card, index) => {
+      /* bg animations */
+      let trigger = ScrollTrigger.create({
+        trigger: card,
+        start: 'top 30%',
+        end: 'bottom 30%',
+        //markers: true,
+        onEnter() {
+          bgAnimation(index)
+        },
+        onEnterBack() {
+          bgAnimation(index)
+        }
+      })
+
+      let q = gsap.utils.selector(card)
+      gsap.set(q('.container'), { opacity: 0 })
+
+      gsap.to(q('.container'), {
+        scrollTrigger: {
+          trigger: q('.container'),
+          start: 'start 60%',
+          end: 'bottom 45%',
+          toggleActions: 'play reverse play reverse'
+          //markers: true
+        },
+        opacity: 1,
+        duration: 0.5,
+        ease: 'none'
+      })
+    })
+    //console.log('cards', cards)
+  </script>
+
+  <style lang="scss">
+    :root {
+      --card-bg-1: rgba(53, 92, 125, 1);
+    }
+    .cards-wrapper {
+      position: relative;
+    }
+    .bg-cards {
+      height: 100vh;
+      width: 100%;
+      background: linear-gradient(180.7deg, var(--background) 10.7%, rgba(53, 92, 125, 0) 20);
+      position: sticky;
+      top: 0;
+    }
+    p {
+      @apply mb-4;
+    }
+
+    strong {
+      @apply text-accent;
+    }
+  </style>
+</Layout>

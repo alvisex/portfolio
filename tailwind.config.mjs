@@ -3,12 +3,15 @@ export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
 		extend: {
-			colors:{
+			colors: {
 				primary: '#ACCEB6',
 				secondary: '#B1C7C8',
 				accent: '#52CCDA',
 				background: '#151616',
-				text:'#EAEFED'
+				text: '#EAEFED',
+				citelis: '#052d59',
+				clout: '#15576c',
+				gitlab: '#171321'
 			}
 		},
 		container: {
