@@ -39,6 +39,10 @@ watchEffect(() => {
   console.log('position', positionn.value)
 })
 
+const modelToRight = () => {
+  console.log('model to right')
+}
+
 gsap.registerPlugin(ScrollTrigger)
 
 const gl = {
@@ -50,17 +54,17 @@ const gl = {
 }
 
 const cameras = [
-  { x: 5, y: 6, z: 6 },
   { x: -5, y: 3, z: 3 },
   { x: 3, y: 4, z: 6 },
+  { x: 6, y: 3, z: -1 },
   { x: 5, y: 3, z: -4 },
   { x: 6, y: 3, z: -1 }
 ]
 
 const looktAts = [
-  { x: 0, y: 4, z: 0 },
   { x: -1, y: 4.5, z: -2 },
   { x: 2, y: 3.5, z: 0 },
+  { x: 0, y: 4.7, z: 0 },
   { x: 0, y: 3, z: 3 },
   { x: 0, y: 4.7, z: 0 }
 ]
@@ -90,10 +94,44 @@ watch(modelRef, (model) => {
 
 const loadAnimation = () => {
   console.log('loadanimation', sections, modelRef.value.value)
+  sections.forEach((element: Element, index) => {
+    /*     const { camera, lookAt } = element.dataset
+    console.log(`llmodel`, camera, lookAt)
+    console.log(`llmodel`, JSON.parse(camera), JSON.parse(lookAt)) */
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: element,
+          markers: true,
+          start: 'top bottom',
+          end: '80% bottom',
+          toggleActions: 'play complete  reverse complete ',
+          scrub: true
+        }
+      })
+      .to(cameraRef.value.position, {
+        ...cameras[index]
+      })
+      .to(
+        lookAtAux,
+        {
+          x: looktAts[index].x,
+          y: looktAts[index].y,
+          z: looktAts[index].z,
+          onUpdate: () => {
+            cameraRef.value.lookAt(...Object.values(lookAtAux))
+          }
+        },
+        '<'
+      )
+  })
 }
 
 onMounted(() => {
-  sections = gsap.utils.toArray('section')
+  /* sections = gsap.utils.toArray('section')
+  console.log(`sections`, sections) */
+
+  sections = gsap.utils.toArray('[data-model]')
   console.log(`sections`, sections)
 })
 </script>

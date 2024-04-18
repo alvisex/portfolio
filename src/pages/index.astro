@@ -6,6 +6,23 @@ import Hero from '../components/Hero.astro'
 import Skills from '../components/Skills.vue'
 import TheExperience from '../components/TheExperience.vue'
 import Experience from '../components/Experience.astro'
+
+const cameras = [
+  { x: 5, y: 6, z: 6 },
+  { x: -5, y: 3, z: 3 },
+  { x: 3, y: 4, z: 6 },
+  { x: 5, y: 3, z: -4 },
+  { x: 6, y: 3, z: -1 }
+]
+
+const looktAts = [
+  { x: 0, y: 4, z: 0 },
+  { x: -1, y: 4.5, z: -2 },
+  { x: 2, y: 3.5, z: 0 },
+  { x: 0, y: 3, z: 3 },
+  { x: 0, y: 4.7, z: 0 }
+]
+const lookAtAux = { x: 0, y: 4, z: 0 }
 ---
 
 <Layout title="Web Engineer">
@@ -18,8 +35,8 @@ import Experience from '../components/Experience.astro'
 
       <div class="-mt-[100vh]">
         <TheExperience client:load />
-        <section class={`flex items-center card`}>
-          <Card title="Making real the magic ideas." header="Who I am?">
+        <section class={`flex items-center card`} data-model>
+          <Card title="" header="Who I am?">
             <p>
               I am a Web Engineer with <strong>5+ years</strong> of experience developing solutions through web technologies.
             </p>
@@ -30,16 +47,20 @@ import Experience from '../components/Experience.astro'
           </Card>
         </section>
 
-        <section class={`flex items-center card`}>
-          <Card title="My hallmark" header="Quality and professionalism" reversed>
-            <p>
-              Since my beggining as a web developer, facing the whole process of making usefull websites by myself untill the moment of
-              being part of worlwide company I've always be moved by the curiosity of the find the best technologies, processes and ways to
-              achieve the goals.
-            </p>
+        <section class={`flex items-center card`} data-model>
+          <Card title="" header="Quality and professionalism" reversed>
+            <p>I've worked in varity of environments, since the one-man department to be part of a team from a world-wide company.</p>
+            <!-- <p>I drive the blooming of the idea toward a beautiful yet effective solution.</p> -->
+          </Card>
+        </section>
+
+        <section class={`flex items-center card`} data-model>
+          <Card title="" header="My Hallmark">
+            <p>I continuously seek out the best technologies, processes, and strategies to achieve goals.</p>
             <p>I drive the blooming of the idea toward a beautiful yet effective solution.</p>
           </Card>
         </section>
+
         <section class="card">
           <Skills client:load />
         </section>

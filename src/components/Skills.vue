@@ -38,11 +38,17 @@ const cards = [
   { img: 'https://uploads-ssl.webflow.com/5ff8aa777f54dfb0394abbef/5ff8b5fbe177262d7e143d9a_shrimp.svg', text: 'Aasdf' },
   { img: 'https://uploads-ssl.webflow.com/5ff8aa777f54dfb0394abbef/5ff8b5fb635b5e1229b8da6d_barbecue.svg', text: 'Aasdf' },
   { img: 'https://uploads-ssl.webflow.com/5ff8aa777f54dfb0394abbef/5ff8b5fb635b5e1229b8da6d_barbecue.svg', text: 'Aasdf' },
-  { img: 'https://uploads-ssl.webflow.com/5ff8aa777f54dfb0394abbef/5ff8b5fb1cf9a0fd06dd9fc5_pizza.svg', text: 'Aasdf' }
+  { img: 'https://uploads-ssl.webflow.com/5ff8aa777f54dfb0394abbef/5ff8b5fb1cf9a0fd06dd9fc5_pizza.svg', text: 'Aasdf' },
+  { img: 'https://uploads-ssl.webflow.com/5ff8aa777f54dfb0394abbef/5ff8b5fb635b5e1229b8da6d_barbecue.svg', text: 'Aasdf' },
+  { img: 'https://uploads-ssl.webflow.com/5ff8aa777f54dfb0394abbef/5ff8b5fb635b5e1229b8da6d_barbecue.svg', text: 'Aasdf' }
+  /* { img: 'https://uploads-ssl.webflow.com/5ff8aa777f54dfb0394abbef/5ff8b5fb1cf9a0fd06dd9fc5_pizza.svg', text: 'Aasdf' },
+  { img: 'https://uploads-ssl.webflow.com/5ff8aa777f54dfb0394abbef/5ff8b5fb635b5e1229b8da6d_barbecue.svg', text: 'Aasdf' },
+  { img: 'https://uploads-ssl.webflow.com/5ff8aa777f54dfb0394abbef/5ff8b5fb635b5e1229b8da6d_barbecue.svg', text: 'Aasdf' },
+  { img: 'https://uploads-ssl.webflow.com/5ff8aa777f54dfb0394abbef/5ff8b5fb1cf9a0fd06dd9fc5_pizza.svg', text: 'Aasdf' } */
 ]
 
 const rotateConst = 360 / cards.length
-const space = 456
+const space = 486
 </script>
 
 <style>
