@@ -56,7 +56,7 @@ const gl = {
 const cameras = [
   { x: -5, y: 3, z: 3 },
   { x: 3, y: 4, z: 6 },
-  { x: 6, y: 3, z: -1 },
+  { x: -1, y: 3, z: 6 },
   { x: 5, y: 3, z: -4 },
   { x: 6, y: 3, z: -1 }
 ]
@@ -64,7 +64,7 @@ const cameras = [
 const looktAts = [
   { x: -1, y: 4.5, z: -2 },
   { x: 2, y: 3.5, z: 0 },
-  { x: 0, y: 4.7, z: 0 },
+  { x: -3, y: 4.7, z: -2 },
   { x: 0, y: 3, z: 3 },
   { x: 0, y: 4.7, z: 0 }
 ]
@@ -102,7 +102,7 @@ const loadAnimation = () => {
       .timeline({
         scrollTrigger: {
           trigger: element,
-          markers: true,
+          //markers: true,
           start: 'top bottom',
           end: '80% bottom',
           toggleActions: 'play complete  reverse complete ',
@@ -115,9 +115,7 @@ const loadAnimation = () => {
       .to(
         lookAtAux,
         {
-          x: looktAts[index].x,
-          y: looktAts[index].y,
-          z: looktAts[index].z,
+          ...looktAts[index],
           onUpdate: () => {
             cameraRef.value.lookAt(...Object.values(lookAtAux))
           }

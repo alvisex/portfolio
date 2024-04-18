@@ -1,9 +1,13 @@
 <template>
   <!--   <section class="h-screen section-carousel"> -->
   <div class="container h-full flex items-center justify-center relative">
-    <div class="absolute top-60 flex gap-8">
-      <button class="" @click="rotation -= rotateConst" id="girar">Izquierda</button>
-      <button class="" @click="rotation += rotateConst" id="girar">Derecha</button>
+    <div class="absolute top-[22%] flex gap-8">
+      <button class="" @click="rotation += rotateConst" id="girar">
+        <img class="h-20" src="/arrow.svg" style="transform: scaleX(-1)" alt="" />
+      </button>
+      <button @click="rotation -= rotateConst" id="girar">
+        <img class="h-20" src="/arrow.svg" alt="" />
+      </button>
     </div>
 
     <div class="scene">
