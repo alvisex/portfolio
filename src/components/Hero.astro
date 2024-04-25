@@ -1,4 +1,4 @@
-<section class="flex md:items-center bg-transparent h-screen" id="s-1">
+<section class="flex md:items-center bg-transparent h-screen hero" id="s-1">
   <div class="container mt-32 md:mt-0">
     <div class="relative txt-hero">
       <h2 class="text-5xl">
@@ -31,9 +31,9 @@
         trigger: '#s-1',
         start: 'center center',
         end: 'bottom 30%',
-        scrub: true
+        scrub: true,
       },
-      defaults: { ease: 'none' }
+      defaults: { ease: 'none' },
     })
     .to('#bg-1', { objectPosition: '40% 0%' })
     .to('.txt-hero', { yPercent: 50 }, 0)

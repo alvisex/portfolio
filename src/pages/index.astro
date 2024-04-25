@@ -12,7 +12,7 @@ const cameras = [
   { x: -5, y: 3, z: 3 },
   { x: 3, y: 4, z: 6 },
   { x: 5, y: 3, z: -4 },
-  { x: 6, y: 3, z: -1 }
+  { x: 6, y: 3, z: -1 },
 ]
 
 const looktAts = [
@@ -20,7 +20,7 @@ const looktAts = [
   { x: -1, y: 4.5, z: -2 },
   { x: 2, y: 3.5, z: 0 },
   { x: 0, y: 3, z: 3 },
-  { x: 0, y: 4.7, z: 0 }
+  { x: 0, y: 4.7, z: 0 },
 ]
 const lookAtAux = { x: 0, y: 4, z: 0 }
 ---
@@ -35,7 +35,7 @@ const lookAtAux = { x: 0, y: 4, z: 0 }
 
       <div class="-mt-[100vh]">
         <TheExperience client:load />
-        <section class={`flex items-center card`} data-model>
+        <section class={`flex items-center card sbg`} data-model>
           <Card title="" header="Who I am?">
             <p>
               I am a Web Engineer with <strong>5+ years</strong> of experience developing solutions through web technologies.
@@ -47,7 +47,7 @@ const lookAtAux = { x: 0, y: 4, z: 0 }
           </Card>
         </section>
 
-        <section class={`flex items-center card`} data-model>
+        <section class={`flex items-center card sbg`} data-model>
           <Card title="" header="Quality and professionalism" reversed>
             <p>I've worked in varity of environments, since the one-man department to be part of a team from a world-wide company.</p>
             <!-- <p>I drive the blooming of the idea toward a beautiful yet effective solution.</p> -->
@@ -61,10 +61,13 @@ const lookAtAux = { x: 0, y: 4, z: 0 }
           </Card>
         </section>
 
-        <section class="card">
+        <section class="h-[400vh] carousel-section">
+          <h2>Skills</h2>
           <Skills client:load />
         </section>
-        <section class="h-screen relative z-10 card">
+
+        <section class="h-screen relative z-10">
+          <h2>Experience</h2>
           <Experience />
         </section>
       </div>
@@ -129,14 +132,14 @@ const lookAtAux = { x: 0, y: 4, z: 0 }
       'linear-gradient( 89.7deg, var(--background) -10.7%, rgba(53,92,125,1) 80.8% )',
       'linear-gradient( 9.7deg, var(--background) -20.7%,   rgba(43,123,79,1) 80.8% )',
       'linear-gradient( 0deg, var(--background) 0%, rgba(53,92,125,1) 80.8% )',
-      'linear-gradient( 45deg, var(--background) 0%, rgba(113,32,25,1) 80.8% )'
+      'linear-gradient( 45deg, var(--background) 0%, rgba(113,32,25,1) 80.8% )',
     ]
 
     const bgAnimation = (index: number) => {
       gsap.to('.bg-cards', {
         background: backgrounds[index],
         duration: 1.2,
-        ease: 'power3'
+        ease: 'power3',
       })
     }
 
@@ -150,7 +153,7 @@ const lookAtAux = { x: 0, y: 4, z: 0 }
     gsap.set('.bg-cards', { background: 'linear-gradient( 180.7deg,  var(--background) 10.7%, rgba(53,92,125,0) 10)' })
 
     /* Cards */
-    let cards: Element[] = gsap.utils.toArray('.card')
+    let cards: Element[] = gsap.utils.toArray('section:not(.hero)')
     cards.forEach((card, index) => {
       /* bg animations */
       let trigger = ScrollTrigger.create({
@@ -163,10 +166,10 @@ const lookAtAux = { x: 0, y: 4, z: 0 }
         },
         onEnterBack() {
           bgAnimation(index)
-        }
+        },
       })
 
-      let q = gsap.utils.selector(card)
+      /* let q = gsap.utils.selector(card)
       gsap.set(q('.container'), { opacity: 0 })
 
       gsap.to(q('.container'), {
@@ -180,7 +183,7 @@ const lookAtAux = { x: 0, y: 4, z: 0 }
         opacity: 1,
         duration: 0.5,
         ease: 'none'
-      })
+      }) */
     })
     //console.log('cards', cards)
   </script>

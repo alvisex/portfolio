@@ -7,6 +7,7 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { useControls } from '@tresjs/leches'
 import '@tresjs/leches/dist/style.css'
+gsap.registerPlugin(ScrollTrigger)
 
 const { intensity, color, positionn } = useControls({
   intensity: {
@@ -42,8 +43,6 @@ watchEffect(() => {
 const modelToRight = () => {
   console.log('model to right')
 }
-
-gsap.registerPlugin(ScrollTrigger)
 
 const gl = {
   shadows: true,
