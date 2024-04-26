@@ -6,170 +6,118 @@ import Hero from '../components/Hero.astro'
 import Skills from '../components/Skills.vue'
 import TheExperience from '../components/TheExperience.vue'
 import Experience from '../components/Experience.astro'
-
-const cameras = [
-  { x: 5, y: 6, z: 6 },
-  { x: -5, y: 3, z: 3 },
-  { x: 3, y: 4, z: 6 },
-  { x: 5, y: 3, z: -4 },
-  { x: 6, y: 3, z: -1 },
-]
-
-const looktAts = [
-  { x: 0, y: 4, z: 0 },
-  { x: -1, y: 4.5, z: -2 },
-  { x: 2, y: 3.5, z: 0 },
-  { x: 0, y: 3, z: 3 },
-  { x: 0, y: 4.7, z: 0 },
-]
-const lookAtAux = { x: 0, y: 4, z: 0 }
 ---
 
 <Layout title="Web Engineer">
   <main>
+    <div class="bg-cards"></div>
     <Hero />
-    <!--  <Avatar /> -->
 
-    <div class="cards-wrapper">
-      <div class="bg-cards"></div>
-
-      <div class="-mt-[100vh]">
-        <TheExperience client:load />
-        <section class={`flex items-center card sbg`} data-model>
-          <Card title="" header="Who I am?">
-            <p>
-              I am a Web Engineer with <strong>5+ years</strong> of experience developing solutions through web technologies.
-            </p>
-            <p>
-              I've worked in varity of environments, since the one-man department to be part of a team from a world-wide company. Always
-              learning what the situation required, be adaptative and proactive to achieve the goal is my hallmark.
-            </p>
-          </Card>
-        </section>
-
-        <section class={`flex items-center card sbg`} data-model>
-          <Card title="" header="Quality and professionalism" reversed>
-            <p>I've worked in varity of environments, since the one-man department to be part of a team from a world-wide company.</p>
-            <!-- <p>I drive the blooming of the idea toward a beautiful yet effective solution.</p> -->
-          </Card>
-        </section>
-
-        <section class={`flex items-center card`} data-model>
-          <Card title="" header="My Hallmark">
-            <p>I continuously seek out the best technologies, processes, and strategies to achieve goals.</p>
-            <p>I drive the blooming of the idea toward a beautiful yet effective solution.</p>
-          </Card>
-        </section>
-
-        <section class="h-[400vh] carousel-section">
-          <h2>Skills</h2>
-          <Skills client:load />
-        </section>
-
-        <section class="h-screen relative z-10">
-          <h2>Experience</h2>
-          <Experience />
-        </section>
-      </div>
-
-      <!--  <Card title="Skills" header="Tools I use">
+    <TheExperience client:load />
+    <section class={`flex items-center card sbg`} data-model>
+      <Card title="" header="Who I am?">
         <p>
-          I have knowledge in various tools, including: <br />
-          <ul class="grid grid-cols-4">
-            <li>Vue (v2, v3)</li>
-            <li>Nuxt (v2, v3)</li>
-            <li>Astro js</li>
-            <li>Strapi</li>
-            <li>Firebase</li>
-            <li>Vite</li>
-            <li>Vuetify</li>
-            <li>Tailwind</li>
-            <li>GSAP 3</li>
-            <li>Three.js</li>
-            <li>Lenis.js</li>
-            <li>Spline 3D</li>
-            <li>Python</li>
-            <li>Webpack</li>
-            <li>Docker</li>
-            <li>React</li>
-          </ul>
-          <br />
+          I am a Web Engineer with <strong>5+ years</strong> of experience developing solutions through web technologies.
         </p>
         <p>
-          However, I am not limited solely to these tools; <br />As a profesional developer I am immersed in constant learning, searching
-          for the new things to do, and new ways to achive them
+          I've worked in varity of environments, since the one-man department to be part of a team from a world-wide company. Always
+          learning what the situation required, be adaptative and proactive to achieve the goal is my hallmark.
         </p>
-      </Card> -->
+      </Card>
+    </section>
 
-      <!-- <section></section> -->
-    </div>
+    <section class={`flex items-center card sbg`} data-model>
+      <Card title="" header="Quality and professionalism" reversed>
+        <p>I've worked in varity of environments, since the one-man department to be part of a team from a world-wide company.</p>
+      </Card>
+    </section>
+
+    <section class={`flex items-center card sbg`} data-model>
+      <Card title="" header="My Hallmark">
+        <p>I continuously seek out the best technologies, processes, and strategies to achieve goals.</p>
+        <p>I drive the blooming of the idea toward a beautiful yet effective solution.</p>
+      </Card>
+    </section>
+
+    <div class="h-[80vh]" data-model data-end-mark="110%"></div>
+    <section class="h-[400vh] carousel-section" id="skills">
+      <h2>Skills</h2>
+      <Skills client:load />
+    </section>
+
+    <section class="h-screen relative grid" id="experience">
+      <h2>Experience</h2>
+      <Experience />
+    </section>
   </main>
+</Layout>
 
-  <script>
-    import { gsap } from 'gsap'
-    import { ScrollTrigger } from 'gsap/ScrollTrigger'
-    gsap.registerPlugin(ScrollTrigger)
-    /* Lenis compatibility */
-    import Lenis from '@studio-freight/lenis'
-    const lenis = new Lenis()
-    lenis.on('scroll', ScrollTrigger.update)
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000)
-    })
-    gsap.ticker.lagSmoothing(0)
+<script>
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+  gsap.registerPlugin(ScrollTrigger)
+  /* Lenis compatibility */
+  import Lenis from '@studio-freight/lenis'
+  const lenis = new Lenis()
+  lenis.on('scroll', ScrollTrigger.update)
+  gsap.ticker.add((time) => {
+    lenis.raf(time * 1000)
+  })
+  gsap.ticker.lagSmoothing(0)
 
-    /*  gsap.from('#bg-1', { duration: 2, opacity: 0 }) */
+  /*  gsap.from('#bg-1', { duration: 2, opacity: 0 }) */
 
-    /* 
+  /* 
 'linear-gradient( 270deg, #0f2027, #203a43, #2c5364)',
     'linear-gradient( 109.6deg,  rgba(30,10,10,1) -11.2%, rgba(36,163,190,1) 102% )',
     'radial-gradient( circle farthest-corner at 10% 20%,  rgba(0,152,155,1) 0.1%, rgba(0,94,120,1) 104% )',
     'radial-gradient( circle 939px at 94.7% 50%,  rgba(0,178,169,1) 0%, rgba(0,106,101,1) 76.9% )'
 */
 
-    const backgrounds = [
-      'linear-gradient( 180.7deg,  var(--background) 10.7%, rgba(53,92,125,1) 88.8% )',
-      'linear-gradient( 89.7deg, var(--background) -10.7%, rgba(53,92,125,1) 80.8% )',
-      'linear-gradient( 9.7deg, var(--background) -20.7%,   rgba(43,123,79,1) 80.8% )',
-      'linear-gradient( 0deg, var(--background) 0%, rgba(53,92,125,1) 80.8% )',
-      'linear-gradient( 45deg, var(--background) 0%, rgba(113,32,25,1) 80.8% )',
-    ]
+  const backgrounds = [
+    'linear-gradient( 180.7deg, #0000 10.7%, rgba(53,92,125,0) 100%)',
+    'linear-gradient( 180.7deg,  #151616 10.7%, rgba(53,92,125,1) 88.8% )',
+    'linear-gradient( 89.7deg, #151616 -10.7%, rgba(53,92,125,1) 80.8% )',
+    'linear-gradient( 9.7deg, #151616 -20.7%,   rgba(43,123,79,1) 80.8% )',
+    'linear-gradient( 0deg, #151616 0%, rgba(53,92,125,1) 80.8% )',
+    'linear-gradient( 45deg, #151616 0%, rgba(113,32,25,1) 80.8% )',
+  ]
 
-    const bgAnimation = (index: number) => {
-      gsap.to('.bg-cards', {
-        background: backgrounds[index],
-        duration: 1.2,
-        ease: 'power3',
-      })
+  const bgAnimation = (index: number) => {
+    gsap.to('.bg-cards', {
+      background: backgrounds[index],
+      duration: 1.2,
+      ease: 'power3',
+    })
+  }
+
+  const moveModel = (index: number) => {
+    if (index == 0) {
     }
-
-    const moveModel = (index: number) => {
-      if (index == 0) {
-      }
-      if (index == 1) {
-      }
+    if (index == 1) {
     }
+  }
 
-    gsap.set('.bg-cards', { background: 'linear-gradient( 180.7deg,  var(--background) 10.7%, rgba(53,92,125,0) 10)' })
+  gsap.set('.bg-cards', { background: 'linear-gradient( 180.7deg,  var(--background) 10.7%, rgba(53,92,125,0) 10)' })
 
-    /* Cards */
-    let cards: Element[] = gsap.utils.toArray('section:not(.hero)')
-    cards.forEach((card, index) => {
-      /* bg animations */
-      let trigger = ScrollTrigger.create({
-        trigger: card,
-        start: 'top 30%',
-        end: 'bottom 30%',
-        //markers: true,
-        onEnter() {
-          bgAnimation(index)
-        },
-        onEnterBack() {
-          bgAnimation(index)
-        },
-      })
+  /* Cards */
+  let cards: Element[] = gsap.utils.toArray('section:not(.hero)')
+  cards.forEach((card, index) => {
+    /* bg animations */
+    let trigger = ScrollTrigger.create({
+      trigger: card,
+      start: 'top 30%',
+      end: 'bottom 30%',
+      //markers: true,
+      onEnter() {
+        bgAnimation(index)
+      },
+      onEnterBack() {
+        bgAnimation(index)
+      },
+    })
 
-      /* let q = gsap.utils.selector(card)
+    /* let q = gsap.utils.selector(card)
       gsap.set(q('.container'), { opacity: 0 })
 
       gsap.to(q('.container'), {
@@ -184,30 +132,29 @@ const lookAtAux = { x: 0, y: 4, z: 0 }
         duration: 0.5,
         ease: 'none'
       }) */
-    })
-    //console.log('cards', cards)
-  </script>
+  })
+  //console.log('cards', cards)
+</script>
 
-  <style lang="scss">
-    :root {
-      --card-bg-1: rgba(53, 92, 125, 1);
-    }
-    .cards-wrapper {
-      position: relative;
-    }
-    .bg-cards {
-      height: 100vh;
-      width: 100%;
-      background: linear-gradient(180.7deg, var(--background) 10.7%, rgba(53, 92, 125, 0) 20);
-      position: sticky;
-      top: 0;
-    }
-    p {
-      @apply mb-4;
-    }
+<style lang="scss">
+  :root {
+    --card-bg-1: rgba(53, 92, 125, 1);
+  }
+  .cards-wrapper {
+    position: relative;
+  }
+  .bg-cards {
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(180.7deg, #0000 10.7%, rgba(53, 92, 125, 0) 20);
+    position: fixed;
+    top: 0;
+  }
+  p {
+    @apply mb-4;
+  }
 
-    strong {
-      @apply text-accent;
-    }
-  </style>
-</Layout>
+  strong {
+    @apply text-accent;
+  }
+</style>

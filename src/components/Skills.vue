@@ -1,6 +1,6 @@
 <template>
   <!--   <section class="h-screen section-carousel"> -->
-  <div id="carousel-weapper" class="h-full flex items-start justify-center relative">
+  <div id="carousel-weapper" class="flex items-start justify-center relative">
     <!-- <div class="absolute top-[22%] flex gap-8">
       <button class="" @click="rotation += rotateConst" id="girar">
         <img class="h-20" src="/arrow.svg" style="transform: scaleX(-1)" alt="" />
@@ -41,7 +41,7 @@ onMounted(() => {
     scrollTrigger: {
       trigger: '.carousel-section',
       start: 'top 20%',
-      end: 'bottom bottom',
+      end: 'bottom 102%',
       pin: '.scene',
     },
   })
@@ -52,9 +52,9 @@ onMounted(() => {
       scrub: true,
       //markers: true,
     },
-    '--rotation': '440deg',
-    '--space': '440px',
-    '--inclination': '5deg',
+    '--rotation': '460deg',
+    '--space': '420px',
+    '--inclination': '8deg',
     ease: 'none',
   })
 })

@@ -14,20 +14,20 @@ const { intensity, color, positionn } = useControls({
     value: 5.1,
     min: 0,
     max: 10,
-    step: 0.01
+    step: 0.01,
   },
   color: '#fff36b',
-  positionn: new Vector3(3, 1, -4)
+  positionn: new Vector3(3, 1, -4),
 })
 const { intensity2, color2, positionn2 } = useControls({
   intensity2: {
     value: 5.5,
     min: 0,
     max: 10,
-    step: 0.01
+    step: 0.01,
   },
   color2: '#ff42a7',
-  positionn2: new Vector3(-3, 2, 3)
+  positionn2: new Vector3(-3, 2, 3),
 })
 
 /* const { cameraPos } = useControls({
@@ -40,32 +40,28 @@ watchEffect(() => {
   console.log('position', positionn.value)
 })
 
-const modelToRight = () => {
-  console.log('model to right')
-}
-
 const gl = {
   shadows: true,
   alpha: true,
   shadowMapType: BasicShadowMap,
   outputColorSpace: SRGBColorSpace,
-  toneMapping: NoToneMapping
+  toneMapping: NoToneMapping,
 }
 
 const cameras = [
   { x: -5, y: 3, z: 3 },
   { x: 3, y: 4, z: 6 },
-  { x: -1, y: 3, z: 6 },
+  { x: -0.33, y: 3.73, z: 5.58 },
+  { x: 1, y: 4, z: 0 },
   { x: 5, y: 3, z: -4 },
-  { x: 6, y: 3, z: -1 }
 ]
 
 const looktAts = [
   { x: -1, y: 4.5, z: -2 },
   { x: 2, y: 3.5, z: 0 },
   { x: -3, y: 4.7, z: -2 },
-  { x: 0, y: 3, z: 3 },
-  { x: 0, y: 4.7, z: 0 }
+  { x: 4, y: 5, z: -6 },
+  { x: 0, y: 4.7, z: 0 },
 ]
 const lookAtAux = { x: 0, y: 4, z: 0 }
 
@@ -97,19 +93,22 @@ const loadAnimation = () => {
     /*     const { camera, lookAt } = element.dataset
     console.log(`llmodel`, camera, lookAt)
     console.log(`llmodel`, JSON.parse(camera), JSON.parse(lookAt)) */
+    const { endMark } = element.dataset
+    console.log('endMark', endMark)
+
     gsap
       .timeline({
         scrollTrigger: {
           trigger: element,
           //markers: true,
           start: 'top bottom',
-          end: '80% bottom',
+          end: `${endMark || '80%'} bottom`,
           toggleActions: 'play complete  reverse complete ',
-          scrub: true
-        }
+          scrub: true,
+        },
       })
       .to(cameraRef.value.position, {
-        ...cameras[index]
+        ...cameras[index],
       })
       .to(
         lookAtAux,
@@ -117,7 +116,7 @@ const loadAnimation = () => {
           ...looktAts[index],
           onUpdate: () => {
             cameraRef.value.lookAt(...Object.values(lookAtAux))
-          }
+          },
         },
         '<'
       )
@@ -125,9 +124,6 @@ const loadAnimation = () => {
 }
 
 onMounted(() => {
-  /* sections = gsap.utils.toArray('section')
-  console.log(`sections`, sections) */
-
   sections = gsap.utils.toArray('[data-model]')
   console.log(`sections`, sections)
 })
@@ -145,7 +141,7 @@ onMounted(() => {
   </TresCanvas>
 </template>
 
-<style>
+<style lang="scss">
 canvas#mycanvas {
   position: sticky !important;
   z-index: 0;

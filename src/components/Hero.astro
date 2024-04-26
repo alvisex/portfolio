@@ -1,11 +1,11 @@
-<section class="flex md:items-center bg-transparent h-screen hero" id="s-1">
-  <div class="container mt-32 md:mt-0">
+<section class="flex md:items-center bg-transparent h-screen" id="s-1">
+  <div class="container mt-32 md:mt-0 md:px-12">
     <div class="relative txt-hero">
-      <h2 class="text-5xl">
-        Alvise <span class="text-gradient short">Leal</span>
+      <h2 class="text-5xl md:text-6xl">
+        <span class="text-gradient short">Alvise</span> Leal
       </h2>
-      <h1 class="text-[3rem] md:text-8xl my-4 font-black text-primary mt-32 md:mt-0">Web Engineer</h1>
-      <span class="text-lg">Full-Stack capabilities, <span class="text-gradient short"> Frontend</span> expertise</span>
+      <h1 class="text-[3rem] md:text-8xl my-4 md:my-8 font-black text-primary">Web Engineer</h1>
+      <span class="text-lg md:text-2xl">Full-Stack capabilities, <span class="text-gradient short"> Frontend</span> expertise</span>
     </div>
   </div>
   <div class="blob-cont">
@@ -52,14 +52,15 @@
   }
   /* Blobs */
   .blob-cont {
+    position: absolute;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: -2;
     height: 100%;
-    width: min(900px, 100%);
-    position: relative;
+    width: min(700px, 100%);
+    top: 0;
     right: 5em;
   }
 
