@@ -11,6 +11,7 @@
     </div> -->
 
     <div class="scene">
+      <h2 class="text-center font-black text-6xl text-gradient mx-auto relative -top-14">SKILLS</h2>
       <div class="carousel vue" ref="carousel">
         <div
           class="carousel_cell"

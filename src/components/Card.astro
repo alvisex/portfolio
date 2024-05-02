@@ -8,27 +8,37 @@ const { title, header, reversed } = Astro.props
 ---
 
 <div class={`container  ${reversed ? 'reversed' : ''}`}>
-  <div class="md:max-w-[50%] ml-0">
+  <div class="md:max-w-[60%] ml-0">
     <h3 class="text-gradient text-xl short mb-1">{title}</h3>
-    <h4 class="text-bold text-4xl mb-3">{header}</h4>
+    <h4 class="text-gradient short font-bold text-xl mb-3">{header}</h4>
     <slot />
   </div>
 </div>
 
 <script define:vars={{ title }}></script>
 
-<style lang="scss">
-  p {
-    margin-bottom: 2rem;
-  }
-  .reversed {
-    display: flex;
-    justify-content: end;
-    text-align: end;
-    & > * {
+<style lang="scss" is:global>
+  .card {
+    p {
+      @apply mb-8 font-bold text-4xl;
+
+      & span {
+        background: linear-gradient(to right, #e8ece0 50%, rgb(37, 37, 37) 50%);
+        background-size: 200% 100%;
+        background-position-x: 100%;
+        color: transparent;
+        background-clip: text;
+      }
+    }
+    .reversed {
       display: flex;
-      flex-flow: column;
-      align-items: end;
+      justify-content: end;
+      text-align: end;
+      & > * {
+        display: flex;
+        flex-flow: column;
+        align-items: end;
+      }
     }
   }
 </style>

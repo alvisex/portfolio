@@ -49,17 +49,17 @@ const gl = {
 }
 
 const cameras = [
-  { x: -5, y: 3, z: 3 },
+  { x: -5, y: 3, z: 3.5 },
   { x: 3, y: 4, z: 6 },
-  { x: -0.33, y: 3.73, z: 5.58 },
+  { x: -0.3, y: 3.73, z: 6 },
   { x: 1, y: 4, z: 0 },
   { x: 5, y: 3, z: -4 },
 ]
 
 const looktAts = [
-  { x: -1, y: 4.5, z: -2 },
-  { x: 2, y: 3.5, z: 0 },
-  { x: -3, y: 4.7, z: -2 },
+  { x: -1.5, y: 4, z: -2.5 },
+  { x: 3, y: 3.5, z: 0 },
+  { x: -3.8, y: 4.4, z: -2 },
   { x: 4, y: 5, z: -6 },
   { x: 0, y: 4.7, z: 0 },
 ]
@@ -94,7 +94,7 @@ const loadAnimation = () => {
     console.log(`llmodel`, camera, lookAt)
     console.log(`llmodel`, JSON.parse(camera), JSON.parse(lookAt)) */
     const { endMark } = element.dataset
-    console.log('endMark', endMark)
+    //console.log('endMark', endMark)
 
     gsap
       .timeline({
