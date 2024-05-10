@@ -55,16 +55,20 @@
     background: linear-gradient(45deg, #3fe669 0, #6cc3fa 63%, #56fcfe 70%, #bae0db 100%);
     background-size: 150% 110%;
     background-position: 100% 100%;
+
+    transition:
+      padding 250ms ease-out,
+      transform 250ms ease-out;
+
     img {
       @apply h-3/5 object-contain w-full;
     }
 
-    transition: transform 300ms ease;
     &:hover {
       background-position: 0% 100%;
       transition:
-        padding 300ms ease,
-        transform 300ms ease;
+        padding 250ms ease-out,
+        transform 250ms ease-out;
 
       --rotate-y: 0;
       transform: perspective(30rem) rotateY(var(--rotate-y)) scale(1.1) rotateX(5deg);
