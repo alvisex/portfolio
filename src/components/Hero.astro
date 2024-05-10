@@ -1,11 +1,14 @@
-<section class="flex md:items-center bg-transparent h-screen" id="s-1">
+<section class="flex md:items-center bg-transparent h-[80vh] md:h-screen" id="s-1">
   <div class="container mt-32 md:mt-0 md:px-12">
     <div class="relative txt-hero">
       <h2 class="text-5xl md:text-6xl">
-        <span class="text-gradient short">Alvise</span> Leal
+        <span><span class="text-gradient short">Alvise</span> Leal</span>
       </h2>
-      <h1 class="text-[3rem] md:text-8xl my-4 md:my-8 font-black text-primary">Web Engineer</h1>
-      <span class="text-lg md:text-2xl">Full-Stack capabilities, <span class="text-gradient short"> Frontend</span> expertise</span>
+      <h1 class="text-6xl md:text-8xl my-4 md:my-8 font-black text-primary">Web Engineer</h1>
+      <span class="text-[1.42rem] md:text-3xl span1">Full-Stack capabilities,</span>
+      <span class="text-[1.42rem] md:text-3xl span2">
+        <span class="text-gradient short"> Frontend</span> expertise
+      </span>
     </div>
   </div>
   <div class="blob-cont">
@@ -20,10 +23,14 @@
   import { ScrollTrigger } from 'gsap/ScrollTrigger'
   gsap.registerPlugin(ScrollTrigger)
   /* hero */
+
+  const q = gsap.utils.selector('#s-1')
   gsap
-    .timeline({ defaults: { duration: 1.8, ease: 'power2' } })
-    .from('h2', { y: '40%', clipPath: 'inset(0 0 100% 0)', opacity: 0 })
-    .from('h1', { y: '40%', clipPath: 'inset(0 0 100% 0)', opacity: 0 }, 0)
+    .timeline({ defaults: { duration: 1.7, ease: 'power2' } })
+    .from(q('h2'), { y: '50%', clipPath: 'inset(0 0 100% 0)', opacity: 0 })
+    .from(q('h1'), { y: '50%', clipPath: 'inset(0 0 100% 0)', opacity: 0 }, '-=1.1')
+    .from('.span1', { opacity: 0 }, '-=0.5')
+    .from('.span2', { opacity: 0 }, '-=0.8')
 
   gsap
     .timeline({
@@ -49,6 +56,10 @@
 
     --size: min(200px, 20vw);
     --size-2: min(250px, 20vw);
+  }
+
+  h1 {
+    line-height: 1.2;
   }
   /* Blobs */
   .blob-cont {

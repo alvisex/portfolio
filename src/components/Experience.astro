@@ -1,4 +1,4 @@
-<div class="container px-8 grid md:grid-cols-3 gap-8 items-center">
+<div class="container px-8 flex flex-wrap gap-8 items-center flexi">
   <div class="element p-0.5 hover:p-2 rounded-lg" data-rotate="left">
     <a href="/experience/gitlab" class="block h-full rounded-lg bg-gitlab" data-rotate="left">
       <img transition:name="hero-gitlab" src="/gitlab-logo-200.png" alt="" />
@@ -41,8 +41,6 @@
 </div>
 
 <script>
-  import { getIconElement } from 'astro/runtime/client/dev-toolbar/ui-library/icons.js'
-
   const btn = document.getElementById('black')
   btn.addEventListener('click', (event) => {
     console.log('el', event.target.classList.add('active'))
@@ -51,7 +49,8 @@
 
 <style lang="scss">
   .element {
-    @apply h-96  cursor-pointer;
+    flex: 1;
+    @apply h-96 cursor-pointer;
     background: linear-gradient(45deg, #3fe669 0, #6cc3fa 63%, #56fcfe 70%, #bae0db 100%);
     background-size: 150% 110%;
     background-position: 100% 100%;

@@ -123,14 +123,17 @@ const loadAnimation = () => {
   })
 }
 
+const screenWidth = ref(0)
 onMounted(() => {
   sections = gsap.utils.toArray('[data-model]')
   console.log(`sections`, sections)
+  screenWidth.value = window.innerWidth
+  console.log('screenWidth', screenWidth.value)
 })
 </script>
 
 <template>
-  <TresCanvas v-bind="gl" id="mycanvas" window-size>
+  <TresCanvas v-bind="gl" id="mycanvas" window-size v-if="screenWidth > 1000">
     <TresPerspectiveCamera ref="cameraRef" :position="[1, 5, 6]" :look-at="[0, 4, 0]" />
     <Suspense>
       <GLTFModel path="/models/alterado.glb" draco ref="modelRef" />
