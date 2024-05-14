@@ -11,7 +11,7 @@ onMounted(() => {
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: '.carousel-section',
-      start: 'top 20%',
+      start: 'top 8%',
       end: 'bottom 102%',
       pin: '.scene',
     },
@@ -97,39 +97,14 @@ const groups = [
     ],
   },
 ]
-const cards = [
-  { img: '/logos/astrogpt.png', text: '' },
-  { img: '/logos/css.png', text: '' },
-  { img: '/logos/docker.png', text: '' },
-  { img: '/logos/figma.png', text: '' },
-  { img: '/logos/firebase.png', text: '' },
-  { img: '/logos/gitlab.png', text: '' },
-  { img: '/logos/graphql.png', text: '' },
-  { img: '/logos/html5.png', text: '' },
-  { img: '/logos/javascript.png', text: '' },
-  { img: '/logos/midudev.png', text: '' },
-  { img: '/logos/python.png', text: '' },
-  { img: '/logos/react.png', text: '' },
-  { img: '/logos/spline.png', text: '' },
-  { img: '/logos/strapi.png', text: '' },
-  { img: '/logos/tailwind.png', text: '' },
-  { img: '/logos/three js.png', text: '' },
-  { img: '/logos/typescript.png', text: '' },
-  { img: '/logos/vitejs.png', text: '' },
-  { img: '/logos/vue.js.png', text: '' },
-  { img: '/logos/vuetify.png', text: '' },
-  { img: '/logos/webgl.png', text: '' },
-]
 
 const rotateConst = 360 / groups.length
-const space = 446
 </script>
 <template>
-  <!--   <section class="h-screen section-carousel"> -->
-  <div id="carousel-weapper" class="flex items-start justify-center relative overflow-x-hidden">
+  <div id="carousel-weapper" class="flex items-start h-full justify-center">
     <div class="scene">
-      <h2 class="text-center font-black text-5xl md:text-6xl text-gradient mx-auto relative -top-20">SKILLS</h2>
-      <div class="carousel -mt-10 vue" ref="carousel">
+      <h2 class="text-center font-black text-5xl md:text-6xl text-gradient mx-auto relative">SKILL SET</h2>
+      <div class="carousel mt-[5vh] vue" ref="carousel">
         <div
           class="carousel_cell"
           :class="`_${index + 1}`"
@@ -151,7 +126,6 @@ const space = 446
       </div>
     </div>
   </div>
-  <!--   </section> -->
 </template>
 
 <style lang="scss">
@@ -159,7 +133,7 @@ const space = 446
   --card-width: 390px;
   --card-height: calc(var(--card-width) * 0.7);
   --rotation: -10deg;
-  --rotateX: -8deg;
+  --rotateX: -4deg;
   --space: 580px;
   --inclination: -10deg;
   --perspective: 800px;
@@ -189,10 +163,8 @@ const space = 446
 }
 .carousel_cell {
   position: absolute;
-
   width: var(--card-width);
   height: var(--card-height);
-
   padding: 2.5rem 1rem 1rem;
   display: flex;
   justify-content: center;
