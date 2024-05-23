@@ -34,11 +34,11 @@ const { intensity2, color2, positionn2 } = useControls({
   cameraPos: new Vector3(-3, 2, 3)
 }) */
 
-watchEffect(() => {
+/* watchEffect(() => {
   console.log(intensity.value.value)
   console.log(color.value.value)
   console.log('position', positionn.value)
-})
+}) */
 
 const gl = {
   shadows: true,
@@ -75,7 +75,7 @@ const modelRef = shallowRef<THREE.Object3D>()
 watch(modelRef, (model) => {
   loadAnimation()
 
-  console.log('modelRef', modelRef.value.value)
+  /* console.log('modelRef', modelRef.value.value) */
   const { seekByName } = useSeek()
   const nimbus001 = seekByName(model.value, 'nimbus001')
   const nimbus002 = seekByName(model.value, 'nimbus002')
@@ -126,7 +126,6 @@ const loadAnimation = () => {
 const screenWidth = ref(0)
 onMounted(() => {
   sections = gsap.utils.toArray('[data-model]')
-  console.log(`sections`, sections)
   screenWidth.value = window.innerWidth
   console.log('screenWidth', screenWidth.value)
 })

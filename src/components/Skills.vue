@@ -37,11 +37,11 @@ const groups = [
   {
     title: 'Javascript ',
     elements: [
-      { img: '/logos/typescript.png', text: 'Typescript' },
-      { img: '/logos/vue.js.png', text: 'Vue 3' },
       { img: '/logos/astrogpt.png', text: 'Astro Js' },
+      { img: '/logos/vue.js.png', text: 'Vue 3' },
       { img: '/logos/react.png', text: 'React' },
       { img: '/logos/nuxt.png', text: 'Nuxt Js' },
+      { img: '/logos/typescript.png', text: 'Typescript' },
       { img: '/logos/vitejs.png', text: 'Vite Js' },
     ],
   },
@@ -79,11 +79,12 @@ const groups = [
   {
     title: 'DevOps',
     elements: [
-      { img: '/logos/firebase.png', text: 'Firbase' },
       { img: '/logos/gitlab.png', text: 'GitLab' },
-      { img: '/logos/docker.png', text: 'Docker' },
+
       { img: '/logos/concourse.png', text: 'Concourse CI' },
+      { img: '/logos/firebase.png', text: 'Firbase' },
       { img: '/logos/launch-darkly.svg', text: 'Launch Darkly' },
+      { img: '/logos/docker.png', text: 'Docker' },
     ],
   },
   {
