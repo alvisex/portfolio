@@ -16,9 +16,28 @@ import Experience from '../components/Experience.astro'
     <TheExperience client:load />
     <section class="flex items-center card" data-model>
       <Card title="" header="Who I am?">
-        <p>
+        <p class="visually-hidden">
           A Web Engineer with <strong>5+ years</strong>
           of experience developing outstanding interfaces and seamless solutions through web technologies.
+        </p>
+        <p aria-hidden="true">
+          <span>A</span>
+          <span>Web</span>
+          <span>Engineer</span>
+          <span>with</span>
+          <span class="text-accent">5+</span>
+          <span class="text-accent">years</span>
+          <span>of</span>
+          <span>experience</span>
+          <span>developing</span>
+          <span>outstanding</span>
+          <span>interfaces</span>
+          <span>and</span>
+          <span>seamless</span>
+          <span>solutions</span>
+          <span>through</span>
+          <span>web</span>
+          <span>technologies.</span>
         </p>
         <!--  <p>
           I've worked in varity of environments, since the one-man department to be part of a team from a world-wide company. Always
@@ -36,9 +55,31 @@ import Experience from '../components/Experience.astro'
           <span>of a team from a world-wide</span>
           <span>company.</span>
         </p> -->
-        <p>
-          <!-- Throughout my career, I excelled as a frontend,  -->Also cooperating with UI/UX, DB admin, Backend, and DevOps duties across
-          various environment, from solo department to global teams.
+        <!-- Throughout my career, I excelled as a frontend,  -->
+        <p class="visually-hidden">
+          Also cooperating with UI/UX, DB admin, Backend, and DevOps duties across various environment, from solo department to global
+          teams.
+        </p>
+        <p aria-hidden="true">
+          <span>Also</span>
+          <span>cooperating</span>
+          <span>with</span>
+          <span>UI/UX,</span>
+          <span>DB,</span>
+          <span>admin,</span>
+          <span>Backend,</span>
+          <span>and</span>
+          <span>DevOps</span>
+          <span>duties</span>
+          <span>across</span>
+          <span>various</span>
+          <span>environment,</span>
+          <span>from</span>
+          <span>solo</span>
+          <span>department</span>
+          <span>to</span>
+          <span>global</span>
+          <span>teams.</span>
         </p>
       </Card>
     </section>
@@ -46,10 +87,32 @@ import Experience from '../components/Experience.astro'
     <section class="flex items-center card" data-model>
       <Card title="" header="My nature">
         <!-- <p>I continuously seek out the best technologies, processes, and strategies to achieve goals.</p> -->
-        <p>
+        <p class="visually-hidden">
           Continuously on the lookout for fresh technologies, tools and strategies to achieve the goals simplifying processes and optimizing
           efforts
         </p>
+        <p aria-hidden="true">
+          <span>Continuously</span>
+          <span>on</span>
+          <span>the</span>
+          <span>lookout</span>
+          <span>for</span>
+          <span>fresh</span>
+          <span>technologies,</span>
+          <span>tools</span>
+          <span>and</span>
+          <span>strategies</span>
+          <span>to</span>
+          <span>achieve</span>
+          <span>the</span>
+          <span>goals</span>
+          <span>simplifying</span>
+          <span>processes</span>
+          <span>and</span>
+          <span>optimizing</span>
+          <span>efforts</span>
+        </p>
+
         <!-- <p>I drive the blooming of the idea toward a beautiful yet effective solution.</p> -->
       </Card>
     </section>
@@ -117,35 +180,55 @@ import Experience from '../components/Experience.astro'
       },
     })
 
-    let q = gsap.utils.selector(section)
-
-    /* gsap.to(, {
-      scrollTrigger: {
-        trigger: q('p'),
-        start: 'start 60%',
-        end: 'bottom 45%',
-        //toggleActions: 'play reverse play reverse',
-        markers: true,
-        //pin: section,
-      },
-    }) */
+    //let q = gsap.utils.selector(section)
   })
 
-  let spanes: Element[] = gsap.utils.toArray('p>span')
-  console.log('SPANES', spanes)
+  let mm = gsap.matchMedia(),
+    breakPoint = 800
 
-  spanes.forEach((target) => {
-    gsap.to(target, {
-      backgroundPositionX: 0,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: target,
-        //markers: true,
-        scrub: 0.5,
-        start: 'top center',
-        end: 'bottom center',
+  const cards: Element[] = gsap.utils.toArray('.card')
+  cards.forEach((card: Element) => {
+    let q = gsap.utils.selector(card)
+
+    mm.add(
+      {
+        // set up any number of arbitrarily-named conditions. The function below will be called when ANY of them match.
+        isDesktop: `(min-width: ${breakPoint}px)`,
+        isMobile: `(max-width: ${breakPoint - 1}px)`,
       },
+      (context) => {
+        // context.conditions has a boolean property for each condition defined above indicating if it's matched or not.
+        let { isDesktop, isMobile, reduceMotion } = context.conditions
+
+        const triggerLine = isDesktop ? '30%' : '10%'
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: q('.card-text'),
+            pin: card,
+            //markers: true,
+            start: `top ${triggerLine}`,
+            end: `bottom ${triggerLine}`,
+          },
+        })
+      }
+    )
+
+    let spanes: Element[] = gsap.utils.toArray(q('p>span'))
+    spanes.forEach((target, index) => {
+      gsap.from(target, {
+        opacity: 0,
+        ease: 'none',
+        duration: 0.3,
+        scrollTrigger: {
+          trigger: target,
+          //markers: true,
+          toggleActions: 'play none none reverse',
+          start: `${index * 20}px 60% `,
+          end: `${index * 20 + 20}px 60%`,
+        },
+      })
     })
+    //
   })
 </script>
 
