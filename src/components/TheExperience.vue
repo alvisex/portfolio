@@ -5,11 +5,11 @@ import { OrbitControls, Stars, GLTFModel, CameraControls } from '@tresjs/cientos
 import { ref, shallowRef, watch, onMounted, watchEffect } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-import { useControls } from '@tresjs/leches'
-import '@tresjs/leches/dist/style.css'
+/* import { useControls, TresLeches } from '@tresjs/leches'
+import '@tresjs/leches/dist/style.css' */
 gsap.registerPlugin(ScrollTrigger)
 
-const { intensity, color, positionn } = useControls({
+/* const { intensity, color, positionn } = useControls({
   intensity: {
     value: 5.1,
     min: 0,
@@ -28,16 +28,6 @@ const { intensity2, color2, positionn2 } = useControls({
   },
   color2: '#ff42a7',
   positionn2: new Vector3(-3, 2, 3),
-})
-
-/* const { cameraPos } = useControls({
-  cameraPos: new Vector3(-3, 2, 3)
-}) */
-
-/* watchEffect(() => {
-  console.log(intensity.value.value)
-  console.log(color.value.value)
-  console.log('position', positionn.value)
 }) */
 
 const gl = {
@@ -80,6 +70,24 @@ watch(modelRef, (model) => {
   const nimbus001 = seekByName(model.value, 'nimbus001')
   const nimbus002 = seekByName(model.value, 'nimbus002')
   const nimbus003 = seekByName(model.value, 'nimbus003')
+  const lentes = seekByName(model.value, 'lentes')
+  /*   console.log('lentes', lentes) */
+  const tl = gsap.timeline({
+    defaults: {
+      ease: 'none',
+    },
+    scrollTrigger: {
+      trigger: 'canvas',
+      start: 'top 70%',
+      end: 'center center',
+      //markers: true,
+      scrub: true,
+    },
+  })
+  tl.from(lentes?.scale, { x: 4, y: 4, z: 4 }, 0)
+  tl.from(lentes?.position, { x: 0.2, y: 6, z: 2 }, 0)
+  tl.from(lentes?.rotation, { x: -1.6, y: -0.3, z: 7 }, 0)
+
   gsap.to(nimbus002.rotation, { z: Math.PI * 2, duration: 28, ease: 'none', repeat: -1 })
   gsap.to(nimbus001.rotation, { z: -Math.PI * 2, duration: 40, ease: 'none', repeat: -1 })
   gsap.to(nimbus003.rotation, { z: -Math.PI * 2, duration: 60, ease: 'none', repeat: -1 })
@@ -88,13 +96,12 @@ watch(modelRef, (model) => {
 })
 
 const loadAnimation = () => {
-  console.log('loadanimation', sections, modelRef.value.value)
+  /*   console.log('loadanimation', sections, modelRef.value.value) */
   sections.forEach((element: Element, index) => {
     /*     const { camera, lookAt } = element.dataset
     console.log(`llmodel`, camera, lookAt)
     console.log(`llmodel`, JSON.parse(camera), JSON.parse(lookAt)) */
     const { endMark } = element.dataset
-    //console.log('endMark', endMark)
 
     gsap
       .timeline({
@@ -132,14 +139,17 @@ onMounted(() => {
 </script>
 
 <template>
-  <TresCanvas v-bind="gl" id="mycanvas" window-size v-if="screenWidth > 1000">
+  <!--  <TresLeches class="fixed" /> -->
+  <TresCanvas v-bind="gl" id="mycanvas" window-size v-if="screenWidth > 768">
     <TresPerspectiveCamera ref="cameraRef" :position="[1, 5, 6]" :look-at="[0, 4, 0]" />
     <Suspense>
       <GLTFModel path="/models/alterado.glb" draco ref="modelRef" />
     </Suspense>
 
-    <TresDirectionalLight :intensity="intensity.value" :color="color.value" :position="positionn.value.toArray()" />
-    <TresDirectionalLight :intensity="intensity2.value" :color="color2.value" :position="positionn2.value.toArray()" />
+    <TresAmbientLight :intensity="0" :color="'#fff'" />
+
+    <TresDirectionalLight :intensity="5.1" :color="'#fff36b'" :position="[3, 1, -4]" />
+    <TresDirectionalLight :intensity="5.2" :color="'#ff42a7'" :position="[-3, 2, 3]" />
   </TresCanvas>
 </template>
 
@@ -151,5 +161,6 @@ canvas#mycanvas {
 }
 .tl-absolute {
   top: 100px !important;
+  position: fixed;
 }
 </style>

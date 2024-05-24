@@ -11,7 +11,7 @@ onMounted(() => {
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: '.carousel-section',
-      start: 'top 8%',
+      start: 'top 7%',
       end: 'bottom 102%',
       pin: '.scene',
     },
@@ -105,7 +105,7 @@ const rotateConst = 360 / groups.length
   <div id="carousel-weapper" class="flex items-start h-full justify-center">
     <div class="scene">
       <h2 class="text-center font-black text-5xl md:text-6xl text-gradient mx-auto relative">SKILL SET</h2>
-      <div class="carousel mt-[5vh] vue" ref="carousel">
+      <div class="carousel mt-2 md:mt-[5vh] vue" ref="carousel">
         <div
           class="carousel_cell"
           :class="`_${index + 1}`"

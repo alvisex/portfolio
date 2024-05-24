@@ -30,32 +30,20 @@ import Experience from '../components/Experience.astro'
           <span>of</span>
           <span>experience</span>
           <span>developing</span>
-          <span>outstanding</span>
+          <span class="text-primary">outstanding</span>
           <span>interfaces</span>
           <span>and</span>
-          <span>seamless</span>
-          <span>solutions</span>
+          <span>effective</span>
+          <span class="text-primary">solutions</span>
           <span>through</span>
           <span>web</span>
           <span>technologies.</span>
         </p>
-        <!--  <p>
-          I've worked in varity of environments, since the one-man department to be part of a team from a world-wide company. Always
-          learning what the situation required, be adaptative and proactive to achieve the goal is my hallmark.
-        </p> -->
       </Card>
     </section>
 
     <section class="flex items-center card" data-model>
       <Card title="" header="Excelled as a frontend" reversed>
-        <!-- <p>
-          <span>I've worked in varity of</span>
-          <span>environments, since the one-man</span>
-          <span>department to be part</span>
-          <span>of a team from a world-wide</span>
-          <span>company.</span>
-        </p> -->
-        <!-- Throughout my career, I excelled as a frontend,  -->
         <p class="sr-only">
           Also cooperating with UI/UX, DB admin, Backend, and DevOps duties across various environment, from solo department to global
           company team.
@@ -65,21 +53,20 @@ import Experience from '../components/Experience.astro'
           <span>cooperating</span>
           <span>with</span>
           <span>UI/UX,</span>
-          <span>DB,</span>
-          <span>admin,</span>
+          <span>DB admin,</span>
           <span>Backend,</span>
           <span>and</span>
           <span>DevOps</span>
           <span>duties</span>
           <span>across</span>
           <span>various</span>
-          <span>environment,</span>
+          <span>environments,</span>
           <span>from</span>
           <span>solo</span>
           <span>department</span>
           <span>to</span>
-          <span>global</span>
-          <span>company</span>
+          <span class="text-primary">global</span>
+          <span class="text-primary">company</span>
           <span>team.</span>
         </p>
       </Card>
@@ -87,7 +74,6 @@ import Experience from '../components/Experience.astro'
 
     <section class="flex items-center card" data-model>
       <Card title="" header="My nature">
-        <!-- <p>I continuously seek out the best technologies, processes, and strategies to achieve goals.</p> -->
         <p class="sr-only">
           Continuously on the lookout for fresh technologies, tools and strategies to achieve the goals simplifying processes and optimizing
           efforts
@@ -98,8 +84,8 @@ import Experience from '../components/Experience.astro'
           <span>the</span>
           <span>lookout</span>
           <span>for</span>
-          <span>fresh</span>
-          <span>technologies,</span>
+          <span class="text-primary">fresh</span>
+          <span class="text-primary">technologies,</span>
           <span>tools</span>
           <span>and</span>
           <span>strategies</span>
@@ -107,14 +93,12 @@ import Experience from '../components/Experience.astro'
           <span>achieve</span>
           <span>the</span>
           <span>goals</span>
-          <span>simplifying</span>
+          <span class="text-primary">simplifying</span>
           <span>processes</span>
           <span>and</span>
           <span>optimizing</span>
-          <span>efforts</span>
+          <span class="text-primary">efforts</span>
         </p>
-
-        <!-- <p>I drive the blooming of the idea toward a beautiful yet effective solution.</p> -->
       </Card>
     </section>
 
@@ -151,7 +135,8 @@ import Experience from '../components/Experience.astro'
     'linear-gradient( 89.7deg, #151616 -10.7%, rgba(53,92,125,1) 80.8% )',
     'linear-gradient( 9.7deg, #151616 -20.7%,   rgba(43,123,79,1) 80.8% )',
     'linear-gradient( 0deg, #151616 0%, rgba(53,92,125,1) 80.8% )',
-    'linear-gradient( 45deg, #151616 0%, rgba(113,32,25,1) 80.8% )',
+    'linear-gradient( 0deg,  rgba(53,92,125,1) -20%,  #151616 80.8%)  ',
+    'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,107,121,1) 35%, rgba(0,212,255,1) 110%)',
   ]
 
   const bgAnimation = (index: number) => {
@@ -162,7 +147,7 @@ import Experience from '../components/Experience.astro'
     })
   }
 
-  gsap.set('.bg-cards', { background: 'linear-gradient( 180.7deg,  var(--background) 10.7%, rgba(53,92,125,0) 10)' })
+  gsap.set('.bg-cards', { background: 'linear-gradient( 180.7deg,  #151616 10.7%, rgba(53,92,125,0) 10)' })
 
   /* Sections */
   let sections: Element[] = gsap.utils.toArray('section:not(.hero)')

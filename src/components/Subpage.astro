@@ -10,10 +10,25 @@ const { title, role, img, id } = Astro.props
 ---
 
 <main class={`min-h-screen bg-${id}  grid items-center pt-14`}>
-  <div class="container grid">
-    <a href="/#experience"> {'<'} Go back </a>
-    <div class="md:h-80">
-      <img class="mx-auto h-full w-full object-contain" transition:name={`hero-${id}`} src={img} alt="" />
+  <div class="container h-full pt-4">
+    <a href="/#experience" class="inline-flex items-center">
+      <svg class="h-4 mx-2" fill="var(--text)" version="1.1" id="Layer_1" viewBox="0 0 472.615 472.615" xml:space="preserve"
+        ><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g
+          id="SVGRepo_iconCarrier"
+        >
+          <g>
+            <g>
+              <polygon points="205.783,139.662 205.783,30.525 0,236.308 205.783,442.09 205.783,332.955 472.615,332.955 472.615,139.662 "
+              ></polygon>
+            </g>
+          </g>
+        </g>
+      </svg>
+
+      <span>Go back</span>
+    </a>
+    <div class="h-fit my-4">
+      <img class="mx-auto h-full object-contain md:max-h-[30svh]" transition:name={`hero-${id}`} src={img} alt="" />
     </div>
 
     <div>
