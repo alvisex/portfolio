@@ -1,0 +1,45 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import Items from '../../components/Items.vue'
+import companies from '../../companies.yml'
+
+export function getStaticPaths() {
+  return [{ params: { company: 'citelis' } }, { params: { company: 'clout' } }, { params: { company: 'gitlab' } }]
+}
+const { company } = Astro.params
+const { title, role, img, id, items, period } = companies[company]
+---
+
+<Layout title={title}>
+  <main class={`min-h-screen bg-${id}  grid items-center pt-14`}>
+    <div class="container h-full pt-4">
+      <a href="/#experience" class="inline-flex items-center">
+        <svg class="h-4 mx-2" fill="var(--text)" version="1.1" id="Layer_1" viewBox="0 0 472.615 472.615" xml:space="preserve">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="SVGRepo_iconCarrier">
+            <polygon points="205.783,139.662 205.783,30.525 0,236.308 205.783,442.09 205.783,332.955 472.615,332.955 472.615,139.662 ">
+            </polygon>
+          </g>
+        </svg>
+        <span>return Home</span>
+      </a>
+
+      <div class="h-fit my-4">
+        <img class="mx-auto h-full object-contain md:max-h-[30svh]" transition:name={`hero-${id}`} src={img} alt="" />
+      </div>
+
+      <div>
+        <h3 class="text-gradient font-bold text-2xl" transition:name={`title-${id}`}>{role}</h3>
+        <div transition:name={`period-${id}`}>{period}</div>
+        <Items items={items} />
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  strong {
+    @apply text-accent;
+  }
+</style>

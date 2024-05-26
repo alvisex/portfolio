@@ -1,0 +1,31 @@
+gitlab:
+  role: 'Frontend Engineer'
+  img: '/gitlab-logo-200.png'
+  id: 'gitlab'
+  period: May 2022 - July 2023
+  rotate: left
+  items:
+    - Develop <strong>performant</strong>, responsive, and <strong>user-friendly</strong> web applications.
+    - another example
+    - Optimize applications performance, size and scalability.
+citelis:
+  role: 'Lead Frontend Enginner'
+  img: '/citelis.png'
+  id: 'citelis'
+  period: Jan 2020 - Feb 2024
+  items:
+    - Develop and mantain the storefront platform for JAC México, enabling buy and layaway applications for national and local retailers
+    - 'Develop and mantain the backoffice site for JAC México, a custom UI to manage the content for platform like: UI, leads, customers, retailers and bank accounts'
+    - Migrate from deprecated version of our storefron to newer, more performant and easy to update site shorting the time of update some content up to 400%
+    - Develop a custom web app for invoice management and approval review for Citelis
+    - Skectch and develop demo landing for new prospects.
+    - Review the code of new teamates and help them with their onboarding process.
+clout:
+  role: 'Web Developer'
+  img: '/clout.png'
+  id: 'clout'
+  period: Sep 2018 - Jan 2020
+  rotate: right
+  items:
+    - Develop <strong>performant</strong>, responsive, and <strong>user-friendly</strong> web applications.
+    - another example
