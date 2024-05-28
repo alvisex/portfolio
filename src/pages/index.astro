@@ -133,8 +133,8 @@ import Experience from '../components/Experience.astro'
     'linear-gradient( 180.7deg, #0000 10.7%, rgba(53,92,125,0) 100%)',
     'linear-gradient( 180.7deg,  #151616 10.7%, rgba(53,92,125,1) 88.8% )',
     'linear-gradient( 89.7deg, #151616 -10.7%, rgba(53,92,125,1) 80.8% )',
-    'linear-gradient( 9.7deg, #151616 -20.7%,   rgba(43,123,79,1) 80.8% )',
-    'linear-gradient( 0deg, #151616 0%, rgba(53,92,125,1) 80.8% )',
+    'linear-gradient( 9.7deg, #151616 -20.7%,   rgba(72,57,101,1) 80.8% )',
+    'linear-gradient( 0deg, #151616 0%, rgba(14,63,83,1) 80.8% )',
     'linear-gradient( 0deg,  rgba(53,92,125,1) -20%,  #151616 80.8%)  ',
     'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,107,121,1) 35%, rgba(0,212,255,1) 110%)',
   ]
@@ -167,7 +167,7 @@ import Experience from '../components/Experience.astro'
               pin: card,
               //markers: true,
               start: `top ${triggerLine}`,
-              end: `bottom ${triggerLine}`,
+              end: `110% ${triggerLine}`,
             },
           })
         }
@@ -215,8 +215,15 @@ import Experience from '../components/Experience.astro'
   const breakPoint = 800
 
   const cards: Element[] = gsap.utils.toArray('.card')
-  //console.log('cards', cards)
-  cardsAnimation()
+  window.onload = () => {
+    console.log('cards', cards)
+    console.log('loaded')
+    setTimeout(() => {
+      cardsAnimation()
+    }, 200)
+  }
+
+  //
 </script>
 
 <style lang="scss">

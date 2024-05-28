@@ -8,30 +8,29 @@ onMounted(() => {
   const finalSpace = window.innerWidth > 1000 ? '420px' : '250px'
   const finalInclination = window.innerWidth > 1000 ? '8deg' : '5deg'
 
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: '.carousel-section',
-      start: 'top 7%',
-      end: 'bottom 102%',
-      pin: '.scene',
-    },
-  })
-
-  gsap.to('#carousel-weapper', {
-    scrollTrigger: {
-      trigger: '.carousel-section',
-      scrub: true,
-      //markers: true,
-    },
-    '--rotation': '460deg',
-    '--space': finalSpace,
-    '--inclination': finalInclination,
-    ease: 'none',
-  })
+  setTimeout(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.carousel-section',
+        start: 'top 7%',
+        end: 'bottom 102%',
+        pin: '.scene',
+        //markers: true,
+      },
+    })
+    gsap.to('#carousel-weapper', {
+      scrollTrigger: {
+        trigger: '.carousel-section',
+        scrub: true,
+        //markers: true,
+      },
+      '--rotation': '460deg',
+      '--space': finalSpace,
+      '--inclination': finalInclination,
+      ease: 'none',
+    })
+  }, 800)
 })
-
-//const carousel = ref()
-//const rotation = ref(0)
 
 const groups = [
   {
