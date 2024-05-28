@@ -7,12 +7,12 @@ export function getStaticPaths() {
   return [{ params: { company: 'citelis' } }, { params: { company: 'clout' } }, { params: { company: 'gitlab' } }]
 }
 const { company } = Astro.params
-const { title, role, img, id, items, period } = companies[company]
+const { role, img, id, items, period, companyName, area } = companies[company]
 ---
 
-<Layout title={title}>
+<Layout title={`${role} @ ${companyName}`}>
   <main class={`min-h-screen bg-${id}  grid items-center pt-14`}>
-    <div class="container h-full pt-4">
+    <div class="container h-full pt-4 md:px-20">
       <a href="/#experience" class="inline-flex items-center">
         <svg class="h-4 mx-2" fill="var(--text)" version="1.1" id="Layer_1" viewBox="0 0 472.615 472.615" xml:space="preserve">
           <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -25,13 +25,18 @@ const { title, role, img, id, items, period } = companies[company]
         <span>return Home</span>
       </a>
 
-      <div class="h-fit my-4">
-        <img class="mx-auto h-full object-contain md:max-h-[30svh]" transition:name={`hero-${id}`} src={img} alt="" />
+      <div class="md:h-[30svh] my-4 flex">
+        <div class="md:min-w-[35%] flex flex-col items-center justify-center h-full gap-4">
+          <h3 class="text-gradient font-bold text-2xl" transition:name={`title-${id}`}>{role}</h3>
+          <span>Area: {area}</span>
+          <div transition:name={`period-${id}`}>{period}</div>
+        </div>
+        <div class="w-full">
+          <img class="mx-auto h-full object-contain md:max-h-[30svh]" transition:name={`hero-${id}`} src={img} alt="" />
+        </div>
       </div>
 
-      <div>
-        <h3 class="text-gradient font-bold text-2xl" transition:name={`title-${id}`}>{role}</h3>
-        <div transition:name={`period-${id}`}>{period}</div>
+      <div class="content mb-10">
         <Items items={items} />
       </div>
     </div>
@@ -41,5 +46,8 @@ const { title, role, img, id, items, period } = companies[company]
 <style>
   strong {
     @apply text-accent;
+  }
+  .content > * {
+    @apply mb-3;
   }
 </style>

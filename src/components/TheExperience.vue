@@ -63,24 +63,29 @@ function aa() {
 
 const modelRef = shallowRef<THREE.Object3D>()
 watch(modelRef, (model) => {
-  loadAnimation()
+  setTimeout(() => {
+    loadAnimation(model)
+  }, 200)
+})
 
-  /* console.log('modelRef', modelRef.value.value) */
+const loadAnimation = (model) => {
+  console.log('modelRef', model)
   const { seekByName } = useSeek()
   const nimbus001 = seekByName(model.value, 'nimbus001')
   const nimbus002 = seekByName(model.value, 'nimbus002')
   const nimbus003 = seekByName(model.value, 'nimbus003')
   const lentes = seekByName(model.value, 'lentes')
   /*   console.log('lentes', lentes) */
+
+  let canvasel = gsap.utils.toArray('canvas')[0]
+  console.log(`canvasel`, canvasel)
   const tl = gsap.timeline({
-    defaults: {
-      ease: 'none',
-    },
+    defaults: { ease: 'none' },
     scrollTrigger: {
       trigger: 'canvas',
       start: 'top 70%',
       end: 'center center',
-      //markers: true,
+      markers: true,
       scrub: true,
     },
   })
@@ -93,14 +98,7 @@ watch(modelRef, (model) => {
   gsap.to(nimbus003.rotation, { z: -Math.PI * 2, duration: 60, ease: 'none', repeat: -1 })
   gsap.to(nimbus002.rotation, { y: 0.2, duration: 5, ease: 'none', repeat: -1, yoyo: true })
   gsap.to(nimbus001.rotation, { y: -0.2, duration: 5, ease: 'none', repeat: -1, yoyo: true })
-})
-
-const loadAnimation = () => {
-  /*   console.log('loadanimation', sections, modelRef.value.value) */
   sections.forEach((element: Element, index) => {
-    /*     const { camera, lookAt } = element.dataset
-    console.log(`llmodel`, camera, lookAt)
-    console.log(`llmodel`, JSON.parse(camera), JSON.parse(lookAt)) */
     const { endMark } = element.dataset
 
     gsap
