@@ -121,13 +121,13 @@ import Experience from '../components/Experience.astro'
   gsap.registerPlugin(ScrollTrigger)
 
   /* Lenis compatibility */
-  import Lenis from '@studio-freight/lenis'
+  /* import Lenis from '@studio-freight/lenis'
   const lenis = new Lenis()
   lenis.on('scroll', ScrollTrigger.update)
   gsap.ticker.add((time) => {
     lenis.raf(time * 1000)
   })
-  gsap.ticker.lagSmoothing(0)
+  gsap.ticker.lagSmoothing(0) */
 
   const backgrounds = [
     'linear-gradient( 180.7deg, #0000 10.7%, rgba(53,92,125,0) 100%)',
@@ -144,6 +144,50 @@ import Experience from '../components/Experience.astro'
       background: backgrounds[index],
       duration: 1.2,
       ease: 'power3',
+    })
+  }
+  const cardsAnimation = () => {
+    cards.forEach((card: Element) => {
+      let q = gsap.utils.selector(card)
+
+      mm.add(
+        {
+          // set up any number of arbitrarily-named conditions. The function below will be called when ANY of them match.
+          isDesktop: `(min-width: ${breakPoint}px)`,
+          isMobile: `(max-width: ${breakPoint - 1}px)`,
+        },
+        (context) => {
+          // context.conditions has a boolean property for each condition defined above indicating if it's matched or not.
+          let { isDesktop } = context.conditions
+
+          const triggerLine = isDesktop ? '30%' : '10%'
+          gsap.timeline({
+            scrollTrigger: {
+              trigger: q('.card-text'),
+              pin: card,
+              //markers: true,
+              start: `top ${triggerLine}`,
+              end: `bottom ${triggerLine}`,
+            },
+          })
+        }
+      )
+
+      let spanes: Element[] = gsap.utils.toArray(q('p>span'))
+      spanes.forEach((target, index) => {
+        gsap.from(target, {
+          opacity: 0,
+          ease: 'none',
+          duration: 0.3,
+          scrollTrigger: {
+            trigger: target,
+            //markers: true,
+            toggleActions: 'play none none reverse',
+            start: `${index * 20}px 60% `,
+            end: `${index * 20 + 20}px 60%`,
+          },
+        })
+      })
     })
   }
 
@@ -167,52 +211,12 @@ import Experience from '../components/Experience.astro'
     })
   })
 
-  let mm = gsap.matchMedia(),
-    breakPoint = 800
+  let mm = gsap.matchMedia()
+  const breakPoint = 800
 
   const cards: Element[] = gsap.utils.toArray('.card')
-  cards.forEach((card: Element) => {
-    let q = gsap.utils.selector(card)
-
-    mm.add(
-      {
-        // set up any number of arbitrarily-named conditions. The function below will be called when ANY of them match.
-        isDesktop: `(min-width: ${breakPoint}px)`,
-        isMobile: `(max-width: ${breakPoint - 1}px)`,
-      },
-      (context) => {
-        // context.conditions has a boolean property for each condition defined above indicating if it's matched or not.
-        let { isDesktop, isMobile, reduceMotion } = context.conditions
-
-        const triggerLine = isDesktop ? '30%' : '10%'
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: q('.card-text'),
-            pin: card,
-            //markers: true,
-            start: `top ${triggerLine}`,
-            end: `bottom ${triggerLine}`,
-          },
-        })
-      }
-    )
-
-    let spanes: Element[] = gsap.utils.toArray(q('p>span'))
-    spanes.forEach((target, index) => {
-      gsap.from(target, {
-        opacity: 0,
-        ease: 'none',
-        duration: 0.3,
-        scrollTrigger: {
-          trigger: target,
-          //markers: true,
-          toggleActions: 'play none none reverse',
-          start: `${index * 20}px 60% `,
-          end: `${index * 20 + 20}px 60%`,
-        },
-      })
-    })
-  })
+  //console.log('cards', cards)
+  cardsAnimation()
 </script>
 
 <style lang="scss">

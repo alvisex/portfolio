@@ -65,27 +65,34 @@ const modelRef = shallowRef<THREE.Object3D>()
 watch(modelRef, (model) => {
   setTimeout(() => {
     loadAnimation(model)
+    haloAnimation(model)
   }, 200)
 })
 
-const loadAnimation = (model) => {
-  console.log('modelRef', model)
+const haloAnimation = (model) => {
   const { seekByName } = useSeek()
   const nimbus001 = seekByName(model.value, 'nimbus001')
   const nimbus002 = seekByName(model.value, 'nimbus002')
   const nimbus003 = seekByName(model.value, 'nimbus003')
-  const lentes = seekByName(model.value, 'lentes')
-  /*   console.log('lentes', lentes) */
+  gsap.to(nimbus002.rotation, { z: Math.PI * 2, duration: 28, ease: 'none', repeat: -1 })
+  gsap.to(nimbus001.rotation, { z: -Math.PI * 2, duration: 40, ease: 'none', repeat: -1 })
+  gsap.to(nimbus003.rotation, { z: -Math.PI * 2, duration: 60, ease: 'none', repeat: -1 })
+  gsap.to(nimbus002.rotation, { y: 0.2, duration: 5, ease: 'none', repeat: -1, yoyo: true })
+  gsap.to(nimbus001.rotation, { y: -0.2, duration: 5, ease: 'none', repeat: -1, yoyo: true })
+}
 
-  let canvasel = gsap.utils.toArray('canvas')[0]
-  console.log(`canvasel`, canvasel)
+const loadAnimation = (model) => {
+  console.log('modelRef', model)
+  const { seekByName } = useSeek()
+  const lentes = seekByName(model.value, 'lentes')
+
   const tl = gsap.timeline({
     defaults: { ease: 'none' },
     scrollTrigger: {
-      trigger: 'canvas',
-      start: 'top 70%',
-      end: 'center center',
-      markers: true,
+      trigger: '#hero',
+      start: 'bottom 70%',
+      end: '150% center',
+      //markers: true,
       scrub: true,
     },
   })
@@ -93,11 +100,6 @@ const loadAnimation = (model) => {
   tl.from(lentes?.position, { x: 0.2, y: 6, z: 2 }, 0)
   tl.from(lentes?.rotation, { x: -1.6, y: -0.3, z: 7 }, 0)
 
-  gsap.to(nimbus002.rotation, { z: Math.PI * 2, duration: 28, ease: 'none', repeat: -1 })
-  gsap.to(nimbus001.rotation, { z: -Math.PI * 2, duration: 40, ease: 'none', repeat: -1 })
-  gsap.to(nimbus003.rotation, { z: -Math.PI * 2, duration: 60, ease: 'none', repeat: -1 })
-  gsap.to(nimbus002.rotation, { y: 0.2, duration: 5, ease: 'none', repeat: -1, yoyo: true })
-  gsap.to(nimbus001.rotation, { y: -0.2, duration: 5, ease: 'none', repeat: -1, yoyo: true })
   sections.forEach((element: Element, index) => {
     const { endMark } = element.dataset
 
@@ -126,6 +128,9 @@ const loadAnimation = (model) => {
         '<'
       )
   })
+  setTimeout(() => {
+    gsap.set('canvas', { opacity: 1 })
+  }, 100)
 }
 
 const screenWidth = ref(0)
@@ -156,6 +161,7 @@ canvas#mycanvas {
   position: sticky !important;
   z-index: 0;
   pointer-events: none !important;
+  opacity: 0;
 }
 .tl-absolute {
   top: 100px !important;

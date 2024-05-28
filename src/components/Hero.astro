@@ -1,4 +1,4 @@
-<section class="flex md:items-center bg-transparent h-[80vh] md:h-screen relative" id="s-1">
+<section class="flex md:items-center bg-transparent h-[80vh] md:h-screen relative" id="hero">
   <div class="container mt-32 md:mt-0 md:px-12">
     <div class="relative txt-hero">
       <h2 class="text-5xl md:text-6xl">
@@ -15,6 +15,9 @@
     <div class="yellow blob"></div>
     <div class="red blob"></div>
     <div class="green blob"></div>
+    <div class="bg-citelis"></div>
+    <div class="bg-gitlab"></div>
+    <div class="bg-clout"></div>
   </div>
 </section>
 
@@ -24,7 +27,7 @@
   gsap.registerPlugin(ScrollTrigger)
   /* hero */
 
-  const q = gsap.utils.selector('#s-1')
+  const q = gsap.utils.selector('#hero')
   gsap
     .timeline({ defaults: { duration: 1.7, ease: 'power2' } })
     .from(q('h2'), { y: '50%', clipPath: 'inset(0 0 100% 0)', opacity: 0 })
@@ -35,7 +38,7 @@
   gsap
     .timeline({
       scrollTrigger: {
-        trigger: '#s-1',
+        trigger: '#hero',
         start: 'center center',
         end: 'bottom 30%',
         scrub: true,
