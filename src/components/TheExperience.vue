@@ -82,7 +82,7 @@ const haloAnimation = (model) => {
 }
 
 const loadAnimation = (model) => {
-  console.log('modelRef', model)
+  /* console.log('modelRef', model) */
   const { seekByName } = useSeek()
   const lentes = seekByName(model.value, 'lentes')
 
@@ -143,6 +143,7 @@ onMounted(() => {
 
 <template>
   <!--  <TresLeches class="fixed" /> -->
+  <!--  <div class="the experience sticky top-0 h-screen"> -->
   <TresCanvas v-bind="gl" id="mycanvas" window-size v-if="screenWidth > 768">
     <TresPerspectiveCamera ref="cameraRef" :position="[1, 5, 6]" :look-at="[0, 4, 0]" />
     <Suspense>
@@ -154,6 +155,8 @@ onMounted(() => {
     <TresDirectionalLight :intensity="5.1" :color="'#fff36b'" :position="[3, 1, -4]" />
     <TresDirectionalLight :intensity="5.2" :color="'#ff42a7'" :position="[-3, 2, 3]" />
   </TresCanvas>
+  <div v-else class="h-32"></div>
+  <!--  </div> -->
 </template>
 
 <style lang="scss">

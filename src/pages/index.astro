@@ -160,7 +160,7 @@ import Experience from '../components/Experience.astro'
           // context.conditions has a boolean property for each condition defined above indicating if it's matched or not.
           let { isDesktop } = context.conditions
 
-          const triggerLine = isDesktop ? '30%' : '10%'
+          const triggerLine = isDesktop ? '30%' : '15%'
           gsap.timeline({
             scrollTrigger: {
               trigger: q('.card-text'),
@@ -216,8 +216,8 @@ import Experience from '../components/Experience.astro'
 
   const cards: Element[] = gsap.utils.toArray('.card')
   window.onload = () => {
-    console.log('cards', cards)
-    console.log('loaded')
+    /*  console.log('cards', cards)
+    console.log('loaded') */
     setTimeout(() => {
       cardsAnimation()
     }, 200)

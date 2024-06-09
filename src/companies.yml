@@ -7,14 +7,14 @@ gitlab:
   rotate: left
   area: Digital Experience
   items:
-    - Develop <b>performant</b>, responsive, and <strong>user-friendly</strong> components for the marketing site.
-    - Fix bugs and improve additions from the contributors (no devs).
-    - Maintener for of Slippers, our marketing site's open source design system and NPM package
-    - Help the analytics specialits with <b>metrics collection</b> optimization.
-    - Code reviews among team members.
-    - Accessibility
-    - Dynamic <b>SEO solutions</b>
-    - Maintenance of the Ruby-based blog and migrate some pages to Nuxt.
+    - Developed <strong>performant</strong>, responsive, and user-friendly components for the marketing site
+    - Diagnosed and <strong>resolved bugs</strong>, and improved contributions from non-developer contributors
+    - Maintained Slippers, the <strong>open-source design system</strong> and NPM package for the marketing site
+    - Optimized metrics collection in collaboration with analytics specialists
+    - Conducted thorough <strong>code reviews</strong> to ensure high-quality standards among team members
+    - Implemented accessibility features for an <strong>inclusive user experience</strong>
+    - Developed dynamic SEO solutions to enhance search engine visibility
+    - Maintained the <strong>Ruby-based blog</strong> and migrated select pages to Nuxt for better performance
 citelis:
   role: 'Lead Frontend Enginner'
   img: '/citelis.png'
@@ -23,13 +23,13 @@ citelis:
   period: Jan 2020 - Feb 2024
   area: RavisaClick
   items:
-    - Develop and mantain the <b>storefront</b> platform for <b>JAC México</b>, with buy and layaway applications for <b>national</b> and local retailers
-    - 'Develop and mantain the <b>backoffice</b> site for JAC México, a custom UI to manage the content for platform like: UI, leads, customers, retailers and bank accounts'
-    - <b>Migrate</b> from deprecated version of our storefront to a newer, more performant and easy to update site, shorting the time content update <b>up to 300%.</b>
-    - Develop a custom web app for <b>invoice management</b> and approval review for Citelis using <b>Firebase</b>.
-    - Help with the <b>microservices management</b> with Kubernetes and Docker, restoring unhealty pods and fixing bugs on the <b>deployment process</b>.
-    - Skectch and develop demo landing for new prospects.
-    - <b>Review</b> the code of new teamates and help them with their onboarding process.
+    - Developed and maintained the storefront platform for JAC México, including <strong>buy</strong> and <strong>layaway applications</strong> for national and local retailers
+    - Created and managed the <strong>backoffice</strong> site for <strong>JAC México</strong>, featuring a custom UI for managing content such as UI elements, leads, customers, retailers, and bank accounts
+    - <strong>Migrated</strong> from a deprecated storefront version to a newer, more performant site, reducing content update time by <strong>up to 300%</strong>
+    - Developed a custom web app for <strong>invoice management</strong> and approval review for <strong>Citelis</strong> using Firebase
+    - Assisted in <strong>microservices management</strong> with Kubernetes and Docker, restoring unhealthy pods and fixing <strong>deployment process</strong> bugs
+    - Designed and developed demo landing pages for new prospects
+    - Conducted <strong>code reviews</strong> for new teammates and assisted with their onboarding process
 clout:
   role: 'Web Developer'
   img: '/clout.png'
@@ -39,11 +39,19 @@ clout:
   rotate: right
   area: Web
   items:
-    - Resposible of the all the web area.
-    - Design user-friendly mockups and <b>wireframes</b> with Adobe XD
-    - Develop <b>performant</b> website for the clients with <b>Nunjucks</b>.
-    - Connect a WordPress blog with a static website trought REST api, keeping the <b>great performance</b> along with the dynamism of the blog with post previews and links.
-    - Develop user-friendly websites for the clients with <b>Vue.js</b> v2. The calaog was dynamically rendered based by a static file, <b>reducing time and effort</b> for the client to update their catalog <b>saving money</b> from unecesary DB.
-    - <b>Enhance performance</b> for a existing ecommerce on WordPress platform, saving <b>~50% load time</b> and enabled the staging site to preview changes before the deployment to production.
-    - Compare and select the best hosting platforms with <b>cost/benefit</b> ratio for our team and <b>migrate</b> the projects with almost no downtime.
-    - 'Develop a <b>custom platform</b> for the digital agency to manage the clients: requierements, copies, shcedule posts and the status of them. Vue.js v2 for frontend and <b>Strapi (CMS)</b>, locally hosted'
+    - <b>Oversaw all web-related projects</b>  <br/>
+      Managed and supervised all aspects of web development, ensuring quality and consistency across projects.
+    - <b>Designed user-friendly interfaces</b> <br/>
+      Created intuitive mockups and wireframes using Adobe XD to enhance user experience.
+    - <b>Developed high-performance websites</b> <br/>
+      Utilized Nunjucks to build efficient and responsive websites for clients.
+    - <b>Integrated WordPress with static websites</b> <br/>
+      Connected a WordPress blog to a static site via REST API, maintaining high performance while providing dynamic blog content with post previews and links.
+    - <b>Built client websites using Vue.js v2</b> <br/>
+      Developed user-friendly websites with Vue.js v2. Implemented a <strong>dynamically rendered </strong> catalog based on a static file, simplifying client updates and reducing costs by eliminating the need for a database.
+    - <b>Enhanced WordPress e-commerce performance</b> <br/>
+      Improved the load time of an existing e-commerce site by approximately 50% and set up a staging environment for testing changes before deployment.
+    - <b>Optimized hosting solutions</b> <br/>
+      Evaluated and selected the best hosting platforms based on cost-benefit analysis, and successfully migrated projects with minimal downtime.
+    - <b>Developed a custom client management platform</b> <br/>
+      Created a custom platform for the digital agency to manage client requirements, copywriting, scheduled posts, and status tracking using Vue.js v2 for the frontend and Strapi CMS, hosted locally.

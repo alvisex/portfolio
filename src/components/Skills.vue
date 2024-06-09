@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 onMounted(() => {
-  const finalSpace = window.innerWidth > 1000 ? '420px' : '250px'
+  const finalSpace = window.innerWidth > 1000 ? '420px' : '210px'
   const finalInclination = window.innerWidth > 1000 ? '8deg' : '5deg'
 
   setTimeout(() => {
@@ -140,7 +140,7 @@ const rotateConst = 360 / groups.length
 
   @media (max-width: 768px) {
     --perspective: 900px;
-    --space: 480px;
+    --space: 400px;
     --card-width: 70vw;
     --card-height: calc(var(--card-width) * 1.4);
     --inclination: -5deg;

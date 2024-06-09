@@ -9,11 +9,13 @@ const items = props.items
   </ul>
 </template>
 <style>
-strong,
-b {
+strong {
   @apply text-accent;
 }
+b {
+  @apply text-primary;
+}
 li {
-  padding: 0.25rem 0;
+  padding: 0.4rem 0;
 }
 </style>
