@@ -10,15 +10,15 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.5.10",
+    "@astrojs/check": "^0.7.0",
     "@astrojs/tailwind": "^5.1.0",
-    "@astrojs/vue": "^4.1.0",
+    "@astrojs/vue": "^4.4.0",
     "@splinetool/runtime": "^1.0.58",
     "@studio-freight/lenis": "^1.0.39",
     "@tresjs/cientos": "^3.9.0",
     "@tresjs/core": "^4.0.2",
     "@tresjs/leches": "^0.14.0",
-    "astro": "^4.6.1",
+    "astro": "^4.10.2",
     "gsap": "^3.12.5",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.3.3",
