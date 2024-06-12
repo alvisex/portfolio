@@ -6,10 +6,12 @@ import Hero from '../components/Hero.astro'
 import Skills from '../components/Skills.vue'
 import TheExperience from '../components/TheExperience.vue'
 import Experience from '../components/Experience.astro'
+import Preloader2 from '../components/Preloader2.astro'
 ---
 
 <Layout title="Web Engineer">
   <main>
+    <!-- <Preloader2 /> -->
     <div class="bg-cards"></div>
     <Hero />
 
@@ -167,27 +169,29 @@ import Experience from '../components/Experience.astro'
               pin: card,
               //markers: true,
               start: `top ${triggerLine}`,
-              end: `110% ${triggerLine}`,
+              end: `130% ${triggerLine}`,
             },
           })
         }
       )
 
-      let spanes: Element[] = gsap.utils.toArray(q('p>span'))
-      spanes.forEach((target, index) => {
-        gsap.from(target, {
-          opacity: 0,
-          ease: 'none',
-          duration: 0.3,
-          scrollTrigger: {
-            trigger: target,
-            //markers: true,
-            toggleActions: 'play none none reverse',
-            start: `${index * 20}px 60% `,
-            end: `${index * 20 + 20}px 60%`,
-          },
+      setTimeout(() => {
+        let spanes: Element[] = gsap.utils.toArray(q('p>span'))
+        spanes.forEach((target, index) => {
+          gsap.from(target, {
+            opacity: 0,
+            ease: 'none',
+            duration: 0.3,
+            scrollTrigger: {
+              trigger: target,
+              //markers: true,
+              toggleActions: 'play none none reverse',
+              start: `clamp(${index * 15}px 60%)`,
+              end: `clamp(${index * 15 + 20}px 60%)`,
+            },
+          })
         })
-      })
+      }, 600)
     })
   }
 
@@ -220,7 +224,7 @@ import Experience from '../components/Experience.astro'
     console.log('loaded') */
     setTimeout(() => {
       cardsAnimation()
-    }, 200)
+    }, 100)
   }
 
   //
