@@ -1,0 +1,42 @@
+---
+
+---
+
+<div id="preloader" class="w-screen h-[115lvh] bg-primary fixed z-50 top-0 left-0">
+  <div class="flex justify-center items-center h-full">
+    <div id="contentt" class="contentt -mt-14">
+      <img src="favicon.png" alt="Favicon icon" class="mx-auto" />
+      <div class="text-background font-bold text-3xl mt-8">Loading</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const el = document.getElementById('preloader')
+  const el2 = document.getElementById('contentt')
+  el?.classList.add('out')
+  el2?.classList.add('out')
+  el?.classList.add('rounded-b-[6em]')
+
+  /*   const aaa = document.getElementById('preloader')
+  console.log(getComputedStyle(aaa)) */
+</script>
+
+<style lang="scss">
+  :root {
+    --delay: 800ms;
+  }
+
+  #preloader {
+    --variable2: 5s;
+    overflow: hidden;
+    &.out {
+      transform: translate3d(0, -110%, 0);
+      transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1) var(--delay);
+    }
+  }
+  .contentt.out {
+    transform: translate3d(0, 400%, 0);
+    transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1) var(--delay);
+  }
+</style>
