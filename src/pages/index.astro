@@ -123,13 +123,13 @@ import Preloader2 from '../components/Preloader2.astro'
   gsap.registerPlugin(ScrollTrigger)
 
   /* Lenis compatibility */
-  /* import Lenis from '@studio-freight/lenis'
+  import Lenis from '@studio-freight/lenis'
   const lenis = new Lenis()
   lenis.on('scroll', ScrollTrigger.update)
   gsap.ticker.add((time) => {
     lenis.raf(time * 1000)
   })
-  gsap.ticker.lagSmoothing(0) */
+  gsap.ticker.lagSmoothing(0)
 
   const backgrounds = [
     'linear-gradient( 180.7deg, #0000 10.7%, rgba(53,92,125,0) 100%)',
