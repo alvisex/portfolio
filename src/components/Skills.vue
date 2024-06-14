@@ -120,7 +120,7 @@ const rotateConst = 360 / groups.length
               class="tooltip absolute z-10 text-center mx-auto bg-teal-100 top-0 text-background min-w-full p-1 text-xs rounded-md opacity-0"
               >{{ el.text }}</label
             >
-            <img :src="el.img" loading="lazy" :alt="el.text" class="image w-14 md:w-16" />
+            <img :src="el.img" :alt="el.text" class="image w-14 md:w-16" />
           </div>
         </div>
       </div>
