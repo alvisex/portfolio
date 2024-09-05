@@ -31,7 +31,7 @@ const { intensity2, color2, positionn2 } = useControls({
 }) */
 
 const gl = {
-  shadows: true,
+  shadows: false,
   alpha: true,
   shadowMapType: BasicShadowMap,
   outputColorSpace: SRGBColorSpace,

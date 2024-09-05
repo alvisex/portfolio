@@ -4,10 +4,10 @@ console.log(`companies`, companies)
 const elements = Object.values(companies)
 ---
 
-<div class="container px-8 flex flex-wrap gap-8 items-center flexi">
+<div class="container px-8 flex flex-wrap gap-8 items-center flexi magic-container">
   {
     elements.map((company) => (
-      <div class="element p-0.5 hover:p-2 rounded-lg " data-rotate={company.rotate}>
+      <div class="element p-0.5 hover:p-2.5 rounded-lg " data-rotate={company.rotate}>
         <a href={`/experience/${company.id}`} class={`block h-full rounded-lg bg-${company.id} `}>
           <img transition:name={`hero-${company.id}`} src={company.img} alt="" />
           <div class="p-4 flex flex-wrap h-1/2">
@@ -26,13 +26,39 @@ const elements = Object.values(companies)
   }
 </div>
 
-<style lang="scss">
+<style>
+  @property --angle {
+    syntax: '<angle>';
+    inherits: true;
+    initial-value: 0deg;
+  }
+  @keyframes rotation {
+    to {
+      --angle: -360deg;
+    }
+  }
+
+  :root {
+    --color2: #3fe669;
+    --color1: #6cc3fa;
+    --color3: #56fcfe10;
+    --color4: #bae0db00;
+    --color5: #bae0db00;
+  }
   .element {
     flex: 1;
     @apply h-96 md:h-[25rem] 2xl:h-[30rem] cursor-pointer;
-    background: linear-gradient(45deg, #3fe669 0, #6cc3fa 63%, #56fcfe 70%, #bae0db 100%);
+    background-image: conic-gradient(
+      from var(--angle),
+      var(--color1) 0%,
+      var(--color2) 20%,
+      var(--color3) 30%,
+      var(--color4) 70%,
+      var(--color5) 100%
+    );
     background-size: 150% 110%;
     background-position: 100% 100%;
+    animation: rotation linear 3s infinite;
 
     transition:
       padding 250ms ease-out,
@@ -42,7 +68,16 @@ const elements = Object.values(companies)
       @apply h-1/2 object-contain w-full;
     }
 
+    /* &:not(:hover) {
+      animation-play-state: paused;
+,    } */
     &:hover {
+      --color1: #3fe669;
+      --color2: #bae0db;
+      --color3: #6cc3fa;
+      --color4: #56fcfe;
+      --color5: #3fe669;
+
       background-position: 0% 100%;
       transition:
         padding 250ms ease-out,
@@ -56,6 +91,11 @@ const elements = Object.values(companies)
       &[data-rotate='right'] {
         --rotate-y: -8deg;
       }
+    }
+  }
+  .magic-container:has(.element:hover) {
+    .element:not(:hover) {
+      padding: 0;
     }
   }
 </style>
