@@ -4,10 +4,15 @@ import Items from '../../components/Items.vue'
 import companies from '../../companies.yml'
 
 export function getStaticPaths() {
-  return [{ params: { company: 'citelis' } }, { params: { company: 'clout' } }, { params: { company: 'gitlab' } }]
+  return [
+    { params: { company: 'citelis' } },
+    { params: { company: 'clout' } },
+    { params: { company: 'gitlab' } },
+    { params: { company: 'nike' } },
+  ]
 }
 const { company } = Astro.params
-const { role, img, id, items, period, companyName, area } = companies[company]
+const { role, img, id, items, period, companyName, area, color } = companies[company]
 ---
 
 <Layout title={`${role} @ ${companyName}`}>

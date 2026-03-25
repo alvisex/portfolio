@@ -179,7 +179,7 @@ import Preloader2 from '../components/Preloader2.astro'
         let spanes: Element[] = gsap.utils.toArray(q('p>span'))
         spanes.forEach((target, index) => {
           gsap.from(target, {
-            opacity: 0,
+            opacity: 0.1,
             ease: 'none',
             duration: 0.3,
             scrollTrigger: {

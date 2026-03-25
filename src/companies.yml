@@ -1,7 +1,24 @@
+nike:
+  role: 'Software Engineer (UI)'
+  img: '/nike-logos-swoosh-white.jpg'
+  id: nike
+  color: '#000000'
+  companyName: Nike
+  period: Sep 2024 - Nov 2025
+  rotate: left
+  area: Olympus
+  items:
+    - Engineered <strong>order creation</strong> platform with complex, interdependent forms featuring real-time asynchronous validations and cross-field dependencies with Vue.js
+    - Established <strong>CI/CD pipelines</strong> using <strong>Jenkins</strong>, implementing <strong>E2E testing</strong> with Playwright and unit testing with Vitest to ensure code quality and reliability
+    - Maintained <strong>monorepo architecture</strong>, facilitating code sharing and consistency across multiple rontend applications
+    - Implemented a <strong>WebSocket-based real-time notification system</strong> for instant operational updates
+    - Maintained a <strong>role-based access control application</strong> for secure user permission management
+    - Built our custom component library with Storybook to standardize UI/UX patterns and accelerate development velocity
 gitlab:
   role: 'Frontend Engineer'
   img: '/gitlab-logo-200.png'
   id: gitlab
+  color: '#171321'
   companyName: GitLab
   period: May 2022 - July 2023
   rotate: left
@@ -19,8 +36,10 @@ citelis:
   role: 'Lead Frontend Enginner'
   img: '/citelis.png'
   id: 'citelis'
+  color: '#052d59'
   companyName: Citelis
   period: Jan 2020 - Feb 2024
+  rotate: right
   area: RavisaClick
   items:
     - Developed and maintained the storefront platform for JAC México, including <strong>buy</strong> and <strong>layaway applications</strong> for national and local retailers
@@ -34,6 +53,7 @@ clout:
   role: 'Web Developer'
   img: '/clout.png'
   id: 'clout'
+  color: '#15576c'
   companyName: Clout
   period: Sep 2018 - Jan 2020
   rotate: right
