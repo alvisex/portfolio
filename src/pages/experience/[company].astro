@@ -6,9 +6,8 @@ import '../../styles/global.css'
 import type { Company } from '../../types'
 
 export function getStaticPaths() {
-  return companies.map((company: Company) => ({
-    params: { company: company.id },
-    props: { company },
+  return Object.keys(companies).map((company) => ({
+    params: { company },
   }))
 }
 
