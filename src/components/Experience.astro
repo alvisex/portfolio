@@ -7,7 +7,7 @@ const elements = Object.values(companies)
   {
     elements.map((company) => (
       <div class="element p-0.5 hover:p-2.5 rounded-lg " data-rotate={company.rotate}>
-        <a href={`/experience/${company.id}`} class={`block h-full rounded-lg bg-${company.id} `}>
+        <a href={`/experience/${company.id}`} class="block h-full rounded-lg" style={`background-color: ${company.color};`}>
           <img transition:name={`hero-${company.id}`} src={company.img} alt="" />
           <div class="p-4 flex flex-wrap h-1/2">
             <div>

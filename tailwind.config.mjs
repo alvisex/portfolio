@@ -1,22 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const yamlContent = fs.readFileSync(path.resolve(__dirname, './src/companies.yml'), 'utf-8');
-const companyColors = {};
-const regex = /id:\s*'?([^'\s]+)'?\s*color:\s*'?([^'\s]+)'?/g;
-let match;
-while ((match = regex.exec(yamlContent)) !== null) {
-	companyColors[match[1]] = match[2];
-}
-
-const safelist = Object.keys(companyColors).map(id => `bg-${id}`);
-
 /** @type {import('tailwindcss').Config} */
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
-	safelist,
 	theme: {
 		extend: {
 			colors: {
@@ -25,7 +9,6 @@ export default {
 				accent: '#52CCDA',
 				background: '#151616',
 				text: '#EAEFED',
-				...companyColors
 			}
 		},
 		container: {
