@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+@theme {
+    /* Define your breakpoints as CSS custom properties */
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+    --breakpoint-2xl: 1536px;
+}
+
+/* Define the container utility */
+@utility container {
+    margin-inline: auto;
+    padding-inline: 2rem;
+    /* Matches the 'padding: 2rem' from V3 config */
+}
+
+/* Add an @layer base rule to center the container by default (if using `center: true`) */
+@layer base {
+    .container {
+        margin-inline: auto;
+    }
+}
+
+
+:root {
+    --primary: #abceb5;
+    --secondary: #b1c7c8;
+    --accent: #52ccda;
+    --background: #151616;
+    --text: #eaefed;
+    --accent-light: #ebe8e4;
+    --accent-dark: #aec6c7;
+    --azul: #1f282d;
+    --color-font: #ebe8e4;
+    --accent-gradient: linear-gradient(90deg, var(--primary) 60%, var(--accent) 100%);
+    --short-gradient: linear-gradient(120deg, var(--primary) 0%, var(--accent) 100%);
+}
+
+html {
+    font-family: 'Work Sans', system-ui, sans-serif;
+    background: var(--background);
+    background-size: 224px;
+    color: #ebe8e4;
+    font-size: 20px;
+    overflow-x: hidden;
+}
+
+body {
+    position: relative;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/noise.webp');
+    pointer-events: none;
+    user-select: none;
+}
+
+.text-gradient {
+    width: fit-content;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    &.short {
+        font-weight: 700;
+        background: var(--short-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
+
+section.card {
+    @apply h-[130vh];
+    line-height: 1.6;
+    position: relative;
+}
+
+img.bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    //object-position: 0% 100%;
+    transform: scaleX(-1);
+    height: 100%;
+    width: 100%;
+    z-index: -5;
+}
+
+h2,
+h3,
+h4,
+p,
+span {
+    position: relative;
+    z-index: 10;
+}
+
+code {
+    font-family:
+        Menlo,
+        Monaco,
+        Lucida Console,
+        Liberation Mono,
+        DejaVu Sans Mono,
+        Bitstream Vera Sans Mono,
+        Courier New,
+        monospace;
+}
+
+.visually-hidden {
+    clip: rect(0 0 0 0);
+    -webkit-clip-path: inset(50%);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+    pointer-events: none;
+}

@@ -15,7 +15,7 @@ import Preloader2 from '../components/Preloader2.astro'
     <div class="bg-cards"></div>
     <Hero />
 
-    <TheExperience client:load />
+    <!--     <TheExperience client:only="vue" /> -->
     <section class="flex items-center card" data-model>
       <Card title="" header="Who I am?">
         <p class="sr-only">
@@ -249,6 +249,6 @@ import Preloader2 from '../components/Preloader2.astro'
   } */
 
   strong {
-    @apply text-accent;
+    color: var(--accent);
   }
 </style>

@@ -46,7 +46,14 @@ const elements = Object.values(companies)
   }
   .element {
     flex: 1;
-    @apply h-96 md:h-[25rem] 2xl:h-[30rem] cursor-pointer;
+    height: 24rem;
+    cursor: pointer;
+    @media (min-width: 768px) {
+      height: 25rem;
+    }
+    @media (min-width: 1536px) {
+      height: 30rem;
+    }
     background-image: conic-gradient(
       from var(--angle),
       var(--color1) 0%,
@@ -64,7 +71,9 @@ const elements = Object.values(companies)
       transform 250ms ease-out;
 
     img {
-      @apply h-1/2 object-contain w-full;
+      height: 50%;
+      object-fit: contain;
+      width: 100%;
     }
 
     /* &:not(:hover) {

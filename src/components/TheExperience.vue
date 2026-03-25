@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { TresCanvas, useSeek } from '@tresjs/core'
+import { TresCanvas } from '@tresjs/core'
 import { BasicShadowMap, SRGBColorSpace, NoToneMapping } from 'three'
 import { GLTFModel } from '@tresjs/cientos'
 import { ref, shallowRef, watch, onMounted } from 'vue'
@@ -70,10 +70,9 @@ watch(modelRef, (model) => {
 })
 
 const haloAnimation = (model) => {
-  const { seekByName } = useSeek()
-  const nimbus001 = seekByName(model.value, 'nimbus001')
-  const nimbus002 = seekByName(model.value, 'nimbus002')
-  const nimbus003 = seekByName(model.value, 'nimbus003')
+  const nimbus001 = model.value.getObjectByName('nimbus001')
+  const nimbus002 = model.value.getObjectByName('nimbus002')
+  const nimbus003 = model.value.getObjectByName('nimbus003')
   gsap.to(nimbus002.rotation, { z: Math.PI * 2, duration: 28, ease: 'none', repeat: -1 })
   gsap.to(nimbus001.rotation, { z: -Math.PI * 2, duration: 40, ease: 'none', repeat: -1 })
   gsap.to(nimbus003.rotation, { z: -Math.PI * 2, duration: 60, ease: 'none', repeat: -1 })
@@ -82,9 +81,8 @@ const haloAnimation = (model) => {
 }
 
 const loadAnimation = (model) => {
-  const { seekByName } = useSeek()
-  const lentes = seekByName(model.value, 'lentes')
-  const busto = seekByName(model.value, 'busto')
+  const lentes = model.value.getObjectByName('lentes')
+  const busto = model.value.getObjectByName('busto')
 
   /* Intro animation */
   gsap

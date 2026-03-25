@@ -1,7 +1,7 @@
 ---
 import Navbar from '../components/Navbar.astro'
-import { ViewTransitions } from 'astro:transitions'
-import '../main.scss'
+import { ClientRouter } from 'astro:transitions'
+import '../styles/global.css'
 interface Props {
   title: string
 }
@@ -40,7 +40,7 @@ const img = url + '/' + 'webdev.jpg'
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={img} />
     {/* <link rel="preload" href="https://prod.spline.design/d4fCm8hYmfCpWPoo/scene.splinecode" as="fetch" />  */}
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body>
     <Navbar />
