@@ -1,19 +1,32 @@
 @import "tailwindcss";
 
 @theme {
-    /* Define your breakpoints as CSS custom properties */
-    --breakpoint-sm: 640px;
-    --breakpoint-md: 768px;
-    --breakpoint-lg: 1024px;
-    --breakpoint-xl: 1280px;
-    --breakpoint-2xl: 1536px;
+    /* Colors */
+    --color-primary: #ACCEB6;
+    --color-secondary: #B1C7C8;
+    --color-accent: #52CCDA;
+    --color-background: #151616;
+    --color-text: #EAEFED;
+
+    /* Container padding */
+    --container-padding: 1rem;
+    --container-padding-sm: 2rem;
+    --container-padding-lg: 2rem;
+    --container-padding-xl: 2rem;
+    --container-padding-2xl: 2rem;
+
+    /* Breakpoints / screens */
+    --breakpoint-sm: 600px;
+    --breakpoint-md: 728px;
+    --breakpoint-lg: 984px;
+    --breakpoint-xl: 1200px;
+    --breakpoint-2xl: 1500px;
 }
 
 /* Define the container utility */
 @utility container {
     margin-inline: auto;
     padding-inline: 2rem;
-    /* Matches the 'padding: 2rem' from V3 config */
 }
 
 /* Add an @layer base rule to center the container by default (if using `center: true`) */
@@ -87,21 +100,13 @@ img.bg {
     top: 0;
     left: 0;
     object-fit: cover;
-    //object-position: 0% 100%;
+    object-position: 0% 100%;
     transform: scaleX(-1);
     height: 100%;
     width: 100%;
     z-index: -5;
 }
 
-h2,
-h3,
-h4,
-p,
-span {
-    position: relative;
-    z-index: 10;
-}
 
 code {
     font-family:
