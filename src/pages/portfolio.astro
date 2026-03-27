@@ -8,7 +8,7 @@ import Preloader from '../components/Preloader.astro'
   <!-- <div class="cont h-screen">
     <canvas id="canvas3d"></canvas>
   </div> -->
-  <TheExperience client:load />
+  <TheExperience client:only="vue" />
   <Preloader />
   <!-- <div class="daback"></div>
   <section class="as"></section>
@@ -43,7 +43,7 @@ import Preloader from '../components/Preloader.astro'
     display: block;
   }
   section {
-    @apply h-screen;
+    height: 100vh;
   }
   .daback {
     display: block;

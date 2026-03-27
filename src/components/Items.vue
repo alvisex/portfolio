@@ -10,10 +10,10 @@ const items = props.items
 </template>
 <style>
 strong {
-  @apply text-accent;
+  color: var(--accent);
 }
 b {
-  @apply text-primary;
+  color: var(--primary);
 }
 li {
   padding: 0.4rem 0;

@@ -129,6 +129,7 @@ const rotateConst = 360 / groups.length
 </template>
 
 <style lang="scss">
+@import '../styles/global.css';
 #carousel-weapper {
   --card-width: 390px;
   --card-height: calc(var(--card-width) * 0.7);
