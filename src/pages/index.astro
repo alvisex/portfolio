@@ -4,9 +4,9 @@ import Card from '../components/Card.astro'
 import Avatar from '../components/Avatar.astro'
 import Hero from '../components/Hero.astro'
 import Skills from '../components/Skills.vue'
-import TheExperience from '../components/TheExperience.vue'
 import Experience from '../components/Experience.astro'
 import Preloader2 from '../components/Preloader2.astro'
+import TheCanvas from '../components/TheCanvas.vue'
 ---
 
 <Layout title="Web Engineer">
@@ -15,7 +15,7 @@ import Preloader2 from '../components/Preloader2.astro'
     <div class="bg-cards"></div>
     <Hero />
 
-    <!--     <TheExperience client:only="vue" /> -->
+    <TheCanvas client:only="vue" />
     <section class="flex items-center card" data-model>
       <Card title="" header="Who I am?">
         <p class="sr-only">
