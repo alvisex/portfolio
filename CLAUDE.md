@@ -57,12 +57,12 @@ public/                       # images, logos/, models/ (.glb/.gltf)
 
 These pieces are coupled through the DOM, so read them together before changing any of them:
 
-- `index.astro`'s `<script>` sets up Lenis ↔ ScrollTrigger sync, the fixed `.bg-cards` background gradient that changes per `section:not(.hero)`, card pinning via `gsap.matchMedia()` (breakpoint 800px), and a per-word opacity reveal on `.card p > span`.
-- Each text card's words are wrapped in individual `<span>`s inside an `aria-hidden` `<p>`, with the full sentence duplicated in a `.sr-only` `<p>` for screen readers. Keep both in sync when editing copy.
+- `index.astro`'s `<script>` sets up Lenis ↔ ScrollTrigger sync, the fixed `.bg-cards` background gradient that changes per `section:not(.hero)`, card pinning via `gsap.matchMedia()` (breakpoint 800px), and a scrubbed per-word opacity reveal on `.card p.reveal`.
+- Each text card is a single `<p class="reveal">` of plain text. GSAP SplitText splits it into words at runtime and adds the aria attributes, so there is no separate screen-reader copy. When editing card copy, only wrap lines between two plain words, never directly before or after an inline tag like `<span class="text-primary">`. Astro 7's JSX whitespace rules drop a line break that touches a tag, which would join the words.
 - `CoolStuff.vue` collects every `[data-model]` element on mount and builds one scrubbed camera timeline per element, indexed into its `cameras` / `looktAts` arrays. **The number of `[data-model]` elements in `index.astro` must match those arrays (currently 4 used of 5).** The optional `data-end-mark` attribute overrides the ScrollTrigger end.
 - `CoolStuff.vue` animates GLTF nodes by name (`nimbus001–003`, `lentes`, `busto`); renaming nodes in the model breaks the animation.
 - The canvas starts at `opacity: 0` and is revealed by GSAP once the model loads.
-- Several animations are deferred with `setTimeout` (Skills 800ms, cards 600ms after `window.onload`) so pinned sections measure correctly after layout settles. Removing them tends to cause mis-positioned pins.
+- Several animations are deferred with `setTimeout` (Skills 800ms, card pinning 100ms after `window.onload`) so pinned sections measure correctly after layout settles. Removing them tends to cause mis-positioned pins.
 
 ## Conventions and gotchas
 

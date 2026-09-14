@@ -18,88 +18,27 @@ import TheCanvas from '../components/TheCanvas.vue'
     <TheCanvas client:only="vue" />
     <section class="flex items-center card" data-model>
       <Card title="" header="Who I am?">
-        <p class="sr-only">
-          A Web Engineer with <strong>5+ years</strong>
-          of experience developing outstanding interfaces and seamless solutions through web technologies.
-        </p>
-        <p aria-hidden="true">
-          <span>A</span>
-          <span>Web</span>
-          <span>Engineer</span>
-          <span>with</span>
-          <span class="text-accent">5+</span>
-          <span class="text-accent">years</span>
-          <span>of</span>
-          <span>experience</span>
-          <span>developing</span>
-          <span class="text-primary">outstanding</span>
-          <span>interfaces</span>
-          <span>and</span>
-          <span>effective</span>
-          <span class="text-primary">solutions</span>
-          <span>through</span>
-          <span>web</span>
-          <span>technologies.</span>
+        <p class="reveal">
+          A Web Engineer with <span class="text-accent">5+ years</span> of experience developing <span class="text-primary">outstanding</span> interfaces and
+          effective <span class="text-primary">solutions</span> through web technologies.
         </p>
       </Card>
     </section>
 
     <section class="flex items-center card" data-model>
       <Card title="" header="Excelled as a frontend" reversed>
-        <p class="sr-only">
-          Also cooperating with UI/UX, DB admin, Backend, and DevOps duties across various environment, from solo department to global
-          company team.
-        </p>
-        <p aria-hidden="true">
-          <span>Also</span>
-          <span>cooperating</span>
-          <span>with</span>
-          <span>UI/UX,</span>
-          <span>DB admin,</span>
-          <span>Backend,</span>
-          <span>and</span>
-          <span>DevOps</span>
-          <span>duties</span>
-          <span>across</span>
-          <span>various</span>
-          <span>environments,</span>
-          <span>from</span>
-          <span>solo</span>
-          <span>department</span>
-          <span>to</span>
-          <span class="text-primary">global</span>
-          <span class="text-primary">company</span>
-          <span>team.</span>
+        <p class="reveal">
+          Also cooperating with UI/UX, DB admin, Backend, and DevOps duties across various environments,
+          from solo department to <span class="text-primary">global company</span> team.
         </p>
       </Card>
     </section>
 
     <section class="flex items-center card" data-model>
       <Card title="" header="My nature">
-        <p class="sr-only">
-          Continuously on the lookout for fresh technologies, tools and strategies to achieve the goals simplifying processes and optimizing
-          efforts
-        </p>
-        <p aria-hidden="true">
-          <span>Continuously</span>
-          <span>on</span>
-          <span>the</span>
-          <span>lookout</span>
-          <span>for</span>
-          <span class="text-primary">fresh</span>
-          <span class="text-primary">technologies,</span>
-          <span>tools</span>
-          <span>and</span>
-          <span>strategies</span>
-          <span>to</span>
-          <span>achieve</span>
-          <span>the</span>
-          <span>goals</span>
-          <span class="text-primary">simplifying</span>
-          <span>processes</span>
-          <span>and</span>
-          <span>optimizing</span>
-          <span class="text-primary">efforts</span>
+        <p class="reveal">
+          Continuously on the lookout for <span class="text-primary">fresh technologies,</span> tools and strategies
+          to achieve the goals <span class="text-primary">simplifying</span> processes and optimizing <span class="text-primary">efforts</span>
         </p>
       </Card>
     </section>
@@ -120,7 +59,8 @@ import TheCanvas from '../components/TheCanvas.vue'
 <script>
   import { gsap } from 'gsap'
   import { ScrollTrigger } from 'gsap/ScrollTrigger'
-  gsap.registerPlugin(ScrollTrigger)
+  import { SplitText } from 'gsap/SplitText'
+  gsap.registerPlugin(ScrollTrigger, SplitText)
 
   /* Lenis compatibility */
   import Lenis from 'lenis'
@@ -176,23 +116,29 @@ import TheCanvas from '../components/TheCanvas.vue'
         }
       )
 
-      setTimeout(() => {
-        let spanes: Element[] = gsap.utils.toArray(q('p>span'))
-        spanes.forEach((target, index) => {
-          gsap.from(target, {
-            opacity: 0.1,
-            ease: 'none',
-            duration: 0.3,
-            scrollTrigger: {
-              trigger: target,
-              //markers: true,
-              toggleActions: 'play none none reverse',
-              start: `clamp(${index * 15}px 60%)`,
-              end: `clamp(${index * 15 + 20}px 60%)`,
-            },
-          })
+      /* word reveal: SplitText wraps each word and adds the aria attributes */
+      q('p.reveal').forEach((p: Element) => {
+        SplitText.create(p, {
+          type: 'words',
+          tag: 'span', // keep valid HTML inside <p> (default is <div>)
+          wordsClass: 'word',
+          autoSplit: true, // re-split once web fonts load
+          // returning the tween lets SplitText revert and rebuild it on re-split
+          onSplit: (self) =>
+            gsap.from(self.words, {
+              opacity: 0.1,
+              ease: 'none',
+              stagger: 0.1,
+              scrollTrigger: {
+                trigger: p,
+                //markers: true,
+                start: 'clamp(top 60%)',
+                end: () => `+=${self.words.length * 15}`, // ~15px of scroll per word
+                scrub: true,
+              },
+            }),
         })
-      }, 600)
+      })
     })
   }
 
@@ -248,8 +194,4 @@ import TheCanvas from '../components/TheCanvas.vue'
   /* p {
     @apply mb-4;
   } */
-
-  strong {
-    color: var(--accent);
-  }
 </style>
