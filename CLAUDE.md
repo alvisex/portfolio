@@ -59,6 +59,7 @@ These pieces are coupled through the DOM, so read them together before changing 
 - `CoolStuff.vue` animates GLTF nodes by name (`nimbus001–003`, `lentes`, `busto`); renaming nodes in the model breaks the animation.
 - The canvas starts at `opacity: 0` and is revealed by GSAP once the model loads.
 - Several animations are deferred with `setTimeout` (Skills 800ms, card pinning 100ms after `astro:page-load`) so pinned sections measure correctly after layout settles. Removing them tends to cause mis-positioned pins.
+- The pin-spacers make the page about 1300px taller *after* the page has loaded. A `#hash` link such as "Home" → `/#experience` would therefore land too high, in the Skills section. `followHash()` in `index.astro` keeps the target in view on every body resize, until the user scrolls or 2.5s pass. It uses a native `window.scrollTo` after `lenis.resize()`, because right after a page swap `lenis.scrollTo` still has the old page's scroll position and limit. Keep it if you add more pinned sections.
 
 ## Conventions and gotchas
 
