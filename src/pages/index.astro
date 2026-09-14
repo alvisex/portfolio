@@ -148,6 +148,33 @@ import TheCanvas from '../components/TheCanvas.vue'
   let mm: gsap.MatchMedia | undefined
   let splits: SplitText[] = []
   let cardsTimer: ReturnType<typeof setTimeout> | undefined
+  let stopFollowingHash: (() => void) | undefined
+
+  /* A #hash link (e.g. "Home" -> /#experience) is scrolled to right after the page swap, before the
+     pins above it exist; each pin-spacer then pushes the target further down. Keep it in view while
+     the layout settles: re-scroll on every body resize until the user scrolls or 2.5s pass. */
+  const followHash = () => {
+    const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)))
+    if (!target) return
+
+    // Native scroll, not lenis.scrollTo: right after a swap Lenis still has the old page's scroll
+    // position and limit, so it would clamp or mis-compute the target. It re-syncs from native scroll.
+    const observer = new ResizeObserver(() => {
+      lenis.resize()
+      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY, behavior: 'instant' })
+    })
+    const inputs = ['wheel', 'touchstart', 'keydown'] as const
+    const stop = () => {
+      observer.disconnect()
+      clearTimeout(timer)
+      inputs.forEach((type) => removeEventListener(type, stop))
+      stopFollowingHash = undefined
+    }
+    const timer = setTimeout(stop, 2500)
+    inputs.forEach((type) => addEventListener(type, stop, { passive: true }))
+    observer.observe(document.body) // also fires once right away
+    stopFollowingHash = stop
+  }
 
   /* This script runs once, but ClientRouter swaps pages without a reload:
      build the animations on every visit to this page and tear them down before leaving it. */
@@ -180,9 +207,12 @@ import TheCanvas from '../components/TheCanvas.vue'
     const cards: Element[] = gsap.utils.toArray('.card')
     // deferred so pinned sections measure correctly after layout settles
     cardsTimer = setTimeout(() => ctx?.add(() => cardsAnimation(cards)), 100)
+
+    followHash()
   }
 
   const teardownHome = () => {
+    stopFollowingHash?.()
     clearTimeout(cardsTimer)
     splits.forEach((split) => split.revert())
     splits = []
