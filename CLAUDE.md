@@ -11,9 +11,10 @@ bun install
 bun run dev       # astro dev → http://localhost:4321
 bun run build     # static build → dist/
 bun run preview   # serve dist/
+bun run check     # astro check (TypeScript in .astro/.ts files)
 ```
 
-There are no tests, linter, or `astro check` set up. `bun run build` is the only automated verification — animations and the 3D scene must be checked manually in the browser.
+There are no tests or linter. `bun run check` and `bun run build` are the automated verification — animations and the 3D scene must be checked manually in the browser.
 
 Formatting follows `.prettierrc.json`: no semicolons, single quotes, 2-space indent, `printWidth: 140`, `trailingComma: es5`.
 
@@ -23,7 +24,7 @@ Formatting follows `.prettierrc.json`: no semicolons, single quotes, 2-space ind
 - **Vue 3** for interactive islands (`.vue` files in `src/components/`).
 - **TresJS 5** (`@tresjs/core` + `@tresjs/cientos`) on top of **three**, for the hero 3D model.
 - **GSAP 3** + ScrollTrigger for all animation; **Lenis** (`lenis`) for smooth scroll, synced to ScrollTrigger in `index.astro` (its CSS comes from `lenis/dist/lenis.css`).
-- **Tailwind CSS 4**, CSS-first config in `src/styles/global.css` (`@theme` block). `tailwind.config.mjs` is a leftover from v3 and is **not** loaded.
+- **Tailwind CSS 4**, CSS-first config in `src/styles/global.css` (`@theme` block). There is no `tailwind.config.*`.
 - **Sass** is used via `<style lang="scss">` in several components.
 ## Layout
 
@@ -42,11 +43,9 @@ src/
     Experience.astro          # company cards linking to /experience/<id>
     Items.vue                 # renders company bullet items with v-html
     Navbar.astro              # fixed nav + mobile drawer (vanilla script)
-    Preloader2.astro          # currently unused (commented out in index.astro)
   companies.yml               # experience data — the single source for Experience.astro and [company].astro
   types.ts                    # Company type
   styles/global.css           # Tailwind import, @theme tokens, CSS vars, .text-gradient
-  outdated/                   # dead code, not routed
 public/                       # images, logos/, models/ (.glb/.gltf)
 ```
 

@@ -4,13 +4,11 @@ import Card from '../components/Card.astro'
 import Hero from '../components/Hero.astro'
 import Skills from '../components/Skills.vue'
 import Experience from '../components/Experience.astro'
-// import Preloader2 from '../components/Preloader2.astro'
 import TheCanvas from '../components/TheCanvas.vue'
 ---
 
 <Layout title="Web Engineer">
   <main>
-    <!-- <Preloader2 /> -->
     <div class="bg-cards"></div>
     <Hero />
 
@@ -100,7 +98,7 @@ import TheCanvas from '../components/TheCanvas.vue'
         },
         (context) => {
           // context.conditions has a boolean property for each condition defined above indicating if it's matched or not.
-          let { isDesktop } = context.conditions
+          const isDesktop = context.conditions?.isDesktop
 
           const triggerLine = isDesktop ? '30%' : '15%'
           gsap.timeline({
@@ -147,7 +145,7 @@ import TheCanvas from '../components/TheCanvas.vue'
   let sections: Element[] = gsap.utils.toArray('section:not(.hero)')
   sections.forEach((section, index) => {
     /* bg animations */
-    let trigger = ScrollTrigger.create({
+    ScrollTrigger.create({
       trigger: section,
       start: 'top 30%',
       end: 'bottom 30%',

@@ -170,7 +170,7 @@ Commit: `chore: upgrade to Astro 7`.
 
 TS 7 (Go-native, GA 2026-07-08) has **no programmatic compiler API until 7.1**, and Volar, vue-tsc and Astro's language tooling depend on that API. Stay on `typescript@~6.0.3` and revisit when TS 7.1 is released and Astro/Volar announce support. The build itself doesn't type-check, so there's no urgency.
 
-## Optional cleanup (independent of the upgrade)
+## Optional cleanup — ✅ done (also removed unused public/ images and icons; 3D models kept)
 
 - Delete `tailwind.config.mjs`. Tailwind v4 doesn't load it without `@config`.
 - Delete `src/outdated/`.

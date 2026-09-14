@@ -3,7 +3,6 @@ import Layout from '../../layouts/Layout.astro'
 import Items from '../../components/Items.vue'
 import companies from '../../companies.yml'
 import '../../styles/global.css'
-import type { Company } from '../../types'
 
 export function getStaticPaths() {
   return Object.keys(companies).map((company) => ({
