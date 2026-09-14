@@ -6,7 +6,9 @@ type Company = {
     companyName: string;
     area: string;
     color: string;
-    items: Array<{ title: string; description: string }>;
+    rotate: 'left' | 'right';
+    /** HTML strings, rendered with v-html */
+    items: string[];
 }
 
 export type { Company }

@@ -1,105 +1,44 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import Card from '../components/Card.astro'
-// import Avatar from '../components/Avatar.astro'
 import Hero from '../components/Hero.astro'
 import Skills from '../components/Skills.vue'
 import Experience from '../components/Experience.astro'
-// import Preloader2 from '../components/Preloader2.astro'
 import TheCanvas from '../components/TheCanvas.vue'
 ---
 
 <Layout title="Web Engineer">
   <main>
-    <!-- <Preloader2 /> -->
     <div class="bg-cards"></div>
     <Hero />
 
     <TheCanvas client:only="vue" />
     <section class="flex items-center card" data-model>
       <Card title="" header="Who I am?">
-        <p class="sr-only">
-          A Web Engineer with <strong>5+ years</strong>
-          of experience developing outstanding interfaces and seamless solutions through web technologies.
-        </p>
-        <p aria-hidden="true">
-          <span>A</span>
-          <span>Web</span>
-          <span>Engineer</span>
-          <span>with</span>
-          <span class="text-accent">5+</span>
-          <span class="text-accent">years</span>
-          <span>of</span>
-          <span>experience</span>
-          <span>developing</span>
-          <span class="text-primary">outstanding</span>
-          <span>interfaces</span>
-          <span>and</span>
-          <span>effective</span>
-          <span class="text-primary">solutions</span>
-          <span>through</span>
-          <span>web</span>
-          <span>technologies.</span>
+        <p class="reveal">
+          A Web Engineer with <span class="text-accent">5+ years</span> of experience developing <span class="text-primary"
+            >outstanding</span
+          > interfaces and effective <span class="text-primary">solutions</span> through web technologies.
         </p>
       </Card>
     </section>
 
     <section class="flex items-center card" data-model>
       <Card title="" header="Excelled as a frontend" reversed>
-        <p class="sr-only">
-          Also cooperating with UI/UX, DB admin, Backend, and DevOps duties across various environment, from solo department to global
-          company team.
-        </p>
-        <p aria-hidden="true">
-          <span>Also</span>
-          <span>cooperating</span>
-          <span>with</span>
-          <span>UI/UX,</span>
-          <span>DB admin,</span>
-          <span>Backend,</span>
-          <span>and</span>
-          <span>DevOps</span>
-          <span>duties</span>
-          <span>across</span>
-          <span>various</span>
-          <span>environments,</span>
-          <span>from</span>
-          <span>solo</span>
-          <span>department</span>
-          <span>to</span>
-          <span class="text-primary">global</span>
-          <span class="text-primary">company</span>
-          <span>team.</span>
+        <p class="reveal">
+          Also cooperating with UI/UX, DB admin, Backend, and DevOps duties across various environments, from solo department to <span
+            class="text-primary">global company</span
+          > team.
         </p>
       </Card>
     </section>
 
     <section class="flex items-center card" data-model>
       <Card title="" header="My nature">
-        <p class="sr-only">
-          Continuously on the lookout for fresh technologies, tools and strategies to achieve the goals simplifying processes and optimizing
-          efforts
-        </p>
-        <p aria-hidden="true">
-          <span>Continuously</span>
-          <span>on</span>
-          <span>the</span>
-          <span>lookout</span>
-          <span>for</span>
-          <span class="text-primary">fresh</span>
-          <span class="text-primary">technologies,</span>
-          <span>tools</span>
-          <span>and</span>
-          <span>strategies</span>
-          <span>to</span>
-          <span>achieve</span>
-          <span>the</span>
-          <span>goals</span>
-          <span class="text-primary">simplifying</span>
-          <span>processes</span>
-          <span>and</span>
-          <span>optimizing</span>
-          <span class="text-primary">efforts</span>
+        <p class="reveal">
+          Continuously on the lookout for <span class="text-primary">fresh technologies,</span> tools and strategies to achieve the goals <span
+            class="text-primary">simplifying</span
+          > processes and optimizing <span class="text-primary">efforts</span>
         </p>
       </Card>
     </section>
@@ -120,10 +59,12 @@ import TheCanvas from '../components/TheCanvas.vue'
 <script>
   import { gsap } from 'gsap'
   import { ScrollTrigger } from 'gsap/ScrollTrigger'
-  gsap.registerPlugin(ScrollTrigger)
+  import { SplitText } from 'gsap/SplitText'
+  gsap.registerPlugin(ScrollTrigger, SplitText)
 
   /* Lenis compatibility */
-  import Lenis from '@studio-freight/lenis'
+  import Lenis from 'lenis'
+  import 'lenis/dist/lenis.css'
   const lenis = new Lenis()
   lenis.on('scroll', ScrollTrigger.update)
   gsap.ticker.add((time) => {
@@ -148,11 +89,11 @@ import TheCanvas from '../components/TheCanvas.vue'
       ease: 'power3',
     })
   }
-  const cardsAnimation = () => {
+  const cardsAnimation = (cards: Element[]) => {
     cards.forEach((card: Element) => {
       let q = gsap.utils.selector(card)
 
-      mm.add(
+      mm?.add(
         {
           // set up any number of arbitrarily-named conditions. The function below will be called when ANY of them match.
           isDesktop: `(min-width: ${breakPoint}px)`,
@@ -160,7 +101,7 @@ import TheCanvas from '../components/TheCanvas.vue'
         },
         (context) => {
           // context.conditions has a boolean property for each condition defined above indicating if it's matched or not.
-          let { isDesktop } = context.conditions
+          const isDesktop = context.conditions?.isDesktop
 
           const triggerLine = isDesktop ? '30%' : '15%'
           gsap.timeline({
@@ -175,59 +116,84 @@ import TheCanvas from '../components/TheCanvas.vue'
         }
       )
 
-      setTimeout(() => {
-        let spanes: Element[] = gsap.utils.toArray(q('p>span'))
-        spanes.forEach((target, index) => {
-          gsap.from(target, {
-            opacity: 0.1,
-            ease: 'none',
-            duration: 0.3,
-            scrollTrigger: {
-              trigger: target,
-              //markers: true,
-              toggleActions: 'play none none reverse',
-              start: `clamp(${index * 15}px 60%)`,
-              end: `clamp(${index * 15 + 20}px 60%)`,
-            },
-          })
+      /* word reveal: SplitText wraps each word and adds the aria attributes */
+      q('p.reveal').forEach((p: Element) => {
+        const split = SplitText.create(p, {
+          type: 'words',
+          tag: 'span', // keep valid HTML inside <p> (default is <div>)
+          wordsClass: 'word',
+          autoSplit: true, // re-split once web fonts load
+          // returning the tween lets SplitText revert and rebuild it on re-split
+          onSplit: (self) =>
+            gsap.from(self.words, {
+              opacity: 0.1,
+              ease: 'none',
+              stagger: 0.1,
+              scrollTrigger: {
+                trigger: p,
+                //markers: true,
+                start: 'clamp(top 60%)',
+                end: () => `+=${self.words.length * 25}`, // ~25px of scroll per word
+                scrub: true,
+              },
+            }),
         })
-      }, 600)
+        splits.push(split)
+      })
     })
   }
 
-  gsap.set('.bg-cards', { background: 'linear-gradient( 180.7deg,  #151616 10.7%, rgba(53,92,125,0) 10)' })
-
-  /* Sections */
-  let sections: Element[] = gsap.utils.toArray('section:not(.hero)')
-  sections.forEach((section, index) => {
-    /* bg animations */
-    let trigger = ScrollTrigger.create({
-      trigger: section,
-      start: 'top 30%',
-      end: 'bottom 30%',
-      //markers: true,
-      onEnter() {
-        bgAnimation(index)
-      },
-      onEnterBack() {
-        bgAnimation(index)
-      },
-    })
-  })
-
-  let mm = gsap.matchMedia()
   const breakPoint = 800
+  let ctx: gsap.Context | undefined
+  let mm: gsap.MatchMedia | undefined
+  let splits: SplitText[] = []
+  let cardsTimer: ReturnType<typeof setTimeout> | undefined
 
-  const cards: Element[] = gsap.utils.toArray('.card')
-  window.onload = () => {
-    /*  console.log('cards', cards)
-    console.log('loaded') */
-    setTimeout(() => {
-      cardsAnimation()
-    }, 100)
+  /* This script runs once, but ClientRouter swaps pages without a reload:
+     build the animations on every visit to this page and tear them down before leaving it. */
+  const setupHome = () => {
+    if (!document.querySelector('.bg-cards')) return // not the home page
+
+    ctx = gsap.context(() => {
+      gsap.set('.bg-cards', { background: 'linear-gradient( 180.7deg,  #151616 10.7%, rgba(53,92,125,0) 10)' })
+
+      /* Sections */
+      const sections: Element[] = gsap.utils.toArray('section:not(.hero)')
+      sections.forEach((section, index) => {
+        /* bg animations */
+        ScrollTrigger.create({
+          trigger: section,
+          start: 'top 30%',
+          end: 'bottom 30%',
+          //markers: true,
+          onEnter() {
+            bgAnimation(index)
+          },
+          onEnterBack() {
+            bgAnimation(index)
+          },
+        })
+      })
+    })
+    mm = gsap.matchMedia()
+
+    const cards: Element[] = gsap.utils.toArray('.card')
+    // deferred so pinned sections measure correctly after layout settles
+    cardsTimer = setTimeout(() => ctx?.add(() => cardsAnimation(cards)), 100)
   }
 
-  //
+  const teardownHome = () => {
+    clearTimeout(cardsTimer)
+    splits.forEach((split) => split.revert())
+    splits = []
+    mm?.revert()
+    mm = undefined
+    ctx?.revert()
+    ctx = undefined
+  }
+
+  document.addEventListener('astro:page-load', setupHome)
+  document.addEventListener('astro:before-swap', teardownHome)
 </script>
 
 <style lang="scss">
@@ -247,8 +213,4 @@ import TheCanvas from '../components/TheCanvas.vue'
   /* p {
     @apply mb-4;
   } */
-
-  strong {
-    color: var(--accent);
-  }
 </style>

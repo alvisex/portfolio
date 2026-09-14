@@ -4,7 +4,7 @@ interface Props {
   header: string
   reversed?: boolean
 }
-const { title, header, reversed } = Astro.props
+const { header, reversed } = Astro.props
 ---
 
 <div class={`container  ${reversed ? 'reversed' : ''}`}>
@@ -14,8 +14,6 @@ const { title, header, reversed } = Astro.props
     <slot />
   </div>
 </div>
-
-<script define:vars={{ title }}></script>
 
 <style lang="scss" is:global>
   .card {
@@ -30,14 +28,6 @@ const { title, header, reversed } = Astro.props
         font-size: 2.25rem;
         line-height: 2.5rem;
       }
-
-      /* & span {
-        background: var(--text-reveal-simple);
-        background-size: 200% 100%;
-        background-position-x: 100%;
-        color: transparent;
-        background-clip: text;
-      } */
     }
     .reversed {
       display: flex;

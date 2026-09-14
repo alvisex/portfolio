@@ -1,15 +1,19 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
+
+// owns the carousel ScrollTriggers so they die with the island (view transitions unmount it)
+const ctx = gsap.context(() => {})
+let timer
 
 onMounted(() => {
   const finalSpace = window.innerWidth > 1000 ? '420px' : '210px'
   const finalInclination = window.innerWidth > 1000 ? '8deg' : '5deg'
 
-  setTimeout(() => {
-    const tl = gsap.timeline({
+  timer = setTimeout(() => ctx.add(() => {
+    gsap.timeline({
       scrollTrigger: {
         trigger: '.carousel-section',
         start: 'top 7%',
@@ -29,7 +33,12 @@ onMounted(() => {
       '--inclination': finalInclination,
       ease: 'none',
     })
-  }, 800)
+  }), 800)
+})
+
+onUnmounted(() => {
+  clearTimeout(timer)
+  ctx.revert()
 })
 
 const groups = [
@@ -129,7 +138,6 @@ const rotateConst = 360 / groups.length
 </template>
 
 <style lang="scss">
-@import '../styles/global.css';
 #carousel-weapper {
   --card-width: 390px;
   --card-height: calc(var(--card-width) * 0.7);
