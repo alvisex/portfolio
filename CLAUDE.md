@@ -25,8 +25,6 @@ Formatting follows `.prettierrc.json`: no semicolons, single quotes, 2-space ind
 - **GSAP 3** + ScrollTrigger for all animation; **Lenis** (`lenis`) for smooth scroll, synced to ScrollTrigger in `index.astro` (its CSS comes from `lenis/dist/lenis.css`).
 - **Tailwind CSS 4**, CSS-first config in `src/styles/global.css` (`@theme` block). `tailwind.config.mjs` is a leftover from v3 and is **not** loaded.
 - **Sass** is used via `<style lang="scss">` in several components.
-- `@splinetool/runtime` is only used by `src/pages/demo.astro` and the unused `Avatar.astro`.
-
 ## Layout
 
 ```
@@ -35,7 +33,6 @@ src/
   pages/
     index.astro               # home: Hero → TheCanvas → 3 text Cards → Skills carousel → Experience grid
     experience/[company].astro# one static page per key in companies.yml (getStaticPaths)
-    demo.astro                # Spline scene experiment (not linked from nav)
   components/
     Hero.astro                # intro text + CSS blob background, GSAP intro/scroll timelines
     Card.astro                # text section wrapper (is:global styles for .card)
@@ -45,7 +42,7 @@ src/
     Experience.astro          # company cards linking to /experience/<id>
     Items.vue                 # renders company bullet items with v-html
     Navbar.astro              # fixed nav + mobile drawer (vanilla script)
-    Preloader*.astro, Avatar.astro  # currently unused (commented out)
+    Preloader2.astro          # currently unused (commented out in index.astro)
   companies.yml               # experience data — the single source for Experience.astro and [company].astro
   types.ts                    # Company type
   styles/global.css           # Tailwind import, @theme tokens, CSS vars, .text-gradient

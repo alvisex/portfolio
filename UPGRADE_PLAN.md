@@ -160,7 +160,7 @@ Astro 7's own guide says most projects need no code changes. These are the parts
 
 Commit: `chore: upgrade to Astro 7`.
 
-## Phase 4: Spline runtime — decision needed
+## Phase 4: Spline runtime — ✅ done (option A: removed)
 
 `@splinetool/runtime` 2.0 shipped on 2026-08-20 with no public migration notes and about 40 patch releases in three weeks, so it isn't stable yet. It's only used by `demo.astro`, an unlinked experiment with debug `markers: true`, and `Avatar.astro`, which is unused. Options:
 - **A (recommended):** delete `demo.astro`, `Avatar.astro`, `Preloader.astro`, and the dependency. This also removes a large chunk from the build.
