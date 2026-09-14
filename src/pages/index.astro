@@ -123,7 +123,8 @@ import TheCanvas from '../components/TheCanvas.vue'
   gsap.registerPlugin(ScrollTrigger)
 
   /* Lenis compatibility */
-  import Lenis from '@studio-freight/lenis'
+  import Lenis from 'lenis'
+  import 'lenis/dist/lenis.css'
   const lenis = new Lenis()
   lenis.on('scroll', ScrollTrigger.update)
   gsap.ticker.add((time) => {

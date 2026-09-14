@@ -5,10 +5,8 @@ import { useGLTF } from '@tresjs/cientos'
 import { ref, shallowRef, watch, onMounted } from 'vue'
 
 import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
-
-import type { TresObject } from 'tresjs'
 
 
 const cameras = [
