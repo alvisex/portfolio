@@ -16,8 +16,9 @@ import TheCanvas from '../components/TheCanvas.vue'
     <section class="flex items-center card" data-model>
       <Card title="" header="Who I am?">
         <p class="reveal">
-          A Web Engineer with <span class="text-accent">5+ years</span> of experience developing <span class="text-primary">outstanding</span> interfaces and
-          effective <span class="text-primary">solutions</span> through web technologies.
+          A Web Engineer with <span class="text-accent">5+ years</span> of experience developing <span class="text-primary"
+            >outstanding</span
+          > interfaces and effective <span class="text-primary">solutions</span> through web technologies.
         </p>
       </Card>
     </section>
@@ -25,8 +26,9 @@ import TheCanvas from '../components/TheCanvas.vue'
     <section class="flex items-center card" data-model>
       <Card title="" header="Excelled as a frontend" reversed>
         <p class="reveal">
-          Also cooperating with UI/UX, DB admin, Backend, and DevOps duties across various environments,
-          from solo department to <span class="text-primary">global company</span> team.
+          Also cooperating with UI/UX, DB admin, Backend, and DevOps duties across various environments, from solo department to <span
+            class="text-primary">global company</span
+          > team.
         </p>
       </Card>
     </section>
@@ -34,8 +36,9 @@ import TheCanvas from '../components/TheCanvas.vue'
     <section class="flex items-center card" data-model>
       <Card title="" header="My nature">
         <p class="reveal">
-          Continuously on the lookout for <span class="text-primary">fresh technologies,</span> tools and strategies
-          to achieve the goals <span class="text-primary">simplifying</span> processes and optimizing <span class="text-primary">efforts</span>
+          Continuously on the lookout for <span class="text-primary">fresh technologies,</span> tools and strategies to achieve the goals <span
+            class="text-primary">simplifying</span
+          > processes and optimizing <span class="text-primary">efforts</span>
         </p>
       </Card>
     </section>
@@ -86,11 +89,11 @@ import TheCanvas from '../components/TheCanvas.vue'
       ease: 'power3',
     })
   }
-  const cardsAnimation = () => {
+  const cardsAnimation = (cards: Element[]) => {
     cards.forEach((card: Element) => {
       let q = gsap.utils.selector(card)
 
-      mm.add(
+      mm?.add(
         {
           // set up any number of arbitrarily-named conditions. The function below will be called when ANY of them match.
           isDesktop: `(min-width: ${breakPoint}px)`,
@@ -115,7 +118,7 @@ import TheCanvas from '../components/TheCanvas.vue'
 
       /* word reveal: SplitText wraps each word and adds the aria attributes */
       q('p.reveal').forEach((p: Element) => {
-        SplitText.create(p, {
+        const split = SplitText.create(p, {
           type: 'words',
           tag: 'span', // keep valid HTML inside <p> (default is <div>)
           wordsClass: 'word',
@@ -130,48 +133,67 @@ import TheCanvas from '../components/TheCanvas.vue'
                 trigger: p,
                 //markers: true,
                 start: 'clamp(top 60%)',
-                end: () => `+=${self.words.length * 15}`, // ~15px of scroll per word
+                end: () => `+=${self.words.length * 25}`, // ~25px of scroll per word
                 scrub: true,
               },
             }),
         })
+        splits.push(split)
       })
     })
   }
 
-  gsap.set('.bg-cards', { background: 'linear-gradient( 180.7deg,  #151616 10.7%, rgba(53,92,125,0) 10)' })
-
-  /* Sections */
-  let sections: Element[] = gsap.utils.toArray('section:not(.hero)')
-  sections.forEach((section, index) => {
-    /* bg animations */
-    ScrollTrigger.create({
-      trigger: section,
-      start: 'top 30%',
-      end: 'bottom 30%',
-      //markers: true,
-      onEnter() {
-        bgAnimation(index)
-      },
-      onEnterBack() {
-        bgAnimation(index)
-      },
-    })
-  })
-
-  let mm = gsap.matchMedia()
   const breakPoint = 800
+  let ctx: gsap.Context | undefined
+  let mm: gsap.MatchMedia | undefined
+  let splits: SplitText[] = []
+  let cardsTimer: ReturnType<typeof setTimeout> | undefined
 
-  const cards: Element[] = gsap.utils.toArray('.card')
-  window.onload = () => {
-    /*  console.log('cards', cards)
-    console.log('loaded') */
-    setTimeout(() => {
-      cardsAnimation()
-    }, 100)
+  /* This script runs once, but ClientRouter swaps pages without a reload:
+     build the animations on every visit to this page and tear them down before leaving it. */
+  const setupHome = () => {
+    if (!document.querySelector('.bg-cards')) return // not the home page
+
+    ctx = gsap.context(() => {
+      gsap.set('.bg-cards', { background: 'linear-gradient( 180.7deg,  #151616 10.7%, rgba(53,92,125,0) 10)' })
+
+      /* Sections */
+      const sections: Element[] = gsap.utils.toArray('section:not(.hero)')
+      sections.forEach((section, index) => {
+        /* bg animations */
+        ScrollTrigger.create({
+          trigger: section,
+          start: 'top 30%',
+          end: 'bottom 30%',
+          //markers: true,
+          onEnter() {
+            bgAnimation(index)
+          },
+          onEnterBack() {
+            bgAnimation(index)
+          },
+        })
+      })
+    })
+    mm = gsap.matchMedia()
+
+    const cards: Element[] = gsap.utils.toArray('.card')
+    // deferred so pinned sections measure correctly after layout settles
+    cardsTimer = setTimeout(() => ctx?.add(() => cardsAnimation(cards)), 100)
   }
 
-  //
+  const teardownHome = () => {
+    clearTimeout(cardsTimer)
+    splits.forEach((split) => split.revert())
+    splits = []
+    mm?.revert()
+    mm = undefined
+    ctx?.revert()
+    ctx = undefined
+  }
+
+  document.addEventListener('astro:page-load', setupHome)
+  document.addEventListener('astro:before-swap', teardownHome)
 </script>
 
 <style lang="scss">

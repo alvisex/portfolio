@@ -2,7 +2,7 @@
 import { TresCanvas } from '@tresjs/core'
 import { BasicShadowMap, SRGBColorSpace, NoToneMapping } from 'three'
 import { useGLTF } from '@tresjs/cientos'
-import { ref, shallowRef, watch, onMounted } from 'vue'
+import { ref, shallowRef, watch, onMounted, onUnmounted } from 'vue'
 
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -34,13 +34,17 @@ const path = "/models/alterado.glb"
 
 const { state, nodes, isLoading, progress } = useGLTF(path, { draco: true })
 
+// owns every tween/ScrollTrigger below so they die with the island (view transitions unmount it)
+const ctx = gsap.context(() => {})
+let loadTimer: ReturnType<typeof setTimeout> | undefined
 
 watch(isLoading, () => {
-  setTimeout(() => {
-    haloAnimation(nodes)
-    loadAnimation(nodes)
+  loadTimer = setTimeout(() => {
+    ctx.add(() => {
+      haloAnimation(nodes)
+      loadAnimation(nodes)
+    })
   }, 200)
-
 })
 
 const haloAnimation = (nodes: any) => {
@@ -99,7 +103,7 @@ const loadAnimation = (nodes: any) => {
         {
           ...looktAts[index],
           onUpdate: () => {
-            cameraRef.value.lookAt(...Object.values(lookAtAux))
+            cameraRef.value?.lookAt(...Object.values(lookAtAux))
           },
         },
         '<'
@@ -112,6 +116,11 @@ const loadAnimation = (nodes: any) => {
 
 onMounted(() => {
   sections = gsap.utils.toArray('[data-model]')
+})
+
+onUnmounted(() => {
+  clearTimeout(loadTimer)
+  ctx.revert()
 })
 </script>
 

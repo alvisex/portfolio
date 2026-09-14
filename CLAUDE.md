@@ -22,7 +22,7 @@ Formatting follows `.prettierrc.json`: no semicolons, single quotes, 2-space ind
 
 - **Astro 7** (`output: static`, Vite 8 / Rolldown) — `astro.config.mjs` registers `@astrojs/vue` plus two Vite plugins: `@tailwindcss/vite` and `@rollup/plugin-yaml`.
 - **Vue 3** for interactive islands (`.vue` files in `src/components/`).
-- **TresJS 5** (`@tresjs/core` + `@tresjs/cientos`) on top of **three**, for the hero 3D model.
+- **TresJS 5** (`@tresjs/core` + `@tresjs/cientos`) on top of **three**, for the hero 3D model. `astro.config.mjs` passes Tres's `templateCompilerOptions` to the Vue integration. Without it, every `<Tres*>` / `<primitive>` tag logs `[Vue warn]: Failed to resolve component`.
 - **GSAP 3** + ScrollTrigger for all animation; **Lenis** (`lenis`) for smooth scroll, synced to ScrollTrigger in `index.astro` (its CSS comes from `lenis/dist/lenis.css`).
 - **Tailwind CSS 4**, CSS-first config in `src/styles/global.css` (`@theme` block). There is no `tailwind.config.*`.
 - **Sass** is used via `<style lang="scss">` in several components.
@@ -58,7 +58,7 @@ These pieces are coupled through the DOM, so read them together before changing 
 - `CoolStuff.vue` collects every `[data-model]` element on mount and builds one scrubbed camera timeline per element, indexed into its `cameras` / `looktAts` arrays. **The number of `[data-model]` elements in `index.astro` must match those arrays (currently 4 used of 5).** The optional `data-end-mark` attribute overrides the ScrollTrigger end.
 - `CoolStuff.vue` animates GLTF nodes by name (`nimbus001–003`, `lentes`, `busto`); renaming nodes in the model breaks the animation.
 - The canvas starts at `opacity: 0` and is revealed by GSAP once the model loads.
-- Several animations are deferred with `setTimeout` (Skills 800ms, card pinning 100ms after `window.onload`) so pinned sections measure correctly after layout settles. Removing them tends to cause mis-positioned pins.
+- Several animations are deferred with `setTimeout` (Skills 800ms, card pinning 100ms after `astro:page-load`) so pinned sections measure correctly after layout settles. Removing them tends to cause mis-positioned pins.
 
 ## Conventions and gotchas
 
@@ -70,3 +70,4 @@ These pieces are coupled through the DOM, so read them together before changing 
 - View transitions: `transition:name` values (`hero-<id>`, `title-<id>`, `period-<id>`) link `Experience.astro` cards to `[company].astro`.
 - Always import GSAP plugins from `gsap/<Plugin>` (e.g. `gsap/ScrollTrigger`), never `gsap/dist/...`. The dist (UMD) build is a separate ScrollTrigger instance, and Lenis only drives `ScrollTrigger.update` on the ESM one.
 - `@tresjs/core` and `@tresjs/cientos` are pinned to exact versions because cientos requires an exact core version. Bump them together.
+- **Page transitions don't reload the page** (`<ClientRouter />`). `index.astro`'s script runs only once, so it builds its animations on `astro:page-load` and tears them down on `astro:before-swap`. The Vue islands keep their GSAP work in a `gsap.context()` that they revert in `onUnmounted`. Any new animation has to follow the same pattern. Otherwise, after navigating away, it keeps running against removed elements (`Cannot read properties of null`, `GSAP target … not found`), and returning home won't rebuild it.
