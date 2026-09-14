@@ -14,7 +14,7 @@ bun run preview   # serve dist/
 bun run check     # astro check (TypeScript in .astro/.ts files)
 ```
 
-There are no tests or linter. `bun run check` and `bun run build` are the automated verification — animations and the 3D scene must be checked manually in the browser.
+There are no tests or linter. `bun run check` and `bun run build` are the automated verification — to check animations, page transitions, the 3D scene and the browser console, use the `/run-portfolio` skill (`.claude/skills/run-portfolio/`), which drives headless Chrome and fails on any console warning.
 
 Formatting follows `.prettierrc.json`: no semicolons, single quotes, 2-space indent, `printWidth: 140`, `trailingComma: es5`.
 
