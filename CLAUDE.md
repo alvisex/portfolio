@@ -4,7 +4,7 @@ Personal portfolio site for Alvise Leal — a static Astro site with Vue islands
 
 ## Commands
 
-Package manager is **bun**, with the text lockfile `bun.lock`. Tool versions are pinned per project: bun in `.prototools` (proto), Node in `.nvmrc`. If a build fails with a strange module-resolution error after several `bun add`s, delete `node_modules` and run `bun install` again before debugging further.
+Package manager is **bun**, with the text lockfile `bun.lock`. bun is pinned per project in `.prototools` (proto). Node is not pinned in the repo; it follows your global proto version. Astro 7 needs Node ≥ 22.12. If a build fails with a strange module-resolution error after several `bun add`s, delete `node_modules` and run `bun install` again before debugging further.
 
 ```sh
 bun install
